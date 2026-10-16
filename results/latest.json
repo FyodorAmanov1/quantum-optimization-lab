@@ -1,0 +1,36 @@
+{
+  "project": "quantum-optimization-lab",
+  "seed": 1729,
+  "metrics": {
+    "exact": {
+      "bits": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "objective": -0.15044745786964772,
+      "candidates": 20
+    },
+    "qaoa_expected_penalized_objective": 0.33684467721948846,
+    "feasible_probability": 0.6473458925591156,
+    "conditional_feasible_objective": -0.0954777616706352,
+    "conditional_gap_to_optimum": 0.05496969619901253,
+    "gamma": 0.39269908169872414,
+    "beta": 2.945243112740431,
+    "parameter_evaluations": 289,
+    "logical_qubits": 6,
+    "statevector_amplitudes": 64
+  },
+  "provenance": {
+    "data": "Synthetic PSD covariance and expected returns",
+    "numpy": "2.2.4"
+  },
+  "limitations": [
+    "Exponential CPU statevector and a coarse p=1 grid; no quantum speedup claim.",
+    "Feasibility is measured before postselection; conditional objective excludes rejected samples.",
+    "Binary unit holdings, not continuous normalized portfolio weights."
+  ]
+}
