@@ -4,7 +4,9 @@ Constrained optimization with quantum circuits and strong classical baselines.
 
 ## Current implementation
 
-Exact cardinality-constrained enumeration and a normalized one-layer QAOA statevector simulation. It reports both feasibility probability and the conditional objective rather than hiding rejected samples.
+Exact cardinality-constrained enumeration and a normalized one-layer QAOA statevector simulation, compared with uniform sampling over all bitstrings and uniform sampling over feasible portfolios. Each distribution reports feasibility probability, conditional feasible objective, additive gap to the exact feasible minimum, and expected draws per feasible sample.
+
+These are exact probability-distribution expectations on one synthetic six-asset instance, not finite-shot measurements. The feasible-only baseline has no rejection; both uniform baselines have the same conditional objective. Results retain the original QAOA metric keys and add `metrics.sampling_comparison`. See [reports/QO01.md](reports/QO01.md) for measured findings, cost assumptions, and interpretation.
 
 ## Reproduce
 

@@ -1,0 +1,15 @@
+test_covariance_psd (test_lab.OptimizationTests.test_covariance_psd) ... ok
+test_exact_known_selection (test_lab.OptimizationTests.test_exact_known_selection) ... ok
+test_gap_and_feasibility (test_lab.OptimizationTests.test_gap_and_feasibility) ... ok
+test_unitarity_and_zero_angles (test_lab.OptimizationTests.test_unitarity_and_zero_angles) ... ok
+test_analytic_uniform_laws_for_cardinalities (test_sampling.SamplingBaselineTests.test_analytic_uniform_laws_for_cardinalities) ... ok
+test_experiment_comparison_and_legacy_metrics (test_sampling.SamplingBaselineTests.test_experiment_comparison_and_legacy_metrics) ... ok
+test_invalid_distributions_rejected (test_sampling.SamplingBaselineTests.test_invalid_distributions_rejected) ... ok
+test_weighted_conditioning_excludes_infeasible_objectives (test_sampling.SamplingBaselineTests.test_weighted_conditioning_excludes_infeasible_objectives) ... ok
+test_zero_angle_qaoa_has_uniform_baseline_metrics (test_sampling.SamplingBaselineTests.test_zero_angle_qaoa_has_uniform_baseline_metrics) ... ok
+test_zero_feasible_mass_is_explicit_and_json_safe (test_sampling.SamplingBaselineTests.test_zero_feasible_mass_is_explicit_and_json_safe) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 2.030s
+
+OK
