@@ -71,6 +71,10 @@ Each result obeys the variational bound and agrees with E₀=(U−√(U²+16t²)
 - The ansatz can span this tiny real sector; success does not demonstrate a scalable chemistry algorithm.
 - No finite-shot Pauli measurement, molecular geometry, basis-set error, device noise or battery voltage is represented.
 
+## Interpretation
+
+The depth-2 ansatz improves optimal-sample probability over uniform feasible sampling, but its expected objective remains above the exact minimum and local search is a strong baseline. The Hubbard energy agreement follows from a tiny fully expressive real-sector ansatz; double occupancy provides an independent physical observable.
+
 ## Concepts to explain in an interview
 
 Explain the objective and units, where each baseline obtains its information, what was fixed before evaluation, how costs and uncertainty were measured, and one failure the model cannot capture. Reproduce the data before presenting a number; distinguish an implementation demonstration from a validated research conclusion.
