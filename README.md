@@ -43,6 +43,10 @@ CI reproduces every applied case with `python src/studio.py --check docs/study.j
 - Sector dimension: **4 **
 - Double occupancy at U/t=8: **0.0527864 **
 
+## Interpretation
+
+The depth-2 ansatz improves optimal-sample probability over uniform feasible sampling, but its expected objective remains above the exact minimum and local search is a strong baseline. The Hubbard energy agreement follows from a tiny fully expressive real-sector ansatz; double occupancy provides an independent physical observable.
+
 ## Design
 
 ```mermaid
