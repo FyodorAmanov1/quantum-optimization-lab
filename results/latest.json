@@ -22,7 +22,49 @@
     "beta": 2.945243112740431,
     "parameter_evaluations": 289,
     "logical_qubits": 6,
-    "statevector_amplitudes": 64
+    "statevector_amplitudes": 64,
+    "sampling_comparison": {
+      "qaoa": {
+        "feasible_probability": 0.6473458925591156,
+        "conditional_feasible_objective": -0.0954777616706352,
+        "conditional_gap_to_optimum": 0.05496969619901253,
+        "expected_draws_per_feasible": 1.54476920529573,
+        "expected_penalized_objective": 0.33684467721948846
+      },
+      "uniform_all_bitstrings": {
+        "feasible_probability": 0.3125,
+        "conditional_feasible_objective": -0.09522031809841325,
+        "conditional_gap_to_optimum": 0.055227139771234474,
+        "expected_draws_per_feasible": 3.2,
+        "expected_penalized_objective": 1.4020119682996062
+      },
+      "uniform_feasible_portfolios": {
+        "feasible_probability": 1.0,
+        "conditional_feasible_objective": -0.09522031809841323,
+        "conditional_gap_to_optimum": 0.05522713977123449,
+        "expected_draws_per_feasible": 1.0,
+        "expected_penalized_objective": -0.09522031809841325
+      }
+    }
+  },
+  "method": {
+    "evaluation": "Exact distribution expectations; no finite-shot sampling",
+    "assets": 6,
+    "cardinality": 3,
+    "risk_aversion": 2.0,
+    "penalty": 1.0,
+    "objective": "Minimize 2*x.T@covariance@x - returns@x",
+    "gap": "Conditional feasible objective minus exact feasible minimum (additive)",
+    "qaoa_selection": "Minimum expected penalized objective on the fixed 17 by 17 grid",
+    "cost_assumptions": {
+      "shared_enumerated_bitstrings": 64,
+      "feasible_portfolios": 20,
+      "qaoa_statevector_evaluations": 289,
+      "uniform_baseline_parameter_evaluations": 0,
+      "rejection_cost": "1 / feasible_probability independent draws per accepted portfolio",
+      "feasible_sampler": "Uniform over fixed-cardinality subsets; no rejected draws",
+      "excluded_costs": "No timing, hardware, monetary, or end-to-end speed comparison; enumeration shared"
+    }
   },
   "provenance": {
     "data": "Synthetic PSD covariance and expected returns",
@@ -31,6 +73,9 @@
   "limitations": [
     "Exponential CPU statevector and a coarse p=1 grid; no quantum speedup claim.",
     "Feasibility is measured before postselection; conditional objective excludes rejected samples.",
-    "Binary unit holdings, not continuous normalized portfolio weights."
+    "Binary unit holdings, not continuous normalized portfolio weights.",
+    "One synthetic instance; exact distribution metrics are not finite-shot observations.",
+    "Uniform feasible distribution uses the enumerated mask here; general constraints may be harder to sample.",
+    "Training uses exact penalized expectations; rejection cost excludes training and sampler setup."
   ]
 }
