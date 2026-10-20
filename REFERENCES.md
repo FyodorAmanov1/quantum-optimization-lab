@@ -1,6 +1,7 @@
-# Primary references and boundaries
+# Primary references and implementation boundaries
 
-- Markowitz (1952), Portfolio Selection: https://doi.org/10.1111/j.1540-6261.1952.tb01525.x
-- Farhi, Goldstone and Gutmann, A Quantum Approximate Optimization Algorithm: https://arxiv.org/abs/1411.4028
+- [Quantum alternating operator ansatz](https://arxiv.org/abs/1709.03489)
+- [Variational quantum eigensolver](https://arxiv.org/abs/1304.3061)
+- [Battery-design inspiration: EnergetiQ](https://github.com/FyodorAmanov1/EnergetiQ)
 
-The experiment uses synthetic returns, unit binary holdings, and a penalty constraint. It is a small CPU simulation, not a practical portfolio recommendation or hardware advantage demonstration.
+The implementation, data provenance and scope limits are documented in [the technical case study](reports/applied-study.md). Citation identifies an algorithmic foundation, not equivalence with the full paper or a claim of hardware performance.

@@ -1,0 +1,549 @@
+{
+  "schema_version": 1,
+  "slug": "quantum-optimization-lab",
+  "title": "Quantum Decision Studio",
+  "subtitle": "Constrained allocation and variational correlated-electron research.",
+  "accent": "#c5b2ff",
+  "seed": 2026,
+  "cases": [
+    {
+      "id": "allocation",
+      "label": "Constrained allocation",
+      "kicker": "QAOA / FEASIBLE-SUBSPACE MIXER",
+      "title": "Optimize the allocation. Keep the constraints.",
+      "description": "Eight synthetic assets, exactly three holdings, turnover costs and correlated risk. Compare a number-preserving quantum ansatz with exhaustive enumeration and classical local search.",
+      "metrics": [
+        {
+          "label": "Exact minimum cost",
+          "value": -0.03829410872888889,
+          "unit": "",
+          "note": ""
+        },
+        {
+          "label": "QAOA expected cost",
+          "value": -0.03078526296591523,
+          "unit": "",
+          "note": ""
+        },
+        {
+          "label": "Optimal-sample probability",
+          "value": 10.528668658051656,
+          "unit": "%",
+          "note": ""
+        },
+        {
+          "label": "Feasible configurations",
+          "value": 56.0,
+          "unit": "",
+          "note": ""
+        }
+      ],
+      "charts": [
+        {
+          "title": "Probability on feasible portfolios",
+          "x": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55
+          ],
+          "xlabel": "Lexicographic portfolio index",
+          "series": [
+            {
+              "name": "Depth-2 QAOA",
+              "values": [
+                0.0007972383508500114,
+                0.0013902729906426232,
+                0.02994850933176238,
+                0.03637581634226777,
+                0.00047627820605211413,
+                0.015833922172495435,
+                0.0009697256488180604,
+                0.0008781423930540392,
+                0.035890765583215974,
+                4.9635905961065656e-05,
+                0.003960205557475042,
+                0.014306769065455933,
+                0.2871296289916652,
+                0.011968938051360909,
+                0.10528668658051656,
+                0.0019578587946882595,
+                0.0019616801340101163,
+                0.0346274425441279,
+                0.0010006892373282407,
+                2.380983345286862e-05,
+                0.0016070468635070363,
+                0.001239899372216013,
+                0.002397572592163715,
+                0.0015191229109951796,
+                0.00014534696572429592,
+                0.00048615802459004613,
+                0.00437447848324291,
+                0.03537302202460775,
+                0.005184306532905803,
+                0.09505429456989957,
+                0.006494531835215515,
+                0.006004037699541804,
+                0.14592438187100074,
+                0.0006405411297788034,
+                0.03571167558686642,
+                0.0006102887014732622,
+                0.001103248097232663,
+                0.007484869836245638,
+                0.0015490292811305435,
+                0.0008389356801507063,
+                0.0078667915636645,
+                0.003811740053958811,
+                0.0036848943419620114,
+                0.0009571417744051411,
+                0.011936939407098293,
+                0.0007463493588750449,
+                0.008237920855520034,
+                0.006488357748968324,
+                0.003521776103045547,
+                0.00012581975608508156,
+                0.0009372453270830597,
+                0.004050358528383923,
+                0.0006254638018460391,
+                0.002414390595997051,
+                0.004229575409720517,
+                0.0017884315996990901
+              ]
+            },
+            {
+              "name": "Uniform baseline",
+              "values": [
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856,
+                0.017857142857142856
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sensitivity to an explicit uniform-output mixture",
+          "x": [
+            0.0,
+            0.049999999999999996,
+            0.09999999999999999,
+            0.15,
+            0.19999999999999998,
+            0.24999999999999997,
+            0.3
+          ],
+          "xlabel": "Mixture fraction (not device error rate)",
+          "series": [
+            {
+              "name": "Expected cost",
+              "values": [
+                -0.03078526296591523,
+                -0.029917081266762326,
+                -0.029048899567609424,
+                -0.028180717868456513,
+                -0.027312536169303608,
+                -0.026444354470150706,
+                -0.02557617277099781
+              ]
+            },
+            {
+              "name": "Exact optimum",
+              "values": [
+                -0.03829410872888889,
+                -0.03829410872888889,
+                -0.03829410872888889,
+                -0.03829410872888889,
+                -0.03829410872888889,
+                -0.03829410872888889,
+                -0.03829410872888889
+              ]
+            }
+          ]
+        }
+      ],
+      "table": {
+        "columns": [
+          "Holdings",
+          "Cost",
+          "QAOA probability",
+          "Expected return",
+          "Volatility"
+        ],
+        "rows": [
+          [
+            "A, D, F",
+            -0.0355181368888889,
+            0.2871296289916652,
+            0.07,
+            0.09011362703707902
+          ],
+          [
+            "B, E, H",
+            -0.03146539519999998,
+            0.14592438187100074,
+            0.10000000000000002,
+            0.12701831049104692
+          ],
+          [
+            "A, D, H",
+            -0.03829410872888889,
+            0.10528668658051656,
+            0.07666666666666667,
+            0.09535795448962002
+          ],
+          [
+            "B, D, H",
+            -0.0357137152,
+            0.09505429456989957,
+            0.08666666666666667,
+            0.11062656944272775
+          ],
+          [
+            "A, B, F",
+            -0.03035042133333333,
+            0.03637581634226777,
+            0.07666666666666666,
+            0.10525712010754111
+          ],
+          [
+            "A, C, F",
+            -0.024238847999999997,
+            0.035890765583215974,
+            0.09000000000000001,
+            0.12425895541167244
+          ],
+          [
+            "B, F, H",
+            -0.03155350186666667,
+            0.03571167558686642,
+            0.09000000000000001,
+            0.11666886702686939
+          ],
+          [
+            "B, D, F",
+            -0.032496995555555554,
+            0.03537302202460775,
+            0.08,
+            0.10665716624358211
+          ],
+          [
+            "A, E, H",
+            -0.03307640206222222,
+            0.0346274425441279,
+            0.09000000000000001,
+            0.11502564707248747
+          ],
+          [
+            "A, B, E",
+            -0.027490346666666665,
+            0.02994850933176238,
+            0.08666666666666667,
+            0.11955785210516287
+          ]
+        ]
+      },
+      "method": [
+        "Objective = 4 w\u1d40\u03a3w \u2212 \u03bc\u1d40w + 0.003\u2016w\u2212w_previous\u2016\u2081; equal weights on exactly three of eight assets. Covariance is positive definite by construction.",
+        "Depth-2 cost phases alternate with an exact ring-XY mixer in the 56-state feasible sector. Six seeded Nelder\u2013Mead restarts each have a 350-iteration cap. Uniform feasible-state preparation is assumed, not compiled.",
+        "Exact enumeration gives A, D, H. Swap local search gives A, D, H, cost -0.038294, after 30 neighbour evaluations. The ansatz is not claimed to outperform either baseline."
+      ],
+      "limitations": [
+        "Synthetic forward-looking means/covariance: no historical backtest or investment claim. Small exact simulation is the reference, not evidence of scalability.",
+        "Mixer construction and dense exponentiation operate in a constrained subspace; physical preparation, compiled gates and measurement overhead are not benchmarked.",
+        "Uniform probability mixing is a sensitivity model, not calibrated gate noise. Both expected objective and success probability must be inspected."
+      ],
+      "reproduce": "python src/studio.py --out docs/study.json"
+    },
+    {
+      "id": "electrons",
+      "label": "Correlated electrons",
+      "kicker": "VQE / MATERIALS FOUNDATION",
+      "title": "Follow electrons from hopping to localization.",
+      "description": "A spinful two-site Hubbard dimer isolates the competition between electron hopping and on-site repulsion. A symmetry-preserving variational state is checked against exact and analytic ground-state energies.",
+      "metrics": [
+        {
+          "label": "Maximum energy error",
+          "value": 5.551115123125783e-16,
+          "unit": "t",
+          "note": ""
+        },
+        {
+          "label": "Spin orbitals",
+          "value": 4.0,
+          "unit": "",
+          "note": ""
+        },
+        {
+          "label": "Sector dimension",
+          "value": 4.0,
+          "unit": "",
+          "note": ""
+        },
+        {
+          "label": "Double occupancy at U/t=8",
+          "value": 0.05278640618919383,
+          "unit": "",
+          "note": ""
+        }
+      ],
+      "charts": [
+        {
+          "title": "Ground-state energy across interaction strength",
+          "x": [
+            0,
+            0.5,
+            1,
+            2,
+            4,
+            6,
+            8
+          ],
+          "xlabel": "U / t",
+          "series": [
+            {
+              "name": "Variational energy",
+              "values": [
+                -2.0,
+                -1.765564437074637,
+                -1.5615528128088303,
+                -1.2360679774997894,
+                -0.8284271247461897,
+                -0.605551275463989,
+                -0.472135954999579
+              ]
+            },
+            {
+              "name": "Exact diagonalization",
+              "values": [
+                -2.0,
+                -1.7655644370746375,
+                -1.56155281280883,
+                -1.2360679774997896,
+                -0.8284271247461902,
+                -0.6055512754639896,
+                -0.4721359549995794
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Charge localization",
+          "x": [
+            0,
+            0.5,
+            1,
+            2,
+            4,
+            6,
+            8
+          ],
+          "xlabel": "U / t",
+          "series": [
+            {
+              "name": "Total double occupancy",
+              "values": [
+                0.4999999975616074,
+                0.4379826357034067,
+                0.37873219353173726,
+                0.2763932035540129,
+                0.1464466127177122,
+                0.0839748503185793,
+                0.05278640618919383
+              ]
+            }
+          ]
+        }
+      ],
+      "table": {
+        "columns": [
+          "U/t",
+          "VQE energy / t",
+          "Exact / t",
+          "Double occupancy",
+          "Eigenstate residual norm"
+        ],
+        "rows": [
+          [
+            0,
+            -2.0,
+            -2.0,
+            0.4999999975616074,
+            1.8168026177692338e-08
+          ],
+          [
+            0.5,
+            -1.765564437074637,
+            -1.7655644370746375,
+            0.4379826357034067,
+            2.2956422910716914e-08
+          ],
+          [
+            1,
+            -1.5615528128088303,
+            -1.56155281280883,
+            0.37873219353173726,
+            2.7347880197038924e-08
+          ],
+          [
+            2,
+            -1.2360679774997894,
+            -1.2360679774997896,
+            0.2763932035540129,
+            2.362402299911928e-08
+          ],
+          [
+            4,
+            -0.8284271247461897,
+            -0.8284271247461902,
+            0.1464466127177122,
+            3.5548562423042726e-08
+          ],
+          [
+            6,
+            -0.605551275463989,
+            -0.6055512754639896,
+            0.0839748503185793,
+            3.488907272469943e-08
+          ],
+          [
+            8,
+            -0.472135954999579,
+            -0.4721359549995794,
+            0.05278640618919383,
+            4.0002178580703475e-08
+          ]
+        ]
+      },
+      "method": [
+        "Construct \u2212t \u03a3\u03c3(c\u2020\u2080\u03c3c\u2081\u03c3+h.c.) + U\u03a3\u1d62n\u1d62\u2191n\u1d62\u2193 using fermionic parity signs; restrict to one spin-up and one spin-down electron.",
+        "Three real two-level Givens rotations span the four-state real sector. Three seeded BFGS starts minimize the statevector energy for each interaction.",
+        "Each result obeys the variational bound and agrees with E\u2080=(U\u2212\u221a(U\u00b2+16t\u00b2))/2 within 10\u207b\u2076 t. Double occupancy is a separate observable, not inferred from a fitted curve."
+      ],
+      "limitations": [
+        "This is an effective correlated-electron benchmark, not an ab initio molecule or a battery-material prediction. It is a foundation for extending the battery-design theme.",
+        "The ansatz can span this tiny real sector; success does not demonstrate a scalable chemistry algorithm.",
+        "No finite-shot Pauli measurement, molecular geometry, basis-set error, device noise or battery voltage is represented."
+      ],
+      "reproduce": "python src/studio.py --out docs/study.json"
+    }
+  ],
+  "provenance": "Explicit synthetic financial parameters and a defined effective Hamiltonian. CPU statevector calculations; no quantum hardware calls.",
+  "references": [
+    {
+      "title": "Quantum alternating operator ansatz",
+      "url": "https://arxiv.org/abs/1709.03489"
+    },
+    {
+      "title": "Variational quantum eigensolver",
+      "url": "https://arxiv.org/abs/1304.3061"
+    },
+    {
+      "title": "Battery-design inspiration: EnergetiQ",
+      "url": "https://github.com/FyodorAmanov1/EnergetiQ"
+    }
+  ]
+}
