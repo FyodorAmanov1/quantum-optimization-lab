@@ -1,88 +1,85 @@
 # Quantum Decision Studio
 
-Constrained allocation and variational correlated-electron research.
+**Two variational quantum problems with explicit classical reference answers: constrained portfolio selection and correlated-electron ground states.**
 
-**[Open the interactive research studio](https://fyodoramanov1.github.io/quantum-optimization-lab/)** · [Measured study](docs/study.json) · [Technical case study](reports/applied-study.md) · [Source](src/studio.py)
+Quantum Decision Studio makes the objective, feasible states and approximation error visible. Its interactive application connects allocation decisions to probability distributions and electron correlation to energy and double occupancy.
 
-Build useful constrained decision tools and correlated-electron experiments, with exact references and honest implementation costs.
+[Open the studio](https://fyodoramanov1.github.io/quantum-optimization-lab/) · [Read the study](reports/applied-study.md)
 
-## What you can do
+## Portfolio allocation with QAOA
 
-- **Constrained allocation:** Eight synthetic assets, exactly three holdings, turnover costs and correlated risk. Compare a number-preserving quantum ansatz with exhaustive enumeration and classical local search.
-- **Correlated electrons:** A spinful two-site Hubbard dimer isolates the competition between electron hopping and on-site repulsion. A symmetry-preserving variational state is checked against exact and analytic ground-state energies.
+Choose exactly three of eight assets with equal weights. The objective combines expected return, covariance risk and turnover:
 
-The interface selects recorded experiments, toggles chart series and exports the comparison table. Each view includes the method, assumptions, provenance and its reproduce command. No API key is required. Market Replay additionally plays the actual book snapshots; the Evidence Observatory performs local retrieval and numeric-claim checks.
+```text
+cost(w) = 4 wᵀΣw − μᵀw + 0.003 ‖w − w_previous‖₁
+```
 
-## Reproduce
+There are 56 feasible portfolios. A depth-two cost circuit and a ring XY mixer evolve a uniform state within that feasible space, preserving the holding count. Six seeded Nelder–Mead restarts optimize the variational parameters.
 
-Python 3.12; CPU only. From this repository:
+Exhaustive enumeration supplies the exact answer; a classical swap search supplies another practical reference. Their search budgets are reported separately and should not be interpreted as a controlled runtime comparison.
 
-```powershell
+### What the saved run shows
+
+| Quantity | Recorded value |
+|---|---:|
+| Exact optimal holdings | A, D, H |
+| Exact minimum cost | −0.038294 |
+| QAOA expected cost | −0.030785 |
+| Probability of the optimal portfolio | 10.53% |
+| Uniform probability of that portfolio | 1.79% |
+
+The most probable sampled allocation is **A, D, F**, which differs from the exact optimum. Expected objective value, the modal state and optimal-state probability are deliberately shown as distinct outcomes.
+
+## Electron correlation with VQE
+
+The second experiment studies a two-site Hubbard model with four spin orbitals in the sector containing one spin-up and one spin-down electron. Three real Givens rotations form a fully expressive ansatz for this small real sector.
+
+Across seven interaction strengths from U/t = 0 to 8, the optimized energy is compared with exact diagonalization and the analytic ground-state expression. The recorded maximum discrepancy is approximately **5.6 × 10⁻¹⁶ t**, while double occupancy falls from **0.5000** to **0.0528** as repulsion increases.
+
+This is a transparent demonstration of electron correlation on a tiny solvable system. It is not a battery chemistry calculation or a prediction of voltage, capacity or materials performance.
+
+## What to examine
+
+- Compare the full allocation distribution with the exact cost ranking.
+- Inspect how turnover affects the allocation objective.
+- Follow energy and double occupancy as interaction strength increases.
+- Read the preparation and optimization assumptions before interpreting resource counts.
+
+The calculations use classical simulation. Uniform feasible-state preparation is assumed rather than compiled, the probability-mixture sensitivity is not calibrated device noise, and finite-shot Pauli estimation is outside the present VQE experiment. No hardware advantage is claimed.
+
+## Run locally
+
+Use Python 3.12. From the repository root:
+
+```bash
+python -m venv .venv
+```
+
+Activate it with `.venv/Scripts/Activate.ps1` in PowerShell or
+`source .venv/bin/activate` on macOS/Linux. Then run:
+
+```bash
 python -m pip install -r requirements.txt
-python src/studio.py --out docs/study.json
 python -m http.server 8000 --directory docs
 ```
 
-Open `http://localhost:8000`. The static app fetches its local JSON, so use HTTP rather than opening `index.html` directly. No JavaScript build step or package installation is needed.
+Open
+<http://localhost:8000> to explore the bundled study without recomputing it.
 
-CI reproduces every applied case with `python src/studio.py --check docs/study.json`, checks numerical invariants and retains the original independent numerical contract. New applied code lives under `src/`; `lab.py` and its original CLI remain compatible for the existing research milestones.
+To regenerate the study or compare it with the saved artifact:
 
-## Recorded findings
-
-### Constrained allocation
-
-- Exact minimum cost: **-0.0382941 **
-- QAOA expected cost: **-0.0307853 **
-- Optimal-sample probability: **10.5287 %**
-- Feasible configurations: **56 **
-
-### Correlated electrons
-
-- Maximum energy error: **5.55112e-16 t**
-- Spin orbitals: **4 **
-- Sector dimension: **4 **
-- Double occupancy at U/t=8: **0.0527864 **
-
-## Interpretation
-
-The depth-2 ansatz improves optimal-sample probability over uniform feasible sampling, but its expected objective remains above the exact minimum and local search is a strong baseline. The Hubbard energy agreement follows from a tiny fully expressive real-sector ansatz; double occupancy provides an independent physical observable.
-
-## Design
-
-```mermaid
-flowchart LR
-  Inputs[Explicit inputs and seed] --> Engine[Python numerical engine]
-  Engine --> Checks[Domain invariants and reference comparisons]
-  Checks --> Artifact[docs/study.json]
-  Artifact --> UI[Static interactive studio]
-  Artifact --> CI[Independent reproduction in CI]
+```bash
+python src/studio.py --out docs/study.json
+python src/studio.py --check docs/study.json
 ```
 
+The browser displays recorded experiments; it does not run the Python simulation.
+Use its charts, case selector and data exports to inspect the results.
 
+## Explore the implementation
 
-## Scientific boundaries
-
-Explicit synthetic financial parameters and a defined effective Hamiltonian. CPU statevector calculations; no quantum hardware calls.
-
-- Synthetic forward-looking means/covariance: no historical backtest or investment claim. Small exact simulation is the reference, not evidence of scalability.
-- Mixer construction and dense exponentiation operate in a constrained subspace; physical preparation, compiled gates and measurement overhead are not benchmarked.
-- Uniform probability mixing is a sensitivity model, not calibrated gate noise. Both expected objective and success probability must be inspected.
-- This is an effective correlated-electron benchmark, not an ab initio molecule or a battery-material prediction. It is a foundation for extending the battery-design theme.
-- The ansatz can span this tiny real sector; success does not demonstrate a scalable chemistry algorithm.
-- No finite-shot Pauli measurement, molecular geometry, basis-set error, device noise or battery voltage is represented.
-
-## Next research questions
-
-- Add finite-shot observable measurement to the Hubbard VQE, with measurement grouping and uncertainty.
-- Compare constrained ansatz depths and classical solvers at matched objective-evaluation budgets.
-- Extend the effective electron model and assess when the restricted ansatz fails; do not relabel toy energies as battery properties.
-
-## References
-
-- [Quantum alternating operator ansatz](https://arxiv.org/abs/1709.03489)
-- [Variational quantum eigensolver](https://arxiv.org/abs/1304.3061)
-- [Battery-design inspiration: EnergetiQ](https://github.com/FyodorAmanov1/EnergetiQ)
-
-## Development history
-
-The original baseline and milestone reports are preserved under `reports/`; the applied study is a separate artifact. Results are measured simulations, not claims of live profitability, quantum advantage or independent research novelty. MIT license.
+- [Experiment implementation](src/studio.py)
+- [Recorded study](docs/study.json)
+- [Applied study report](reports/applied-study.md)
+- [References](REFERENCES.md)
+- [MIT license](LICENSE)
