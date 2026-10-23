@@ -6,8 +6,10 @@ from scipy.optimize import minimize
 
 try:
     from .common import finalize, metric
+    from .hubbard_measurement import finite_shot_study
 except ImportError:
     from common import finalize, metric
+    from hubbard_measurement import finite_shot_study
 
 
 def constrained_portfolio(depth=2):
@@ -110,7 +112,7 @@ def hubbard(interaction, hopping=1.0):
     return h, basis
 
 
-def vqe(interaction):
+def vqe_state(interaction):
     h, basis = hubbard(interaction)
 
     def state(angles):
@@ -141,12 +143,17 @@ def vqe(interaction):
         and result.fun >= exact - 1e-10
         and abs(result.fun - exact) < 1e-6
     )
-    return (
+    return wave, (
         float(result.fun),
         float(exact),
         float(wave**2 @ double),
         float(np.linalg.norm(h @ wave - result.fun * wave)),
     )
+
+
+def vqe(interaction):
+    """Legacy four-metric API; optimization still uses exact expectations."""
+    return vqe_state(interaction)[1]
 
 
 def experiment():
@@ -287,9 +294,41 @@ def experiment():
         "limitations": [
             "This is an effective correlated-electron benchmark, not an ab initio molecule or a battery-material prediction. It is a foundation for extending the battery-design theme.",
             "The ansatz can span this tiny real sector; success does not demonstrate a scalable chemistry algorithm.",
-            "No finite-shot Pauli measurement, molecular geometry, basis-set error, device noise or battery voltage is represented.",
+            "Finite-shot evaluation is shown in the Hubbard measurements case. Molecular geometry, basis-set error, device noise and battery voltage are not represented.",
         ],
         "reproduce": "python src/studio.py --out docs/study.json",
+    }
+    measured = finite_shot_study()
+    selected = [r for r in measured["runs"] if r["shots_per_setting"] == 4096]
+    shot_case = {
+        "id": "hubbard-shots", "label": "Hubbard measurements",
+        "kicker": "FINITE SHOTS / GROUPED PAULI MEASUREMENTS",
+        "title": "Can sampled observables resolve electron localization?",
+        "description": "Measure energy, total double occupancy and kinetic energy of the optimized dimer state. Compare three shot budgets with exact prepared-state and ground-state references. Charts show 4,096 shots per setting; the table exports all budgets.",
+        "metrics": [metric("Measurement settings", 5),
+                    metric("Shots at displayed budget", 20480),
+                    metric("Ungrouped Pauli terms", 10),
+                    metric("CI confidence (per observable)", 95, "%")],
+        "charts": [{"title": name.replace("_", " ").title() + " with conservative 95% CI",
+                    "x": interactions, "xlabel": "U / t; 4,096 shots per setting",
+                    "series": [
+                        {"name": "Sampled", "values": [r["observables"][name]["estimate"] for r in selected]},
+                        {"name": "Exact ground state", "values": [r["exact_ground_state"][name] for r in selected]},
+                        {"name": "95% lower bound", "values": [r["observables"][name]["ci"][0] for r in selected]},
+                        {"name": "95% upper bound", "values": [r["observables"][name]["ci"][1] for r in selected]}]}
+                   for name in ("energy", "double_occupancy", "kinetic_energy")],
+        "table": {"columns": ["U/t", "Shots/setting", "Total shots", "Observable", "Estimate", "95% CI low", "95% CI high", "Sample SE", "Exact prepared", "Exact ground"],
+                  "rows": [[r["interaction"], r["shots_per_setting"], r["total_shots"], name,
+                            o["estimate"], *o["ci"], o["standard_error"], o["exact_prepared_state"], r["exact_ground_state"][name]]
+                           for r in measured["runs"] for name, o in r["observables"].items()]},
+        "method": [measured["method"], measured["interval_method"],
+                   "Orbital order: 0-up, 0-down, 1-up, 1-down (orbital 0 is least significant bit). Hopping = −(XZXI+YZYI+IXZX+IYZY)/2. D = (2I−ZIII−IZII−IIZI−IIIZ+ZZII+IIZZ)/4. Energy = kinetic + U D, with t=1.",
+                   "One ZZZZ shot evaluates all density terms together, retaining covariance. Four additional local settings measure hopping parities. Raw 16-outcome counts and seeds are included in results/latest.json.",
+                   measured["cost"]["assumptions"]],
+        "limitations": ["Ideal CPU simulation of independent Born shots; no device noise or finite-shot optimization. The exact trained state is held fixed during measurement.",
+                        "Intervals cover prepared-state expectations, not ansatz bias. They are conservative, marginal per observable, and not simultaneous across the scan. Sample SE is descriptive, not the CI formula; bounds can extend outside physical ranges.",
+                        "A small fully expressive Hubbard dimer with t=1; no materials prediction or quantum advantage. Fewer settings alone does not prove better accuracy at matched total shots."],
+        "reproduce": "python lab.py --output results/latest.json",
     }
     return {
         "schema_version": 1,
@@ -298,9 +337,12 @@ def experiment():
         "subtitle": "Constrained allocation and variational correlated-electron research.",
         "accent": "#c5b2ff",
         "seed": 2026,
-        "cases": [portfolio, materials],
+        "cases": [portfolio, materials, shot_case],
         "provenance": "Explicit synthetic financial parameters and a defined effective Hamiltonian. CPU statevector calculations; no quantum hardware calls.",
         "references": [
+            {"title": "The Hubbard Dimer: exact model context", "url": "https://arxiv.org/abs/1502.02194"},
+            {"title": "Measurement grouping with a minimum clique cover", "url": "https://arxiv.org/abs/1907.03358"},
+            {"title": "Hoeffding: Probability inequalities for sums of bounded random variables", "url": "https://doi.org/10.1080/01621459.1963.10500830"},
             {
                 "title": "Quantum alternating operator ansatz",
                 "url": "https://arxiv.org/abs/1709.03489",

@@ -1,14 +1,16 @@
 {
-  "task_id": "QO01",
+  "task_id": "QO02",
   "status": "completed",
-  "summary": "Added exact uniform-all-bitstring and uniform-feasible-portfolio sampling baselines alongside the existing QAOA distribution, with feasibility, conditional objectives, additive optimality gaps, and rejection costs. All 10 tests pass. On the synthetic six-asset instance, QAOA feasibility is 0.647346 versus 0.3125 and 1.0; its conditional gap is 0.054970 versus 0.055227 for both uniform baselines. No quantum advantage claim.",
+  "summary": "Implemented seeded finite-shot Pauli measurement of Hubbard energy, total double occupancy and kinetic energy, with five grouped settings, raw outcome counts, marginal 95% Hoeffding confidence intervals and exact prepared-state/ground-state references. The studio compares three shot budgets across seven interactions. At 4096 shots per setting, endpoint double occupancies are 0.499756 and 0.052490 with CI half-width 0.021220, while high-U energy certification remains conservative. Legacy APIs and cases are retained; no hardware or materials-performance claim.",
   "evidence_paths": [
     "lab.py",
-    "tests/test_lab.py",
-    "tests/test_sampling.py",
+    "src/hubbard_measurement.py",
+    "src/studio.py",
+    "tests/test_hubbard_measurement.py",
     "results/latest.json",
-    "results/QO01-tests.txt",
-    "reports/QO01.md",
+    "docs/study.json",
+    "reports/QO02.md",
+    "reports/applied-study.md",
     "README.md",
     "REFERENCES.md"
   ]

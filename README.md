@@ -36,6 +36,8 @@ The second experiment studies a two-site Hubbard model with four spin orbitals i
 
 Across seven interaction strengths from U/t = 0 to 8, the optimized energy is compared with exact diagonalization and the analytic ground-state expression. The recorded maximum discrepancy is approximately **5.6 × 10⁻¹⁶ t**, while double occupancy falls from **0.5000** to **0.0528** as repulsion increases.
 
+The **Hubbard measurements** studio case now samples energy, total double occupancy and kinetic energy using five local Pauli settings. It compares 256, 4,096 and 65,536 shots per setting with exact references, reports conservative marginal 95% confidence intervals, and exports all budgets as CSV. At 4,096 shots per setting, measured double occupancy falls from **0.49976 ± 0.02122** to **0.05249 ± 0.02122** across the scan endpoints. These uncertainties are confidence-bound half-widths. The [finite-shot study](reports/QO02.md) explains the wider energy bounds, raw counts, grouping and costs.
+
 This is a transparent demonstration of electron correlation on a tiny solvable system. It is not a battery chemistry calculation or a prediction of voltage, capacity or materials performance.
 
 ## What to examine
@@ -45,7 +47,7 @@ This is a transparent demonstration of electron correlation on a tiny solvable s
 - Follow energy and double occupancy as interaction strength increases.
 - Read the preparation and optimization assumptions before interpreting resource counts.
 
-The calculations use classical simulation. Uniform feasible-state preparation is assumed rather than compiled, the probability-mixture sensitivity is not calibrated device noise, and finite-shot Pauli estimation is outside the present VQE experiment. No hardware advantage is claimed.
+The calculations use classical simulation. Uniform feasible-state preparation is assumed rather than compiled, and the probability-mixture sensitivity is not calibrated device noise. Hubbard evaluation uses ideal finite-shot Pauli measurements after exact-expectation VQE training. No hardware advantage is claimed.
 
 ## Run locally
 
@@ -71,6 +73,8 @@ To regenerate the study or compare it with the saved artifact:
 ```bash
 python src/studio.py --out docs/study.json
 python src/studio.py --check docs/study.json
+python lab.py --output results/latest.json
+python -m unittest discover -s tests -v
 ```
 
 The browser displays recorded experiments; it does not run the Python simulation.
