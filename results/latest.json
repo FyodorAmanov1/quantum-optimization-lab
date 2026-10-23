@@ -45,10 +45,3269 @@
         "expected_draws_per_feasible": 1.0,
         "expected_penalized_objective": -0.09522031809841325
       }
+    },
+    "hubbard_finite_shots": {
+      "interactions": [
+        0,
+        0.5,
+        1,
+        2,
+        4,
+        6,
+        8
+      ],
+      "budgets_per_setting": [
+        256,
+        4096,
+        65536
+      ],
+      "method": "Independent Born multinomial draws after local Pauli basis rotations; exact-expectation VQE training",
+      "interval_method": "Two-sided Hoeffding per active group, union bound within each observable; marginal 95% CIs for prepared-state expectations",
+      "cost": {
+        "grouped_settings": 5,
+        "ungrouped_nonidentity_terms": 10,
+        "assumptions": "Equal shots per setting; all six Z density terms share one shot; four hopping settings; identity costs no shots. Counts exclude exact training, state preparation and gate compilation. Setting reduction is not an equal-total-shot accuracy comparison."
+      },
+      "runs": [
+        {
+          "shots_per_setting": 256,
+          "total_shots": 1280,
+          "seed": 202600,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                60,
+                0,
+                0,
+                55,
+                0,
+                0,
+                66,
+                0,
+                0,
+                75,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                0,
+                62,
+                0,
+                0,
+                57,
+                0,
+                76,
+                0,
+                0,
+                0,
+                0,
+                61,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                0,
+                67,
+                0,
+                0,
+                71,
+                0,
+                72,
+                0,
+                0,
+                0,
+                0,
+                46,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                71,
+                0,
+                0,
+                0,
+                0,
+                62,
+                0,
+                0,
+                0,
+                0,
+                59,
+                64,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                55,
+                0,
+                0,
+                0,
+                0,
+                67,
+                0,
+                0,
+                0,
+                0,
+                66,
+                68,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.52734375,
+              "standard_error": 0.0312643579148398,
+              "ci": [
+                0.4424624052662113,
+                0.6122250947337887
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4999999975616074,
+              "error_to_prepared_state": 0.0273437524383926
+            },
+            "kinetic_energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "ci": [
+                -2.3982451276865255,
+                -1.6017548723134745
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            },
+            "energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "ci": [
+                -2.3982451276865255,
+                -1.6017548723134745
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            }
+          },
+          "interaction": 0,
+          "exact_ground_state": {
+            "energy": -2.0,
+            "double_occupancy": 0.5,
+            "kinetic_energy": -2.0
+          },
+          "vqe_residual": 1.8168026177692338e-08
+        },
+        {
+          "shots_per_setting": 4096,
+          "total_shots": 20480,
+          "seed": 202601,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                1006,
+                0,
+                0,
+                1033,
+                0,
+                0,
+                1016,
+                0,
+                0,
+                1041,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                0,
+                1034,
+                0,
+                0,
+                1010,
+                0,
+                1017,
+                0,
+                0,
+                0,
+                0,
+                1035,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                0,
+                1001,
+                0,
+                0,
+                1059,
+                0,
+                1025,
+                0,
+                0,
+                0,
+                0,
+                1011,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                1068,
+                0,
+                0,
+                0,
+                0,
+                971,
+                0,
+                0,
+                0,
+                0,
+                1053,
+                1004,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                1107,
+                0,
+                0,
+                0,
+                0,
+                1034,
+                0,
+                0,
+                0,
+                0,
+                961,
+                994,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.499755859375,
+              "standard_error": 0.007813452917538585,
+              "ci": [
+                0.47853552319155285,
+                0.5209761955584472
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4999999975616074,
+              "error_to_prepared_state": -0.00024413818660740105
+            },
+            "kinetic_energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "ci": [
+                -2.0995612819216314,
+                -1.9004387180783686
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            },
+            "energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "ci": [
+                -2.0995612819216314,
+                -1.9004387180783686
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            }
+          },
+          "interaction": 0,
+          "exact_ground_state": {
+            "energy": -2.0,
+            "double_occupancy": 0.5,
+            "kinetic_energy": -2.0
+          },
+          "vqe_residual": 1.8168026177692338e-08
+        },
+        {
+          "shots_per_setting": 65536,
+          "total_shots": 327680,
+          "seed": 202602,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                16428,
+                0,
+                0,
+                16209,
+                0,
+                0,
+                16450,
+                0,
+                0,
+                16449,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                0,
+                16370,
+                0,
+                0,
+                16382,
+                0,
+                16307,
+                0,
+                0,
+                0,
+                0,
+                16477,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                0,
+                16234,
+                0,
+                0,
+                16381,
+                0,
+                16407,
+                0,
+                0,
+                0,
+                0,
+                16514,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                16506,
+                0,
+                0,
+                0,
+                0,
+                16217,
+                0,
+                0,
+                0,
+                0,
+                16518,
+                16295,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                16478,
+                0,
+                0,
+                0,
+                0,
+                16459,
+                0,
+                0,
+                0,
+                0,
+                16136,
+                16463,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.5016632080078125,
+              "standard_error": 0.0019531290955128408,
+              "ci": [
+                0.4963581239619507,
+                0.5069682920536743
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4999999975616074,
+              "error_to_prepared_state": 0.001663210446205099
+            },
+            "kinetic_energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "ci": [
+                -2.024890320480408,
+                -1.9751096795195922
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            },
+            "energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "ci": [
+                -2.024890320480408,
+                -1.9751096795195922
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            }
+          },
+          "interaction": 0,
+          "exact_ground_state": {
+            "energy": -2.0,
+            "double_occupancy": 0.5,
+            "kinetic_energy": -2.0
+          },
+          "vqe_residual": 1.8168026177692338e-08
+        },
+        {
+          "shots_per_setting": 256,
+          "total_shots": 1280,
+          "seed": 202610,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                59,
+                0,
+                0,
+                60,
+                0,
+                0,
+                75,
+                0,
+                0,
+                62,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                0,
+                60,
+                0,
+                0,
+                65,
+                1,
+                65,
+                0,
+                0,
+                0,
+                0,
+                65,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                1,
+                81,
+                0,
+                0,
+                49,
+                0,
+                75,
+                0,
+                0,
+                0,
+                1,
+                49,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                62,
+                0,
+                0,
+                0,
+                0,
+                67,
+                0,
+                0,
+                0,
+                0,
+                57,
+                69,
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                62,
+                0,
+                0,
+                1,
+                0,
+                71,
+                0,
+                0,
+                1,
+                0,
+                58,
+                63,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.47265625,
+              "standard_error": 0.0312643579148398,
+              "ci": [
+                0.3877749052662113,
+                0.5575375947337887
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4379826357034067,
+              "error_to_prepared_state": 0.034673614296593325
+            },
+            "kinetic_energy": {
+              "estimate": -1.9765625,
+              "standard_error": 0.009555803515198417,
+              "ci": [
+                -2.3748076276865255,
+                -1.5783173723134745
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9845557549263404,
+              "error_to_prepared_state": 0.007993254926340398
+            },
+            "energy": {
+              "estimate": -1.740234375,
+              "standard_error": 0.018321528314468743,
+              "ci": [
+                -2.1980035211396425,
+                -1.2824652288603575
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.765564437074637,
+              "error_to_prepared_state": 0.02533006207463706
+            }
+          },
+          "interaction": 0.5,
+          "exact_ground_state": {
+            "energy": -1.7655644370746377,
+            "double_occupancy": 0.43798263270539595,
+            "kinetic_energy": -1.9845557534273357
+          },
+          "vqe_residual": 2.2956422910716914e-08
+        },
+        {
+          "shots_per_setting": 4096,
+          "total_shots": 20480,
+          "seed": 202611,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                900,
+                0,
+                0,
+                1151,
+                0,
+                0,
+                1129,
+                0,
+                0,
+                916,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                1,
+                1016,
+                0,
+                0,
+                1018,
+                4,
+                1022,
+                2,
+                0,
+                0,
+                5,
+                1028,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                4,
+                983,
+                0,
+                0,
+                996,
+                2,
+                1050,
+                11,
+                0,
+                0,
+                3,
+                1047,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                1022,
+                0,
+                3,
+                2,
+                0,
+                962,
+                0,
+                0,
+                4,
+                0,
+                1041,
+                1058,
+                0,
+                4,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                1033,
+                0,
+                2,
+                2,
+                0,
+                1042,
+                0,
+                0,
+                1,
+                0,
+                1007,
+                1006,
+                0,
+                3,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.443359375,
+              "standard_error": 0.0077631583454707475,
+              "ci": [
+                0.42213903881655285,
+                0.46457971118344715
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4379826357034067,
+              "error_to_prepared_state": 0.005376739296593325
+            },
+            "kinetic_energy": {
+              "estimate": -1.987060546875,
+              "standard_error": 0.0017744035656179062,
+              "ci": [
+                -2.0866218287966314,
+                -1.8874992649533686
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9845557549263404,
+              "error_to_prepared_state": -0.0025047919486596015
+            },
+            "energy": {
+              "estimate": -1.765380859375,
+              "standard_error": 0.004267922783731047,
+              "ci": [
+                -1.8798231459099106,
+                -1.6509385728400894
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.765564437074637,
+              "error_to_prepared_state": 0.00018357769963706083
+            }
+          },
+          "interaction": 0.5,
+          "exact_ground_state": {
+            "energy": -1.7655644370746377,
+            "double_occupancy": 0.43798263270539595,
+            "kinetic_energy": -1.9845557534273357
+          },
+          "vqe_residual": 2.2956422910716914e-08
+        },
+        {
+          "shots_per_setting": 65536,
+          "total_shots": 327680,
+          "seed": 202612,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                14213,
+                0,
+                0,
+                18520,
+                0,
+                0,
+                18390,
+                0,
+                0,
+                14413,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                58,
+                16296,
+                0,
+                0,
+                16431,
+                74,
+                16290,
+                70,
+                0,
+                0,
+                64,
+                16253,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                66,
+                16408,
+                0,
+                0,
+                16276,
+                75,
+                16338,
+                49,
+                0,
+                0,
+                62,
+                16262,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                16268,
+                0,
+                66,
+                55,
+                0,
+                16309,
+                0,
+                0,
+                70,
+                0,
+                16403,
+                16304,
+                0,
+                61,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                16202,
+                0,
+                78,
+                61,
+                0,
+                16361,
+                0,
+                0,
+                70,
+                0,
+                16245,
+                16462,
+                0,
+                57,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.436798095703125,
+              "standard_error": 0.0019374735109424994,
+              "ci": [
+                0.4314930116572632,
+                0.4421031797489868
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4379826357034067,
+              "error_to_prepared_state": -0.0011845400002816753
+            },
+            "kinetic_energy": {
+              "estimate": -1.98419189453125,
+              "standard_error": 0.0004901655212876469,
+              "ci": [
+                -2.009082215011658,
+                -1.9593015740508422
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9845557549263404,
+              "error_to_prepared_state": 0.00036386039509039847
+            },
+            "energy": {
+              "estimate": -1.7657928466796875,
+              "standard_error": 0.0010856855620575206,
+              "ci": [
+                -1.7944034183134152,
+                -1.7371822750459598
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.765564437074637,
+              "error_to_prepared_state": -0.00022840960505043917
+            }
+          },
+          "interaction": 0.5,
+          "exact_ground_state": {
+            "energy": -1.7655644370746377,
+            "double_occupancy": 0.43798263270539595,
+            "kinetic_energy": -1.9845557534273357
+          },
+          "vqe_residual": 2.2956422910716914e-08
+        },
+        {
+          "shots_per_setting": 256,
+          "total_shots": 1280,
+          "seed": 202620,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                42,
+                0,
+                0,
+                85,
+                0,
+                0,
+                79,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                2,
+                70,
+                0,
+                0,
+                69,
+                3,
+                52,
+                1,
+                0,
+                0,
+                0,
+                59,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                0,
+                67,
+                0,
+                0,
+                59,
+                1,
+                58,
+                0,
+                0,
+                0,
+                3,
+                68,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                68,
+                0,
+                1,
+                1,
+                0,
+                61,
+                0,
+                0,
+                2,
+                0,
+                62,
+                59,
+                0,
+                2,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                52,
+                0,
+                1,
+                4,
+                0,
+                63,
+                0,
+                0,
+                1,
+                0,
+                69,
+                64,
+                0,
+                2,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.359375,
+              "standard_error": 0.0300473227657999,
+              "ci": [
+                0.2744936552662113,
+                0.4442563447337887
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.37873219353173726,
+              "error_to_prepared_state": -0.01935719353173726
+            },
+            "kinetic_energy": {
+              "estimate": -1.90625,
+              "standard_error": 0.01893545942866214,
+              "ci": [
+                -2.3044951276865255,
+                -1.5080048723134745
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9402850063405674,
+              "error_to_prepared_state": 0.03403500634056744
+            },
+            "energy": {
+              "estimate": -1.546875,
+              "standard_error": 0.035516098169234005,
+              "ci": [
+                -2.055507384599603,
+                -1.0382426154003972
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.5615528128088303,
+              "error_to_prepared_state": 0.014677812808830293
+            }
+          },
+          "interaction": 1,
+          "exact_ground_state": {
+            "energy": -1.561552812808831,
+            "double_occupancy": 0.37873218748183346,
+            "kinetic_energy": -1.9402850002906644
+          },
+          "vqe_residual": 2.7347880197038924e-08
+        },
+        {
+          "shots_per_setting": 4096,
+          "total_shots": 20480,
+          "seed": 202621,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                786,
+                0,
+                0,
+                1300,
+                0,
+                0,
+                1254,
+                0,
+                0,
+                756,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                14,
+                1052,
+                0,
+                0,
+                979,
+                12,
+                1020,
+                20,
+                0,
+                0,
+                12,
+                987,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                15,
+                1027,
+                0,
+                0,
+                977,
+                13,
+                1037,
+                16,
+                0,
+                0,
+                19,
+                992,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                981,
+                0,
+                17,
+                23,
+                0,
+                1007,
+                0,
+                0,
+                13,
+                0,
+                1014,
+                1018,
+                0,
+                23,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                1023,
+                0,
+                18,
+                12,
+                0,
+                1018,
+                0,
+                0,
+                20,
+                0,
+                958,
+                1032,
+                0,
+                15,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.37646484375,
+              "standard_error": 0.0075712176720737195,
+              "ci": [
+                0.35524450756655285,
+                0.39768517993344715
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.37873219353173726,
+              "error_to_prepared_state": -0.00226734978173726
+            },
+            "kinetic_energy": {
+              "estimate": -1.93603515625,
+              "standard_error": 0.003920194633896961,
+              "ci": [
+                -2.0355964381716314,
+                -1.8364738743283686
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9402850063405674,
+              "error_to_prepared_state": 0.004249850090567442
+            },
+            "energy": {
+              "estimate": -1.5595703125,
+              "standard_error": 0.008525917135742989,
+              "ci": [
+                -1.6867284086499006,
+                -1.4324122163500994
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.5615528128088303,
+              "error_to_prepared_state": 0.001982500308830293
+            }
+          },
+          "interaction": 1,
+          "exact_ground_state": {
+            "energy": -1.561552812808831,
+            "double_occupancy": 0.37873218748183346,
+            "kinetic_energy": -1.9402850002906644
+          },
+          "vqe_residual": 2.7347880197038924e-08
+        },
+        {
+          "shots_per_setting": 65536,
+          "total_shots": 327680,
+          "seed": 202622,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                12514,
+                0,
+                0,
+                20550,
+                0,
+                0,
+                20167,
+                0,
+                0,
+                12305,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                247,
+                16230,
+                0,
+                0,
+                16228,
+                255,
+                16028,
+                241,
+                0,
+                0,
+                234,
+                16073,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                244,
+                16050,
+                0,
+                0,
+                15974,
+                272,
+                16396,
+                255,
+                0,
+                0,
+                262,
+                16083,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                16269,
+                0,
+                257,
+                239,
+                0,
+                16003,
+                0,
+                0,
+                261,
+                0,
+                16205,
+                16073,
+                0,
+                229,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                16070,
+                0,
+                245,
+                259,
+                0,
+                16073,
+                0,
+                0,
+                234,
+                0,
+                16228,
+                16184,
+                0,
+                243,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.3787078857421875,
+              "standard_error": 0.0018948002921362781,
+              "ci": [
+                0.3734028016963257,
+                0.3840129697880493
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.37873219353173726,
+              "error_to_prepared_state": -2.4307789549760095e-05
+            },
+            "kinetic_energy": {
+              "estimate": -1.9393157958984375,
+              "standard_error": 0.0009549482853344255,
+              "ci": [
+                -1.9642061163788453,
+                -1.9144254754180297
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9402850063405674,
+              "error_to_prepared_state": 0.0009692104421299419
+            },
+            "energy": {
+              "estimate": -1.56060791015625,
+              "standard_error": 0.0021218374996080365,
+              "ci": [
+                -1.5923974341937253,
+                -1.5288183861187747
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.5615528128088303,
+              "error_to_prepared_state": 0.0009449026525802928
+            }
+          },
+          "interaction": 1,
+          "exact_ground_state": {
+            "energy": -1.561552812808831,
+            "double_occupancy": 0.37873218748183346,
+            "kinetic_energy": -1.9402850002906644
+          },
+          "vqe_residual": 2.7347880197038924e-08
+        },
+        {
+          "shots_per_setting": 256,
+          "total_shots": 1280,
+          "seed": 202630,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                33,
+                0,
+                0,
+                95,
+                0,
+                0,
+                97,
+                0,
+                0,
+                31,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                4,
+                64,
+                0,
+                0,
+                70,
+                3,
+                60,
+                1,
+                0,
+                0,
+                1,
+                53,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                3,
+                62,
+                0,
+                0,
+                64,
+                3,
+                53,
+                5,
+                0,
+                0,
+                5,
+                61,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                55,
+                0,
+                4,
+                6,
+                0,
+                64,
+                0,
+                0,
+                6,
+                0,
+                55,
+                64,
+                0,
+                2,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                63,
+                0,
+                2,
+                1,
+                0,
+                73,
+                0,
+                0,
+                1,
+                0,
+                51,
+                60,
+                0,
+                5,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.25,
+              "standard_error": 0.02711630722733202,
+              "ci": [
+                0.16511865526621128,
+                0.3348813447337887
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.2763932035540129,
+              "error_to_prepared_state": -0.026393203554012923
+            },
+            "kinetic_energy": {
+              "estimate": -1.796875,
+              "standard_error": 0.027425691298461913,
+              "ci": [
+                -2.1951201276865255,
+                -1.3986298723134745
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.788854384607815,
+              "error_to_prepared_state": -0.008020615392184904
+            },
+            "energy": {
+              "estimate": -1.296875,
+              "standard_error": 0.06077289703302587,
+              "ci": [
+                -1.9072338615195235,
+                -0.6865161384804765
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.2360679774997894,
+              "error_to_prepared_state": -0.06080702250021064
+            }
+          },
+          "interaction": 2,
+          "exact_ground_state": {
+            "energy": -1.2360679774997898,
+            "double_occupancy": 0.27639320225002095,
+            "kinetic_energy": -1.7888543819998317
+          },
+          "vqe_residual": 2.362402299911928e-08
+        },
+        {
+          "shots_per_setting": 4096,
+          "total_shots": 20480,
+          "seed": 202631,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                563,
+                0,
+                0,
+                1445,
+                0,
+                0,
+                1539,
+                0,
+                0,
+                549,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                51,
+                999,
+                0,
+                0,
+                979,
+                55,
+                961,
+                45,
+                0,
+                0,
+                50,
+                956,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                43,
+                967,
+                0,
+                0,
+                927,
+                49,
+                1013,
+                63,
+                0,
+                0,
+                62,
+                972,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                978,
+                0,
+                59,
+                56,
+                0,
+                998,
+                0,
+                0,
+                50,
+                0,
+                957,
+                946,
+                0,
+                52,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                916,
+                0,
+                49,
+                47,
+                0,
+                947,
+                0,
+                0,
+                64,
+                0,
+                1035,
+                980,
+                0,
+                58,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.271484375,
+              "standard_error": 0.00694968150693461,
+              "ci": [
+                0.25026403881655285,
+                0.29270471118344715
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.2763932035540129,
+              "error_to_prepared_state": -0.004908828554012923
+            },
+            "kinetic_energy": {
+              "estimate": -1.791748046875,
+              "standard_error": 0.006942952057422313,
+              "ci": [
+                -1.8913093287966314,
+                -1.6921867649533686
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.788854384607815,
+              "error_to_prepared_state": -0.0028936622671849044
+            },
+            "energy": {
+              "estimate": -1.248779296875,
+              "standard_error": 0.015536951936045254,
+              "ci": [
+                -1.401369012254881,
+                -1.096189581495119
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.2360679774997894,
+              "error_to_prepared_state": -0.012711319375210639
+            }
+          },
+          "interaction": 2,
+          "exact_ground_state": {
+            "energy": -1.2360679774997898,
+            "double_occupancy": 0.27639320225002095,
+            "kinetic_energy": -1.7888543819998317
+          },
+          "vqe_residual": 2.362402299911928e-08
+        },
+        {
+          "shots_per_setting": 65536,
+          "total_shots": 327680,
+          "seed": 202632,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                9036,
+                0,
+                0,
+                23628,
+                0,
+                0,
+                23899,
+                0,
+                0,
+                8973,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                882,
+                15586,
+                0,
+                0,
+                15504,
+                838,
+                15500,
+                788,
+                0,
+                0,
+                899,
+                15539,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                882,
+                15550,
+                0,
+                0,
+                15543,
+                848,
+                15571,
+                899,
+                0,
+                0,
+                814,
+                15429,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                15450,
+                0,
+                857,
+                860,
+                0,
+                15654,
+                0,
+                0,
+                917,
+                0,
+                15612,
+                15310,
+                0,
+                876,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                15554,
+                0,
+                843,
+                873,
+                0,
+                15504,
+                0,
+                0,
+                867,
+                0,
+                15587,
+                15464,
+                0,
+                844,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.2747955322265625,
+              "standard_error": 0.0017438070026566655,
+              "ci": [
+                0.2694904481807007,
+                0.2801006162724243
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.2763932035540129,
+              "error_to_prepared_state": -0.0015976713274504228
+            },
+            "kinetic_energy": {
+              "estimate": -1.7896270751953125,
+              "standard_error": 0.0017439137185033232,
+              "ci": [
+                -1.8145173956757203,
+                -1.7647367547149047
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.788854384607815,
+              "error_to_prepared_state": -0.0007726905874974044
+            },
+            "energy": {
+              "estimate": -1.2400360107421875,
+              "standard_error": 0.0038993187235261727,
+              "ci": [
+                -1.2781834395871576,
+                -1.2018885818972174
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.2360679774997894,
+              "error_to_prepared_state": -0.003968033242398139
+            }
+          },
+          "interaction": 2,
+          "exact_ground_state": {
+            "energy": -1.2360679774997898,
+            "double_occupancy": 0.27639320225002095,
+            "kinetic_energy": -1.7888543819998317
+          },
+          "vqe_residual": 2.362402299911928e-08
+        },
+        {
+          "shots_per_setting": 256,
+          "total_shots": 1280,
+          "seed": 202640,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                19,
+                0,
+                0,
+                107,
+                0,
+                0,
+                110,
+                0,
+                0,
+                20,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                11,
+                60,
+                0,
+                0,
+                61,
+                14,
+                54,
+                3,
+                0,
+                0,
+                5,
+                48,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                14,
+                66,
+                0,
+                0,
+                48,
+                4,
+                51,
+                9,
+                0,
+                0,
+                12,
+                52,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                55,
+                0,
+                14,
+                8,
+                0,
+                57,
+                0,
+                0,
+                13,
+                0,
+                48,
+                57,
+                0,
+                4,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                59,
+                0,
+                7,
+                11,
+                0,
+                53,
+                0,
+                0,
+                12,
+                0,
+                46,
+                56,
+                0,
+                12,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.15234375,
+              "standard_error": 0.022503605971256224,
+              "ci": [
+                0.06746240526621129,
+                0.23722509473378872
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.1464466127177122,
+              "error_to_prepared_state": 0.005897137282287801
+            },
+            "kinetic_energy": {
+              "estimate": -1.40234375,
+              "standard_error": 0.044620653288674386,
+              "ci": [
+                -1.8005888776865255,
+                -1.0040986223134745
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.4142135756170384,
+              "error_to_prepared_state": 0.011869825617038421
+            },
+            "energy": {
+              "estimate": -0.79296875,
+              "standard_error": 0.10046690603010043,
+              "ci": [
+                -1.6067805653593645,
+                0.020843065359364532
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8284271247461896,
+              "error_to_prepared_state": 0.035458374746189625
+            }
+          },
+          "interaction": 4,
+          "exact_ground_state": {
+            "energy": -0.82842712474619,
+            "double_occupancy": 0.14644660940672619,
+            "kinetic_energy": -1.4142135623730947
+          },
+          "vqe_residual": 3.5548562423042726e-08
+        },
+        {
+          "shots_per_setting": 4096,
+          "total_shots": 20480,
+          "seed": 202641,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                294,
+                0,
+                0,
+                1777,
+                0,
+                0,
+                1728,
+                0,
+                0,
+                297,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                148,
+                900,
+                0,
+                0,
+                849,
+                142,
+                861,
+                142,
+                0,
+                0,
+                159,
+                895,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                173,
+                844,
+                0,
+                0,
+                874,
+                145,
+                862,
+                167,
+                0,
+                0,
+                155,
+                876,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                893,
+                0,
+                146,
+                165,
+                0,
+                907,
+                0,
+                0,
+                167,
+                0,
+                837,
+                839,
+                0,
+                142,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                886,
+                0,
+                142,
+                167,
+                0,
+                894,
+                0,
+                0,
+                162,
+                0,
+                887,
+                815,
+                0,
+                143,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.144287109375,
+              "standard_error": 0.005490992500726052,
+              "ci": [
+                0.12306677319155282,
+                0.16550744555844718
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.1464466127177122,
+              "error_to_prepared_state": -0.002159503342712199
+            },
+            "kinetic_energy": {
+              "estimate": -1.398193359375,
+              "standard_error": 0.011172868214852985,
+              "ci": [
+                -1.4977546412966314,
+                -1.2986320774533686
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.4142135756170384,
+              "error_to_prepared_state": 0.01602021624203842
+            },
+            "energy": {
+              "estimate": -0.821044921875,
+              "standard_error": 0.024642422008295937,
+              "ci": [
+                -1.024497875714841,
+                -0.6175919680351589
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8284271247461896,
+              "error_to_prepared_state": 0.007382202871189625
+            }
+          },
+          "interaction": 4,
+          "exact_ground_state": {
+            "energy": -0.82842712474619,
+            "double_occupancy": 0.14644660940672619,
+            "kinetic_energy": -1.4142135623730947
+          },
+          "vqe_residual": 3.5548562423042726e-08
+        },
+        {
+          "shots_per_setting": 65536,
+          "total_shots": 327680,
+          "seed": 202642,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                4833,
+                0,
+                0,
+                27946,
+                0,
+                0,
+                28003,
+                0,
+                0,
+                4754,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                2426,
+                14061,
+                0,
+                0,
+                13899,
+                2441,
+                13899,
+                2403,
+                0,
+                0,
+                2390,
+                14017,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                2374,
+                13956,
+                0,
+                0,
+                13895,
+                2466,
+                13901,
+                2354,
+                0,
+                0,
+                2380,
+                14210,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                13861,
+                0,
+                2421,
+                2364,
+                0,
+                13924,
+                0,
+                0,
+                2474,
+                0,
+                14131,
+                13961,
+                0,
+                2400,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                14127,
+                0,
+                2354,
+                2334,
+                0,
+                14133,
+                0,
+                0,
+                2348,
+                0,
+                13836,
+                13998,
+                0,
+                2406,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.1462860107421875,
+              "standard_error": 0.001380450840423089,
+              "ci": [
+                0.1409809266963257,
+                0.1515910947880493
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.1464466127177122,
+              "error_to_prepared_state": -0.00016060197552469901
+            },
+            "kinetic_energy": {
+              "estimate": -1.4150543212890625,
+              "standard_error": 0.002760493464792847,
+              "ci": [
+                -1.4399446417694703,
+                -1.3901640008086547
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.4142135756170384,
+              "error_to_prepared_state": -0.0008407456720240791
+            },
+            "energy": {
+              "estimate": -0.8299102783203125,
+              "standard_error": 0.006173381288593879,
+              "ci": [
+                -0.8807735167802728,
+                -0.7790470398603522
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8284271247461896,
+              "error_to_prepared_state": -0.0014831535741228752
+            }
+          },
+          "interaction": 4,
+          "exact_ground_state": {
+            "energy": -0.82842712474619,
+            "double_occupancy": 0.14644660940672619,
+            "kinetic_energy": -1.4142135623730947
+          },
+          "vqe_residual": 3.5548562423042726e-08
+        },
+        {
+          "shots_per_setting": 256,
+          "total_shots": 1280,
+          "seed": 202650,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                9,
+                0,
+                0,
+                120,
+                0,
+                0,
+                115,
+                0,
+                0,
+                12,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                17,
+                52,
+                0,
+                0,
+                44,
+                13,
+                53,
+                14,
+                0,
+                0,
+                19,
+                44,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                11,
+                53,
+                0,
+                0,
+                58,
+                9,
+                46,
+                10,
+                0,
+                0,
+                13,
+                56,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                50,
+                0,
+                11,
+                17,
+                0,
+                56,
+                0,
+                0,
+                13,
+                0,
+                51,
+                49,
+                0,
+                9,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                48,
+                0,
+                14,
+                10,
+                0,
+                50,
+                0,
+                0,
+                13,
+                0,
+                47,
+                60,
+                0,
+                14,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.08203125,
+              "standard_error": 0.017184366358720803,
+              "ci": [
+                -0.002850094733788708,
+                0.16691259473378872
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.0839748503185793,
+              "error_to_prepared_state": -0.0019436003185793055
+            },
+            "kinetic_energy": {
+              "estimate": -1.19140625,
+              "standard_error": 0.050175497192708904,
+              "ci": [
+                -1.5896513776865255,
+                -0.7931611223134745
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.1094003773754648,
+              "error_to_prepared_state": -0.08200587262453518
+            },
+            "energy": {
+              "estimate": -0.69921875,
+              "standard_error": 0.11466677206567737,
+              "ci": [
+                -1.7164835191992056,
+                0.3180460191992056
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.605551275463989,
+              "error_to_prepared_state": -0.09366747453601099
+            }
+          },
+          "interaction": 6,
+          "exact_ground_state": {
+            "energy": -0.60555127546399,
+            "double_occupancy": 0.08397485283107811,
+            "kinetic_energy": -1.1094003924504587
+          },
+          "vqe_residual": 3.488907272469943e-08
+        },
+        {
+          "shots_per_setting": 4096,
+          "total_shots": 20480,
+          "seed": 202651,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                165,
+                0,
+                0,
+                1915,
+                0,
+                0,
+                1848,
+                0,
+                0,
+                168,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                253,
+                797,
+                0,
+                0,
+                769,
+                237,
+                789,
+                263,
+                0,
+                0,
+                232,
+                756,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                218,
+                826,
+                0,
+                0,
+                788,
+                233,
+                827,
+                195,
+                0,
+                0,
+                235,
+                774,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                832,
+                0,
+                200,
+                238,
+                0,
+                763,
+                0,
+                0,
+                233,
+                0,
+                806,
+                788,
+                0,
+                236,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                783,
+                0,
+                245,
+                223,
+                0,
+                826,
+                0,
+                0,
+                234,
+                0,
+                813,
+                759,
+                0,
+                213,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.081298828125,
+              "standard_error": 0.0042707320567425934,
+              "ci": [
+                0.06007849194155282,
+                0.10251916430844718
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.0839748503185793,
+              "error_to_prepared_state": -0.0026760221935793055
+            },
+            "kinetic_energy": {
+              "estimate": -1.099609375,
+              "standard_error": 0.0130497470976704,
+              "ci": [
+                -1.1991706569216314,
+                -1.0000480930783686
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.1094003773754648,
+              "error_to_prepared_state": 0.009791002375464819
+            },
+            "energy": {
+              "estimate": -0.61181640625,
+              "standard_error": 0.028755962549195855,
+              "ci": [
+                -0.8661325985498014,
+                -0.3575002139501986
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.605551275463989,
+              "error_to_prepared_state": -0.006265130786010986
+            }
+          },
+          "interaction": 6,
+          "exact_ground_state": {
+            "energy": -0.60555127546399,
+            "double_occupancy": 0.08397485283107811,
+            "kinetic_energy": -1.1094003924504587
+          },
+          "vqe_residual": 3.488907272469943e-08
+        },
+        {
+          "shots_per_setting": 65536,
+          "total_shots": 327680,
+          "seed": 202652,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                2752,
+                0,
+                0,
+                30122,
+                0,
+                0,
+                29819,
+                0,
+                0,
+                2843,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                3702,
+                12661,
+                0,
+                0,
+                12510,
+                3644,
+                12861,
+                3617,
+                0,
+                0,
+                3700,
+                12841,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                3653,
+                12755,
+                0,
+                0,
+                12737,
+                3720,
+                12751,
+                3624,
+                0,
+                0,
+                3500,
+                12796,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                12694,
+                0,
+                3711,
+                3609,
+                0,
+                12736,
+                0,
+                0,
+                3648,
+                0,
+                12734,
+                12698,
+                0,
+                3706,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                12631,
+                0,
+                3664,
+                3567,
+                0,
+                12849,
+                0,
+                0,
+                3668,
+                0,
+                12718,
+                12730,
+                0,
+                3709,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.0853729248046875,
+              "standard_error": 0.0010915545768033043,
+              "ci": [
+                0.08006784075882571,
+                0.09067800885054929
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.0839748503185793,
+              "error_to_prepared_state": 0.0013980744861081945
+            },
+            "kinetic_energy": {
+              "estimate": -1.108245849609375,
+              "standard_error": 0.0032517127032767375,
+              "ci": [
+                -1.1331361700897828,
+                -1.0833555291289672
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.1094003773754648,
+              "error_to_prepared_state": 0.001154527766089819
+            },
+            "energy": {
+              "estimate": -0.59600830078125,
+              "standard_error": 0.007312135508433905,
+              "ci": [
+                -0.6595873488562003,
+                -0.5324292527062997
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.605551275463989,
+              "error_to_prepared_state": 0.009542974682739014
+            }
+          },
+          "interaction": 6,
+          "exact_ground_state": {
+            "energy": -0.60555127546399,
+            "double_occupancy": 0.08397485283107811,
+            "kinetic_energy": -1.1094003924504587
+          },
+          "vqe_residual": 3.488907272469943e-08
+        },
+        {
+          "shots_per_setting": 256,
+          "total_shots": 1280,
+          "seed": 202660,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                6,
+                0,
+                0,
+                123,
+                0,
+                0,
+                116,
+                0,
+                0,
+                11,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                20,
+                39,
+                0,
+                0,
+                43,
+                15,
+                48,
+                19,
+                0,
+                0,
+                16,
+                56,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                20,
+                44,
+                0,
+                0,
+                50,
+                15,
+                56,
+                15,
+                0,
+                0,
+                18,
+                38,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                40,
+                0,
+                21,
+                15,
+                0,
+                49,
+                0,
+                0,
+                21,
+                0,
+                49,
+                43,
+                0,
+                18,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                50,
+                0,
+                17,
+                14,
+                0,
+                50,
+                0,
+                0,
+                24,
+                0,
+                31,
+                55,
+                0,
+                15,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.06640625,
+              "standard_error": 0.015592413937419483,
+              "ci": [
+                -0.018475094733788708,
+                0.15128759473378872
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.05278640618919383,
+              "error_to_prepared_state": 0.013619843810806172
+            },
+            "kinetic_energy": {
+              "estimate": -0.89453125,
+              "standard_error": 0.05599528299762462,
+              "ci": [
+                -1.2927763776865255,
+                -0.4962861223134744
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8944272045131296,
+              "error_to_prepared_state": -0.0001040454868703744
+            },
+            "energy": {
+              "estimate": -0.36328125,
+              "standard_error": 0.13673100435277072,
+              "ci": [
+                -1.583998973039047,
+                0.8574364730390469
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.472135954999579,
+              "error_to_prepared_state": 0.108854704999579
+            }
+          },
+          "interaction": 8,
+          "exact_ground_state": {
+            "energy": -0.47213595499958,
+            "double_occupancy": 0.052786404500042065,
+            "kinetic_energy": -0.8944271909999165
+          },
+          "vqe_residual": 4.0002178580703475e-08
+        },
+        {
+          "shots_per_setting": 4096,
+          "total_shots": 20480,
+          "seed": 202661,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                96,
+                0,
+                0,
+                1937,
+                0,
+                0,
+                1944,
+                0,
+                0,
+                119,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                288,
+                732,
+                0,
+                0,
+                701,
+                306,
+                734,
+                303,
+                0,
+                0,
+                298,
+                734,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                302,
+                755,
+                0,
+                0,
+                748,
+                280,
+                752,
+                262,
+                0,
+                0,
+                286,
+                711,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                715,
+                0,
+                299,
+                251,
+                0,
+                770,
+                0,
+                0,
+                261,
+                0,
+                771,
+                708,
+                0,
+                321,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                780,
+                0,
+                273,
+                252,
+                0,
+                771,
+                0,
+                0,
+                333,
+                0,
+                751,
+                683,
+                0,
+                253,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.052490234375,
+              "standard_error": 0.0034850109765649814,
+              "ci": [
+                0.03126989819155282,
+                0.07371057055844718
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.05278640618919383,
+              "error_to_prepared_state": -0.00029617181419382826
+            },
+            "kinetic_energy": {
+              "estimate": -0.884765625,
+              "standard_error": 0.014012537506290288,
+              "ci": [
+                -0.9843269069216314,
+                -0.7852043430783686
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8944272045131296,
+              "error_to_prepared_state": 0.009661579513129626
+            },
+            "energy": {
+              "estimate": -0.46484375,
+              "standard_error": 0.03120337327596185,
+              "ci": [
+                -0.7700231807597617,
+                -0.15966431924023827
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.472135954999579,
+              "error_to_prepared_state": 0.0072922049995789995
+            }
+          },
+          "interaction": 8,
+          "exact_ground_state": {
+            "energy": -0.47213595499958,
+            "double_occupancy": 0.052786404500042065,
+            "kinetic_energy": -0.8944271909999165
+          },
+          "vqe_residual": 4.0002178580703475e-08
+        },
+        {
+          "shots_per_setting": 65536,
+          "total_shots": 327680,
+          "seed": 202662,
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                1671,
+                0,
+                0,
+                30996,
+                0,
+                0,
+                31120,
+                0,
+                0,
+                1749,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                4536,
+                12139,
+                0,
+                0,
+                11837,
+                4403,
+                11823,
+                4557,
+                0,
+                0,
+                4483,
+                11758,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                4608,
+                11743,
+                0,
+                0,
+                11764,
+                4669,
+                11913,
+                4586,
+                0,
+                0,
+                4567,
+                11686,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                11844,
+                0,
+                4582,
+                4495,
+                0,
+                11953,
+                0,
+                0,
+                4516,
+                0,
+                11899,
+                11808,
+                0,
+                4439,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                11920,
+                0,
+                4523,
+                4512,
+                0,
+                12013,
+                0,
+                0,
+                4428,
+                0,
+                11835,
+                11765,
+                0,
+                4540,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.05218505859375,
+              "standard_error": 0.0008687567884148619,
+              "ci": [
+                0.046879974547888205,
+                0.057490142639611795
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.05278640618919383,
+              "error_to_prepared_state": -0.0006013475954438283
+            },
+            "kinetic_energy": {
+              "estimate": -0.89459228515625,
+              "standard_error": 0.003493651922411195,
+              "ci": [
+                -0.9194826056366578,
+                -0.8697019646758422
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8944272045131296,
+              "error_to_prepared_state": -0.0001650806431203744
+            },
+            "energy": {
+              "estimate": -0.47711181640625,
+              "standard_error": 0.007778744026489712,
+              "ci": [
+                -0.5534066740961905,
+                -0.40081695871630957
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.472135954999579,
+              "error_to_prepared_state": -0.0049758614066710005
+            }
+          },
+          "interaction": 8,
+          "exact_ground_state": {
+            "energy": -0.47213595499958,
+            "double_occupancy": 0.052786404500042065,
+            "kinetic_energy": -0.8944271909999165
+          },
+          "vqe_residual": 4.0002178580703475e-08
+        }
+      ]
     }
   },
   "method": {
-    "evaluation": "Exact distribution expectations; no finite-shot sampling",
+    "evaluation": "Portfolio: exact distribution expectations. Hubbard: finite-shot Pauli evaluation after exact-expectation training.",
     "assets": 6,
     "cardinality": 3,
     "risk_aversion": 2.0,
@@ -67,15 +3326,16 @@
     }
   },
   "provenance": {
-    "data": "Synthetic PSD covariance and expected returns",
+    "data": "Synthetic PSD covariance and expected returns; defined two-site Hubbard Hamiltonian with t=1",
     "numpy": "2.2.4"
   },
   "limitations": [
     "Exponential CPU statevector and a coarse p=1 grid; no quantum speedup claim.",
     "Feasibility is measured before postselection; conditional objective excludes rejected samples.",
     "Binary unit holdings, not continuous normalized portfolio weights.",
-    "One synthetic instance; exact distribution metrics are not finite-shot observations.",
+    "Portfolio: one synthetic instance; exact distribution metrics are not finite-shot observations.",
     "Uniform feasible distribution uses the enumerated mask here; general constraints may be harder to sample.",
-    "Training uses exact penalized expectations; rejection cost excludes training and sampler setup."
+    "Portfolio training uses exact penalized expectations; rejection cost excludes training and sampler setup.",
+    "Hubbard: ideal Born shots after exact training; marginal CIs cover prepared-state expectations, not ansatz bias or model error. No hardware noise or materials predictions."
   ]
 }

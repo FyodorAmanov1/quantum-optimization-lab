@@ -69,7 +69,15 @@ Each result obeys the variational bound and agrees with E₀=(U−√(U²+16t²)
 
 - This is an effective correlated-electron benchmark, not an ab initio molecule or a battery-material prediction. It is a foundation for extending the battery-design theme.
 - The ansatz can span this tiny real sector; success does not demonstrate a scalable chemistry algorithm.
-- No finite-shot Pauli measurement, molecular geometry, basis-set error, device noise or battery voltage is represented.
+- Finite-shot evaluation is now available in the separate Hubbard measurements case, described below. Molecular geometry, basis-set error, device noise and battery voltage are not represented.
+
+## Finite-shot Hubbard observables
+
+The [QO02 study](QO02.md) adds actual ideal Born measurements of energy, total double occupancy and kinetic energy to the optimized Hubbard states. Four hopping settings and one shared density setting replace ten separate nonidentity Pauli measurements. All density terms are evaluated from the same bitstring so their covariance is retained. Three budgets (256, 4,096 and 65,536 shots per setting) are compared against exact prepared-state expectations and independent exact ground-state references across the seven interactions.
+
+At 4,096 shots per setting (20,480 preparations per interaction), sampled double occupancy changes from 0.499756 to 0.052490 across U/t=0 to 8, with conservative marginal 95% CI half-width 0.021220. This resolves the broad localization trend, but the U/t=6 and 8 intervals still overlap. Energy at U/t=8 is -0.464844 t versus exact -0.472136 t, with a much wider 95% interval [-0.770023,-0.159664] t. A small observed error does not certify a precise energy. Bounds use Hoeffding's inequality per active measurement group and a union bound; exact training and ideal state preparation are separate assumptions. See [references](../REFERENCES.md) for primary sources.
+
+The studio's **Hubbard measurements** case shows sampled values, exact references and confidence-bound curves at 4,096 shots per setting; its table exports all budgets. Raw count vectors and deterministic seeds are in [results/latest.json](../results/latest.json). These are simulated projective measurements after exact-expectation optimization, without device noise, and do not establish quantum advantage or materials accuracy.
 
 ## Interpretation
 
@@ -81,6 +89,6 @@ Explain the objective and units, where each baseline obtains its information, wh
 
 ## Next work
 
-- Add finite-shot observable measurement to the Hubbard VQE, with measurement grouping and uncertainty.
+- Study variance-adaptive intervals and shot allocation for the finite-shot Hubbard observables; current distribution-free bounds are conservative.
 - Compare constrained ansatz depths and classical solvers at matched objective-evaluation budgets.
 - Extend the effective electron model and assess when the restricted ansatz fails; do not relabel toy energies as battery properties.
