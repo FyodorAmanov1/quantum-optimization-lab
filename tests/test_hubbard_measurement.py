@@ -6,7 +6,7 @@ import numpy as np
 from src.hubbard_measurement import (
     SETTINGS, finite_shot_study, measure_hubbard, measurement_probabilities, pauli_matrix,
 )
-from src.studio import hubbard, vqe, vqe_state
+from src.studio import experiment as studio_experiment, hubbard, vqe, vqe_state
 
 
 class HubbardMeasurementTests(unittest.TestCase):
@@ -110,6 +110,74 @@ class HubbardMeasurementTests(unittest.TestCase):
             u = r["interaction"]
             self.assertAlmostEqual(r["exact_ground_state"]["energy"], (u - np.sqrt(u*u + 16))/2)
             self.assertEqual(r["total_shots"], 5*r["shots_per_setting"])
+        for grouped, ungrouped in zip(study["runs"], study["ungrouped_runs"]):
+            self.assertEqual(grouped["total_shots"], ungrouped["total_shots"])
+            self.assertEqual(len(ungrouped["settings"]), 10)
+            self.assertEqual(grouped["exact_ground_state"], ungrouped["exact_ground_state"])
+
+    def test_ungrouped_counts_reconstruct_all_observables(self):
+        h, basis = hubbard(-2)
+        wave = np.linalg.eigh(h)[1][:, 0]
+        run = measure_hubbard(wave, basis, -2, 128, 71, grouping="ungrouped")
+        density, kinetic = 0.5, 0.
+        for index, group in enumerate(run["settings"]):
+            self.assertEqual(sum(group["counts"]), 128)
+            parity_mean = sum(count * (-1)**sum((outcome >> q) & 1
+                              for q, s in enumerate(group["basis"]) if s != "I")
+                              for outcome, count in enumerate(group["counts"])) / 128
+            if index < 6:
+                density += (-0.25 if index < 4 else 0.25) * parity_mean
+            else:
+                kinetic -= 0.5 * parity_mean
+        obs = run["observables"]
+        self.assertAlmostEqual(obs["double_occupancy"]["estimate"], density)
+        self.assertAlmostEqual(obs["kinetic_energy"]["estimate"], kinetic)
+        self.assertAlmostEqual(obs["energy"]["estimate"], kinetic - 2*density)
+        self.assertEqual(run, measure_hubbard(wave, basis, -2, 128, 71, grouping="ungrouped"))
+        with self.assertRaises(ValueError):
+            measure_hubbard(wave, basis, -2, grouping="unknown")
+
+    def test_matched_budget_variance_and_ungrouped_coverage(self):
+        h, basis = hubbard(8)
+        wave = np.linalg.eigh(h)[1][:, 0]
+        grouped = measure_hubbard(wave, basis, 8, 256, 0)
+        baseline = measure_hubbard(wave, basis, 8, 128, 0, grouping="ungrouped")
+        # Exact marginal density variance in this half-filled symmetric dimer.
+        d = (1 - 8 / np.sqrt(80)) / 2
+        self.assertAlmostEqual(grouped["observables"]["double_occupancy"]["exact_sampling_standard_error"]**2,
+                               d * (1-d) / 256)
+        self.assertLess(grouped["observables"]["energy"]["exact_sampling_standard_error"],
+                        baseline["observables"]["energy"]["exact_sampling_standard_error"])
+        values, covered = [], 0
+        for seed in range(200):
+            obs = measure_hubbard(wave, basis, 8, 128, seed,
+                                  grouping="ungrouped")["observables"]["energy"]
+            values.append(obs["estimate"])
+            covered += obs["ci"][0] <= obs["exact_prepared_state"] <= obs["ci"][1]
+        predicted = baseline["observables"]["energy"]["exact_sampling_standard_error"]
+        self.assertAlmostEqual(np.var(values, ddof=1) / predicted**2, 1, delta=0.3)
+        self.assertLess(abs(np.mean(values) - np.linalg.eigvalsh(h)[0]), 4*predicted/np.sqrt(200))
+        self.assertGreater(covered, 190)
+
+    def test_studio_views_expose_matched_budgets_and_uncertainty(self):
+        cases = studio_experiment()["cases"]
+        self.assertEqual([c["id"] for c in cases], ["allocation", "electrons", "hubbard-shots"])
+        case = cases[-1]
+        self.assertEqual(case["default_view"], "4096")
+        self.assertEqual(len(case["table"]["rows"]), 126)
+        self.assertEqual({row[0] for row in case["table"]["rows"]}, {"grouped", "ungrouped"})
+        for view, budget in zip(case["views"], (256, 4096, 65536)):
+            self.assertEqual(view["value"], str(budget))
+            self.assertEqual(view["metrics"][2]["value"], 5*budget)
+            self.assertEqual(len(view["charts"]), 4)
+            for chart in view["charts"]:
+                self.assertEqual(chart["x"], [0, 0.5, 1, 2, 4, 6, 8])
+                for series in chart["series"]:
+                    self.assertEqual(len(series["values"]), 7)
+                    self.assertTrue(np.all(np.isfinite(series["values"])))
+            energy = view["charts"][0]
+            self.assertEqual(energy["series"][0]["name"], "Exact ground state")
+            self.assertAlmostEqual(energy["series"][0]["values"][-1], (8-np.sqrt(80))/2)
 
 
 if __name__ == "__main__":

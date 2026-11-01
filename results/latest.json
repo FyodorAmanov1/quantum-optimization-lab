@@ -66,13 +66,14 @@
       "cost": {
         "grouped_settings": 5,
         "ungrouped_nonidentity_terms": 10,
-        "assumptions": "Equal shots per setting; all six Z density terms share one shot; four hopping settings; identity costs no shots. Counts exclude exact training, state preparation and gate compilation. Setting reduction is not an equal-total-shot accuracy comparison."
+        "assumptions": "Equal shots within each strategy; five grouped settings at n shots versus ten independent Pauli terms at n/2 shots, matching total preparations. All observables share those counts. Identity costs no shots. Counts exclude exact training, state preparation and gate compilation. Neither allocation is optimized."
       },
       "runs": [
         {
           "shots_per_setting": 256,
           "total_shots": 1280,
           "seed": 202600,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -184,6 +185,7 @@
             "double_occupancy": {
               "estimate": 0.52734375,
               "standard_error": 0.0312643579148398,
+              "exact_sampling_standard_error": 0.03125,
               "ci": [
                 0.4424624052662113,
                 0.6122250947337887
@@ -195,6 +197,7 @@
             "kinetic_energy": {
               "estimate": -2.0,
               "standard_error": 0.0,
+              "exact_sampling_standard_error": 7.428186230560163e-10,
               "ci": [
                 -2.3982451276865255,
                 -1.6017548723134745
@@ -206,6 +209,7 @@
             "energy": {
               "estimate": -2.0,
               "standard_error": 0.0,
+              "exact_sampling_standard_error": 7.428186230560163e-10,
               "ci": [
                 -2.3982451276865255,
                 -1.6017548723134745
@@ -227,6 +231,7 @@
           "shots_per_setting": 4096,
           "total_shots": 20480,
           "seed": 202601,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -338,6 +343,7 @@
             "double_occupancy": {
               "estimate": 0.499755859375,
               "standard_error": 0.007813452917538585,
+              "exact_sampling_standard_error": 0.0078125,
               "ci": [
                 0.47853552319155285,
                 0.5209761955584472
@@ -349,6 +355,7 @@
             "kinetic_energy": {
               "estimate": -2.0,
               "standard_error": 0.0,
+              "exact_sampling_standard_error": 1.8570465576400407e-10,
               "ci": [
                 -2.0995612819216314,
                 -1.9004387180783686
@@ -360,6 +367,7 @@
             "energy": {
               "estimate": -2.0,
               "standard_error": 0.0,
+              "exact_sampling_standard_error": 1.8570465576400407e-10,
               "ci": [
                 -2.0995612819216314,
                 -1.9004387180783686
@@ -381,6 +389,7 @@
           "shots_per_setting": 65536,
           "total_shots": 327680,
           "seed": 202602,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -492,6 +501,7 @@
             "double_occupancy": {
               "estimate": 0.5016632080078125,
               "standard_error": 0.0019531290955128408,
+              "exact_sampling_standard_error": 0.001953125,
               "ci": [
                 0.4963581239619507,
                 0.5069682920536743
@@ -503,6 +513,7 @@
             "kinetic_energy": {
               "estimate": -2.0,
               "standard_error": 0.0,
+              "exact_sampling_standard_error": 4.642616394100102e-11,
               "ci": [
                 -2.024890320480408,
                 -1.9751096795195922
@@ -514,6 +525,7 @@
             "energy": {
               "estimate": -2.0,
               "standard_error": 0.0,
+              "exact_sampling_standard_error": 4.642616394100102e-11,
               "ci": [
                 -2.024890320480408,
                 -1.9751096795195922
@@ -535,6 +547,7 @@
           "shots_per_setting": 256,
           "total_shots": 1280,
           "seed": 202610,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -646,6 +659,7 @@
             "double_occupancy": {
               "estimate": 0.47265625,
               "standard_error": 0.0312643579148398,
+              "exact_sampling_standard_error": 0.031008683670724072,
               "ci": [
                 0.3877749052662113,
                 0.5575375947337887
@@ -657,6 +671,7 @@
             "kinetic_energy": {
               "estimate": -1.9765625,
               "standard_error": 0.009555803515198417,
+              "exact_sampling_standard_error": 0.007752170537074216,
               "ci": [
                 -2.3748076276865255,
                 -1.5783173723134745
@@ -668,6 +683,7 @@
             "energy": {
               "estimate": -1.740234375,
               "standard_error": 0.018321528314468743,
+              "exact_sampling_standard_error": 0.01733438097491915,
               "ci": [
                 -2.1980035211396425,
                 -1.2824652288603575
@@ -689,6 +705,7 @@
           "shots_per_setting": 4096,
           "total_shots": 20480,
           "seed": 202611,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -800,6 +817,7 @@
             "double_occupancy": {
               "estimate": 0.443359375,
               "standard_error": 0.0077631583454707475,
+              "exact_sampling_standard_error": 0.007752170917681018,
               "ci": [
                 0.42213903881655285,
                 0.46457971118344715
@@ -811,6 +829,7 @@
             "kinetic_energy": {
               "estimate": -1.987060546875,
               "standard_error": 0.0017744035656179062,
+              "exact_sampling_standard_error": 0.001938042634268554,
               "ci": [
                 -2.0866218287966314,
                 -1.8874992649533686
@@ -822,6 +841,7 @@
             "energy": {
               "estimate": -1.765380859375,
               "standard_error": 0.004267922783731047,
+              "exact_sampling_standard_error": 0.004333595243729787,
               "ci": [
                 -1.8798231459099106,
                 -1.6509385728400894
@@ -843,6 +863,7 @@
           "shots_per_setting": 65536,
           "total_shots": 327680,
           "seed": 202612,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -954,6 +975,7 @@
             "double_occupancy": {
               "estimate": 0.436798095703125,
               "standard_error": 0.0019374735109424994,
+              "exact_sampling_standard_error": 0.0019380427294202545,
               "ci": [
                 0.4314930116572632,
                 0.4421031797489868
@@ -965,6 +987,7 @@
             "kinetic_energy": {
               "estimate": -1.98419189453125,
               "standard_error": 0.0004901655212876469,
+              "exact_sampling_standard_error": 0.0004845106585671385,
               "ci": [
                 -2.009082215011658,
                 -1.9593015740508422
@@ -976,6 +999,7 @@
             "energy": {
               "estimate": -1.7657928466796875,
               "standard_error": 0.0010856855620575206,
+              "exact_sampling_standard_error": 0.0010833988109324468,
               "ci": [
                 -1.7944034183134152,
                 -1.7371822750459598
@@ -997,6 +1021,7 @@
           "shots_per_setting": 256,
           "total_shots": 1280,
           "seed": 202620,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -1108,6 +1133,7 @@
             "double_occupancy": {
               "estimate": 0.359375,
               "standard_error": 0.0300473227657999,
+              "exact_sampling_standard_error": 0.030316953224071363,
               "ci": [
                 0.2744936552662113,
                 0.4442563447337887
@@ -1119,6 +1145,7 @@
             "kinetic_energy": {
               "estimate": -1.90625,
               "standard_error": 0.01893545942866214,
+              "exact_sampling_standard_error": 0.015158475808532865,
               "ci": [
                 -2.3044951276865255,
                 -1.5080048723134745
@@ -1130,6 +1157,7 @@
             "energy": {
               "estimate": -1.546875,
               "standard_error": 0.035516098169234005,
+              "exact_sampling_standard_error": 0.03389538378051512,
               "ci": [
                 -2.055507384599603,
                 -1.0382426154003972
@@ -1151,6 +1179,7 @@
           "shots_per_setting": 4096,
           "total_shots": 20480,
           "seed": 202621,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -1262,6 +1291,7 @@
             "double_occupancy": {
               "estimate": 0.37646484375,
               "standard_error": 0.0075712176720737195,
+              "exact_sampling_standard_error": 0.007579238306017841,
               "ci": [
                 0.35524450756655285,
                 0.39768517993344715
@@ -1273,6 +1303,7 @@
             "kinetic_energy": {
               "estimate": -1.93603515625,
               "standard_error": 0.003920194633896961,
+              "exact_sampling_standard_error": 0.0037896189521332163,
               "ci": [
                 -2.0355964381716314,
                 -1.8364738743283686
@@ -1284,6 +1315,7 @@
             "energy": {
               "estimate": -1.5595703125,
               "standard_error": 0.008525917135742989,
+              "exact_sampling_standard_error": 0.00847384594512878,
               "ci": [
                 -1.6867284086499006,
                 -1.4324122163500994
@@ -1305,6 +1337,7 @@
           "shots_per_setting": 65536,
           "total_shots": 327680,
           "seed": 202622,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -1416,6 +1449,7 @@
             "double_occupancy": {
               "estimate": 0.3787078857421875,
               "standard_error": 0.0018948002921362781,
+              "exact_sampling_standard_error": 0.0018948095765044602,
               "ci": [
                 0.3734028016963257,
                 0.3840129697880493
@@ -1427,6 +1461,7 @@
             "kinetic_energy": {
               "estimate": -1.9393157958984375,
               "standard_error": 0.0009549482853344255,
+              "exact_sampling_standard_error": 0.0009474047380333041,
               "ci": [
                 -1.9642061163788453,
                 -1.9144254754180297
@@ -1438,6 +1473,7 @@
             "energy": {
               "estimate": -1.56060791015625,
               "standard_error": 0.0021218374996080365,
+              "exact_sampling_standard_error": 0.002118461486282195,
               "ci": [
                 -1.5923974341937253,
                 -1.5288183861187747
@@ -1459,6 +1495,7 @@
           "shots_per_setting": 256,
           "total_shots": 1280,
           "seed": 202630,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -1570,6 +1607,7 @@
             "double_occupancy": {
               "estimate": 0.25,
               "standard_error": 0.02711630722733202,
+              "exact_sampling_standard_error": 0.027950849759497118,
               "ci": [
                 0.16511865526621128,
                 0.3348813447337887
@@ -1581,6 +1619,7 @@
             "kinetic_energy": {
               "estimate": -1.796875,
               "standard_error": 0.027425691298461913,
+              "exact_sampling_standard_error": 0.0279508495557484,
               "ci": [
                 -2.1951201276865255,
                 -1.3986298723134745
@@ -1592,6 +1631,7 @@
             "energy": {
               "estimate": -1.296875,
               "standard_error": 0.06077289703302587,
+              "exact_sampling_standard_error": 0.0625,
               "ci": [
                 -1.9072338615195235,
                 -0.6865161384804765
@@ -1613,6 +1653,7 @@
           "shots_per_setting": 4096,
           "total_shots": 20480,
           "seed": 202631,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -1724,6 +1765,7 @@
             "double_occupancy": {
               "estimate": 0.271484375,
               "standard_error": 0.00694968150693461,
+              "exact_sampling_standard_error": 0.0069877124398742795,
               "ci": [
                 0.25026403881655285,
                 0.29270471118344715
@@ -1735,6 +1777,7 @@
             "kinetic_energy": {
               "estimate": -1.791748046875,
               "standard_error": 0.006942952057422313,
+              "exact_sampling_standard_error": 0.0069877123889371,
               "ci": [
                 -1.8913093287966314,
                 -1.6921867649533686
@@ -1746,6 +1789,7 @@
             "energy": {
               "estimate": -1.248779296875,
               "standard_error": 0.015536951936045254,
+              "exact_sampling_standard_error": 0.015625,
               "ci": [
                 -1.401369012254881,
                 -1.096189581495119
@@ -1767,6 +1811,7 @@
           "shots_per_setting": 65536,
           "total_shots": 327680,
           "seed": 202632,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -1878,6 +1923,7 @@
             "double_occupancy": {
               "estimate": 0.2747955322265625,
               "standard_error": 0.0017438070026566655,
+              "exact_sampling_standard_error": 0.0017469281099685699,
               "ci": [
                 0.2694904481807007,
                 0.2801006162724243
@@ -1889,6 +1935,7 @@
             "kinetic_energy": {
               "estimate": -1.7896270751953125,
               "standard_error": 0.0017439137185033232,
+              "exact_sampling_standard_error": 0.001746928097234275,
               "ci": [
                 -1.8145173956757203,
                 -1.7647367547149047
@@ -1900,6 +1947,7 @@
             "energy": {
               "estimate": -1.2400360107421875,
               "standard_error": 0.0038993187235261727,
+              "exact_sampling_standard_error": 0.00390625,
               "ci": [
                 -1.2781834395871576,
                 -1.2018885818972174
@@ -1921,6 +1969,7 @@
           "shots_per_setting": 256,
           "total_shots": 1280,
           "seed": 202640,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -2032,6 +2081,7 @@
             "double_occupancy": {
               "estimate": 0.15234375,
               "standard_error": 0.022503605971256224,
+              "exact_sampling_standard_error": 0.02209708711901623,
               "ci": [
                 0.06746240526621129,
                 0.23722509473378872
@@ -2043,6 +2093,7 @@
             "kinetic_energy": {
               "estimate": -1.40234375,
               "standard_error": 0.044620653288674386,
+              "exact_sampling_standard_error": 0.044194173410285996,
               "ci": [
                 -1.8005888776865255,
                 -1.0040986223134745
@@ -2054,6 +2105,7 @@
             "energy": {
               "estimate": -0.79296875,
               "standard_error": 0.10046690603010043,
+              "exact_sampling_standard_error": 0.09882117743553108,
               "ci": [
                 -1.6067805653593645,
                 0.020843065359364532
@@ -2075,6 +2127,7 @@
           "shots_per_setting": 4096,
           "total_shots": 20480,
           "seed": 202641,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -2186,6 +2239,7 @@
             "double_occupancy": {
               "estimate": 0.144287109375,
               "standard_error": 0.005490992500726052,
+              "exact_sampling_standard_error": 0.005524271779754057,
               "ci": [
                 0.12306677319155282,
                 0.16550744555844718
@@ -2197,6 +2251,7 @@
             "kinetic_energy": {
               "estimate": -1.398193359375,
               "standard_error": 0.011172868214852985,
+              "exact_sampling_standard_error": 0.011048543352571499,
               "ci": [
                 -1.4977546412966314,
                 -1.2986320774533686
@@ -2208,6 +2263,7 @@
             "energy": {
               "estimate": -0.821044921875,
               "standard_error": 0.024642422008295937,
+              "exact_sampling_standard_error": 0.02470529435888277,
               "ci": [
                 -1.024497875714841,
                 -0.6175919680351589
@@ -2229,6 +2285,7 @@
           "shots_per_setting": 65536,
           "total_shots": 327680,
           "seed": 202642,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -2340,6 +2397,7 @@
             "double_occupancy": {
               "estimate": 0.1462860107421875,
               "standard_error": 0.001380450840423089,
+              "exact_sampling_standard_error": 0.0013810679449385143,
               "ci": [
                 0.1409809266963257,
                 0.1515910947880493
@@ -2351,6 +2409,7 @@
             "kinetic_energy": {
               "estimate": -1.4150543212890625,
               "standard_error": 0.002760493464792847,
+              "exact_sampling_standard_error": 0.0027621358381428747,
               "ci": [
                 -1.4399446417694703,
                 -1.3901640008086547
@@ -2362,6 +2421,7 @@
             "energy": {
               "estimate": -0.8299102783203125,
               "standard_error": 0.006173381288593879,
+              "exact_sampling_standard_error": 0.0061763235897206925,
               "ci": [
                 -0.8807735167802728,
                 -0.7790470398603522
@@ -2383,6 +2443,7 @@
           "shots_per_setting": 256,
           "total_shots": 1280,
           "seed": 202650,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -2494,6 +2555,7 @@
             "double_occupancy": {
               "estimate": 0.08203125,
               "standard_error": 0.017184366358720803,
+              "exact_sampling_standard_error": 0.017334380896491638,
               "ci": [
                 -0.002850094733788708,
                 0.16691259473378872
@@ -2505,6 +2567,7 @@
             "kinetic_energy": {
               "estimate": -1.19140625,
               "standard_error": 0.050175497192708904,
+              "exact_sampling_standard_error": 0.05200314371017759,
               "ci": [
                 -1.5896513776865255,
                 -0.7931611223134745
@@ -2516,6 +2579,7 @@
             "energy": {
               "estimate": -0.69921875,
               "standard_error": 0.11466677206567737,
+              "exact_sampling_standard_error": 0.11628256255375925,
               "ci": [
                 -1.7164835191992056,
                 0.3180460191992056
@@ -2537,6 +2601,7 @@
           "shots_per_setting": 4096,
           "total_shots": 20480,
           "seed": 202651,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -2648,6 +2713,7 @@
             "double_occupancy": {
               "estimate": 0.081298828125,
               "standard_error": 0.0042707320567425934,
+              "exact_sampling_standard_error": 0.0043335952241229094,
               "ci": [
                 0.06007849194155282,
                 0.10251916430844718
@@ -2659,6 +2725,7 @@
             "kinetic_energy": {
               "estimate": -1.099609375,
               "standard_error": 0.0130497470976704,
+              "exact_sampling_standard_error": 0.013000785927544398,
               "ci": [
                 -1.1991706569216314,
                 -1.0000480930783686
@@ -2670,6 +2737,7 @@
             "energy": {
               "estimate": -0.61181640625,
               "standard_error": 0.028755962549195855,
+              "exact_sampling_standard_error": 0.029070640638439813,
               "ci": [
                 -0.8661325985498014,
                 -0.3575002139501986
@@ -2691,6 +2759,7 @@
           "shots_per_setting": 65536,
           "total_shots": 327680,
           "seed": 202652,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -2802,6 +2871,7 @@
             "double_occupancy": {
               "estimate": 0.0853729248046875,
               "standard_error": 0.0010915545768033043,
+              "exact_sampling_standard_error": 0.0010833988060307274,
               "ci": [
                 0.08006784075882571,
                 0.09067800885054929
@@ -2813,6 +2883,7 @@
             "kinetic_energy": {
               "estimate": -1.108245849609375,
               "standard_error": 0.0032517127032767375,
+              "exact_sampling_standard_error": 0.0032501964818860995,
               "ci": [
                 -1.1331361700897828,
                 -1.0833555291289672
@@ -2824,6 +2895,7 @@
             "energy": {
               "estimate": -0.59600830078125,
               "standard_error": 0.007312135508433905,
+              "exact_sampling_standard_error": 0.007267660159609953,
               "ci": [
                 -0.6595873488562003,
                 -0.5324292527062997
@@ -2845,6 +2917,7 @@
           "shots_per_setting": 256,
           "total_shots": 1280,
           "seed": 202660,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -2956,6 +3029,7 @@
             "double_occupancy": {
               "estimate": 0.06640625,
               "standard_error": 0.015592413937419483,
+              "exact_sampling_standard_error": 0.013975425070517654,
               "ci": [
                 -0.018475094733788708,
                 0.15128759473378872
@@ -2967,6 +3041,7 @@
             "kinetic_energy": {
               "estimate": -0.89453125,
               "standard_error": 0.05599528299762462,
+              "exact_sampling_standard_error": 0.05590169922635077,
               "ci": [
                 -1.2927763776865255,
                 -0.4962861223134744
@@ -2978,6 +3053,7 @@
             "energy": {
               "estimate": -0.36328125,
               "standard_error": 0.13673100435277072,
+              "exact_sampling_standard_error": 0.1250000014163968,
               "ci": [
                 -1.583998973039047,
                 0.8574364730390469
@@ -2999,6 +3075,7 @@
           "shots_per_setting": 4096,
           "total_shots": 20480,
           "seed": 202661,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -3110,6 +3187,7 @@
             "double_occupancy": {
               "estimate": 0.052490234375,
               "standard_error": 0.0034850109765649814,
+              "exact_sampling_standard_error": 0.0034938562676294135,
               "ci": [
                 0.03126989819155282,
                 0.07371057055844718
@@ -3121,6 +3199,7 @@
             "kinetic_energy": {
               "estimate": -0.884765625,
               "standard_error": 0.014012537506290288,
+              "exact_sampling_standard_error": 0.013975424806587693,
               "ci": [
                 -0.9843269069216314,
                 -0.7852043430783686
@@ -3132,6 +3211,7 @@
             "energy": {
               "estimate": -0.46484375,
               "standard_error": 0.03120337327596185,
+              "exact_sampling_standard_error": 0.0312500003540992,
               "ci": [
                 -0.7700231807597617,
                 -0.15966431924023827
@@ -3153,6 +3233,7 @@
           "shots_per_setting": 65536,
           "total_shots": 327680,
           "seed": 202662,
+          "grouping": "grouped",
           "settings": [
             {
               "basis": "ZZZZ",
@@ -3264,6 +3345,7 @@
             "double_occupancy": {
               "estimate": 0.05218505859375,
               "standard_error": 0.0008687567884148619,
+              "exact_sampling_standard_error": 0.0008734640669073534,
               "ci": [
                 0.046879974547888205,
                 0.057490142639611795
@@ -3275,6 +3357,7 @@
             "kinetic_energy": {
               "estimate": -0.89459228515625,
               "standard_error": 0.003493651922411195,
+              "exact_sampling_standard_error": 0.003493856201646923,
               "ci": [
                 -0.9194826056366578,
                 -0.8697019646758422
@@ -3286,6 +3369,7 @@
             "energy": {
               "estimate": -0.47711181640625,
               "standard_error": 0.007778744026489712,
+              "exact_sampling_standard_error": 0.0078125000885248,
               "ci": [
                 -0.5534066740961905,
                 -0.40081695871630957
@@ -3293,6 +3377,5531 @@
               "confidence": 0.95,
               "exact_prepared_state": -0.472135954999579,
               "error_to_prepared_state": -0.0049758614066710005
+            }
+          },
+          "interaction": 8,
+          "exact_ground_state": {
+            "energy": -0.47213595499958,
+            "double_occupancy": 0.052786404500042065,
+            "kinetic_energy": -0.8944271909999165
+          },
+          "vqe_residual": 4.0002178580703475e-08
+        }
+      ],
+      "ungrouped_runs": [
+        {
+          "shots_per_setting": 128,
+          "total_shots": 1280,
+          "seed": 302600,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                33,
+                0,
+                0,
+                32,
+                0,
+                0,
+                27,
+                0,
+                0,
+                36,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                29,
+                0,
+                0,
+                30,
+                0,
+                0,
+                33,
+                0,
+                0,
+                36,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                27,
+                0,
+                0,
+                33,
+                0,
+                0,
+                34,
+                0,
+                0,
+                34,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                35,
+                0,
+                0,
+                32,
+                0,
+                0,
+                39,
+                0,
+                0,
+                22,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                38,
+                0,
+                0,
+                29,
+                0,
+                0,
+                30,
+                0,
+                0,
+                31,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                22,
+                0,
+                0,
+                35,
+                0,
+                0,
+                35,
+                0,
+                0,
+                36,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                0,
+                36,
+                0,
+                0,
+                30,
+                0,
+                33,
+                0,
+                0,
+                0,
+                0,
+                29,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0,
+                33,
+                0,
+                33,
+                0,
+                0,
+                0,
+                0,
+                32,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                36,
+                0,
+                0,
+                0,
+                0,
+                29,
+                0,
+                0,
+                0,
+                0,
+                32,
+                31,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                36,
+                0,
+                0,
+                0,
+                0,
+                29,
+                0,
+                0,
+                0,
+                0,
+                24,
+                39,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.4609375,
+              "standard_error": 0.05420644013460881,
+              "exact_sampling_standard_error": 0.05412658773652741,
+              "ci": [
+                0.02198566648208211,
+                0.8998893335179179
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4999999975616074,
+              "error_to_prepared_state": -0.0390624975616074
+            },
+            "kinetic_energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "exact_sampling_standard_error": 1.050504171109126e-09,
+              "ci": [
+                -2.5632036607232895,
+                -1.4367963392767105
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            },
+            "energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "exact_sampling_standard_error": 1.050504171109126e-09,
+              "ci": [
+                -2.5632036607232895,
+                -1.4367963392767105
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            }
+          },
+          "interaction": 0,
+          "exact_ground_state": {
+            "energy": -2.0,
+            "double_occupancy": 0.5,
+            "kinetic_energy": -2.0
+          },
+          "vqe_residual": 1.8168026177692338e-08
+        },
+        {
+          "shots_per_setting": 2048,
+          "total_shots": 20480,
+          "seed": 302601,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                480,
+                0,
+                0,
+                555,
+                0,
+                0,
+                512,
+                0,
+                0,
+                501,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                492,
+                0,
+                0,
+                516,
+                0,
+                0,
+                510,
+                0,
+                0,
+                530,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                504,
+                0,
+                0,
+                482,
+                0,
+                0,
+                542,
+                0,
+                0,
+                520,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                515,
+                0,
+                0,
+                516,
+                0,
+                0,
+                489,
+                0,
+                0,
+                528,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                517,
+                0,
+                0,
+                526,
+                0,
+                0,
+                510,
+                0,
+                0,
+                495,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                536,
+                0,
+                0,
+                507,
+                0,
+                0,
+                495,
+                0,
+                0,
+                510,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                0,
+                527,
+                0,
+                0,
+                519,
+                0,
+                508,
+                0,
+                0,
+                0,
+                0,
+                494,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                0,
+                507,
+                0,
+                0,
+                483,
+                0,
+                532,
+                0,
+                0,
+                0,
+                0,
+                526,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                494,
+                0,
+                0,
+                0,
+                0,
+                509,
+                0,
+                0,
+                0,
+                0,
+                531,
+                514,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                506,
+                0,
+                0,
+                0,
+                0,
+                499,
+                0,
+                0,
+                0,
+                0,
+                540,
+                503,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.483642578125,
+              "standard_error": 0.013532325825165758,
+              "exact_sampling_standard_error": 0.013531646934131853,
+              "ci": [
+                0.37390461974552053,
+                0.5933805365044795
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4999999975616074,
+              "error_to_prepared_state": -0.0163574194366074
+            },
+            "kinetic_energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "exact_sampling_standard_error": 2.626260427772815e-10,
+              "ci": [
+                -2.1408009151808223,
+                -1.8591990848191777
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            },
+            "energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "exact_sampling_standard_error": 2.626260427772815e-10,
+              "ci": [
+                -2.1408009151808223,
+                -1.8591990848191777
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            }
+          },
+          "interaction": 0,
+          "exact_ground_state": {
+            "energy": -2.0,
+            "double_occupancy": 0.5,
+            "kinetic_energy": -2.0
+          },
+          "vqe_residual": 1.8168026177692338e-08
+        },
+        {
+          "shots_per_setting": 32768,
+          "total_shots": 327680,
+          "seed": 302602,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                8217,
+                0,
+                0,
+                8182,
+                0,
+                0,
+                8173,
+                0,
+                0,
+                8196,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                8312,
+                0,
+                0,
+                8200,
+                0,
+                0,
+                8193,
+                0,
+                0,
+                8063,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                8109,
+                0,
+                0,
+                8163,
+                0,
+                0,
+                8178,
+                0,
+                0,
+                8318,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                8135,
+                0,
+                0,
+                8094,
+                0,
+                0,
+                8308,
+                0,
+                0,
+                8231,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                8230,
+                0,
+                0,
+                8197,
+                0,
+                0,
+                8135,
+                0,
+                0,
+                8206,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                8293,
+                0,
+                0,
+                8084,
+                0,
+                0,
+                8174,
+                0,
+                0,
+                8217,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                0,
+                8223,
+                0,
+                0,
+                8104,
+                0,
+                8138,
+                0,
+                0,
+                0,
+                0,
+                8303,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                0,
+                7982,
+                0,
+                0,
+                8192,
+                0,
+                8233,
+                0,
+                0,
+                0,
+                0,
+                8361,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                8244,
+                0,
+                0,
+                0,
+                0,
+                8191,
+                0,
+                0,
+                0,
+                0,
+                8302,
+                8031,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                8206,
+                0,
+                0,
+                0,
+                0,
+                8111,
+                0,
+                0,
+                0,
+                0,
+                8221,
+                8230,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.50860595703125,
+              "standard_error": 0.003382891483013229,
+              "exact_sampling_standard_error": 0.0033829117335329633,
+              "ci": [
+                0.4811714674363801,
+                0.5360404466261198
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4999999975616074,
+              "error_to_prepared_state": 0.008605959469642599
+            },
+            "kinetic_energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "exact_sampling_standard_error": 6.565651069432037e-11,
+              "ci": [
+                -2.0352002287952056,
+                -1.9647997712047944
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            },
+            "energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "exact_sampling_standard_error": 6.565651069432037e-11,
+              "ci": [
+                -2.0352002287952056,
+                -1.9647997712047944
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            }
+          },
+          "interaction": 0,
+          "exact_ground_state": {
+            "energy": -2.0,
+            "double_occupancy": 0.5,
+            "kinetic_energy": -2.0
+          },
+          "vqe_residual": 1.8168026177692338e-08
+        },
+        {
+          "shots_per_setting": 128,
+          "total_shots": 1280,
+          "seed": 302610,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                25,
+                0,
+                0,
+                31,
+                0,
+                0,
+                36,
+                0,
+                0,
+                36,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                24,
+                0,
+                0,
+                33,
+                0,
+                0,
+                36,
+                0,
+                0,
+                35,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                28,
+                0,
+                0,
+                40,
+                0,
+                0,
+                26,
+                0,
+                0,
+                34,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                22,
+                0,
+                0,
+                43,
+                0,
+                0,
+                32,
+                0,
+                0,
+                31,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                37,
+                0,
+                0,
+                36,
+                0,
+                0,
+                29,
+                0,
+                0,
+                26,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                29,
+                0,
+                0,
+                37,
+                0,
+                0,
+                30,
+                0,
+                0,
+                32,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                1,
+                28,
+                0,
+                0,
+                33,
+                0,
+                38,
+                0,
+                0,
+                0,
+                0,
+                28,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                0,
+                32,
+                0,
+                0,
+                30,
+                0,
+                35,
+                0,
+                0,
+                0,
+                0,
+                31,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                34,
+                0,
+                0,
+                0,
+                0,
+                30,
+                0,
+                0,
+                0,
+                0,
+                35,
+                29,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                30,
+                0,
+                1,
+                0,
+                0,
+                27,
+                0,
+                0,
+                0,
+                0,
+                32,
+                38,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.48046875,
+              "standard_error": 0.054152108940867694,
+              "exact_sampling_standard_error": 0.053987623238951996,
+              "ci": [
+                0.04151691648208211,
+                0.9194205835179179
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4379826357034067,
+              "error_to_prepared_state": 0.042486114296593325
+            },
+            "kinetic_energy": {
+              "estimate": -1.984375,
+              "standard_error": 0.011048543456039806,
+              "exact_sampling_standard_error": 0.010963224711359477,
+              "ci": [
+                -2.5475786607232895,
+                -1.4211713392767105
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9845557549263404,
+              "error_to_prepared_state": 0.00018075492634039847
+            },
+            "energy": {
+              "estimate": -1.744140625,
+              "standard_error": 0.02924351275387245,
+              "exact_sampling_standard_error": 0.029135170530125962,
+              "ci": [
+                -2.5855535980465305,
+                -0.9027276519534695
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.765564437074637,
+              "error_to_prepared_state": 0.02142381207463706
+            }
+          },
+          "interaction": 0.5,
+          "exact_ground_state": {
+            "energy": -1.7655644370746377,
+            "double_occupancy": 0.43798263270539595,
+            "kinetic_energy": -1.9845557534273357
+          },
+          "vqe_residual": 2.2956422910716914e-08
+        },
+        {
+          "shots_per_setting": 2048,
+          "total_shots": 20480,
+          "seed": 302611,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                447,
+                0,
+                0,
+                557,
+                0,
+                0,
+                585,
+                0,
+                0,
+                459,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                442,
+                0,
+                0,
+                561,
+                0,
+                0,
+                578,
+                0,
+                0,
+                467,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                485,
+                0,
+                0,
+                561,
+                0,
+                0,
+                543,
+                0,
+                0,
+                459,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                433,
+                0,
+                0,
+                572,
+                0,
+                0,
+                568,
+                0,
+                0,
+                475,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                472,
+                0,
+                0,
+                572,
+                0,
+                0,
+                555,
+                0,
+                0,
+                449,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                445,
+                0,
+                0,
+                590,
+                0,
+                0,
+                579,
+                0,
+                0,
+                434,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                1,
+                477,
+                0,
+                0,
+                506,
+                0,
+                516,
+                0,
+                0,
+                0,
+                2,
+                546,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                1,
+                519,
+                0,
+                0,
+                528,
+                1,
+                485,
+                2,
+                0,
+                0,
+                2,
+                510,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                528,
+                0,
+                1,
+                1,
+                0,
+                525,
+                0,
+                0,
+                0,
+                0,
+                506,
+                485,
+                0,
+                2,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                498,
+                0,
+                3,
+                1,
+                0,
+                491,
+                0,
+                0,
+                6,
+                0,
+                539,
+                509,
+                0,
+                1,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.43994140625,
+              "standard_error": 0.013499930256753815,
+              "exact_sampling_standard_error": 0.013496905809737999,
+              "ci": [
+                0.33020344787052053,
+                0.5496793646294795
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4379826357034067,
+              "error_to_prepared_state": 0.0019587705465933247
+            },
+            "kinetic_energy": {
+              "estimate": -1.98828125,
+              "standard_error": 0.0023882301589129014,
+              "exact_sampling_standard_error": 0.0027408061778398693,
+              "ci": [
+                -2.1290821651808223,
+                -1.8474803348191777
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9845557549263404,
+              "error_to_prepared_state": -0.0037254950736596015
+            },
+            "energy": {
+              "estimate": -1.768310546875,
+              "standard_error": 0.0071600050646801515,
+              "exact_sampling_standard_error": 0.007283792632531491,
+              "ci": [
+                -1.9786637901366326,
+                -1.5579573036133674
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.765564437074637,
+              "error_to_prepared_state": -0.002746109800362939
+            }
+          },
+          "interaction": 0.5,
+          "exact_ground_state": {
+            "energy": -1.7655644370746377,
+            "double_occupancy": 0.43798263270539595,
+            "kinetic_energy": -1.9845557534273357
+          },
+          "vqe_residual": 2.2956422910716914e-08
+        },
+        {
+          "shots_per_setting": 32768,
+          "total_shots": 327680,
+          "seed": 302612,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                7224,
+                0,
+                0,
+                9225,
+                0,
+                0,
+                9077,
+                0,
+                0,
+                7242,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                7232,
+                0,
+                0,
+                9231,
+                0,
+                0,
+                9101,
+                0,
+                0,
+                7204,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                7268,
+                0,
+                0,
+                9221,
+                0,
+                0,
+                9065,
+                0,
+                0,
+                7214,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                7265,
+                0,
+                0,
+                9216,
+                0,
+                0,
+                9198,
+                0,
+                0,
+                7089,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                7152,
+                0,
+                0,
+                9216,
+                0,
+                0,
+                9181,
+                0,
+                0,
+                7219,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                7174,
+                0,
+                0,
+                9065,
+                0,
+                0,
+                9263,
+                0,
+                0,
+                7266,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                32,
+                8282,
+                0,
+                0,
+                8056,
+                35,
+                8166,
+                23,
+                0,
+                0,
+                31,
+                8143,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                26,
+                8161,
+                0,
+                0,
+                8136,
+                37,
+                8269,
+                38,
+                0,
+                0,
+                34,
+                8067,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                8084,
+                0,
+                34,
+                37,
+                0,
+                8293,
+                0,
+                0,
+                29,
+                0,
+                8104,
+                8153,
+                0,
+                34,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                8085,
+                0,
+                38,
+                31,
+                0,
+                8184,
+                0,
+                0,
+                31,
+                0,
+                8245,
+                8134,
+                0,
+                20,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.4388580322265625,
+              "standard_error": 0.003374702349928882,
+              "exact_sampling_standard_error": 0.0033742264524344997,
+              "ci": [
+                0.4114235426316926,
+                0.4662925218214324
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4379826357034067,
+              "error_to_prepared_state": 0.0008753965231558247
+            },
+            "kinetic_energy": {
+              "estimate": -1.98443603515625,
+              "standard_error": 0.0006878482618011097,
+              "exact_sampling_standard_error": 0.0006852015444599673,
+              "ci": [
+                -2.0196362639514556,
+                -1.9492358063610444
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9845557549263404,
+              "error_to_prepared_state": 0.00011971977009039847
+            },
+            "energy": {
+              "estimate": -1.7650070190429688,
+              "standard_error": 0.0018221660788514003,
+              "exact_sampling_standard_error": 0.0018209481581328726,
+              "ci": [
+                -1.817595329858377,
+                -1.7124187082275606
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.765564437074637,
+              "error_to_prepared_state": 0.0005574180316683108
+            }
+          },
+          "interaction": 0.5,
+          "exact_ground_state": {
+            "energy": -1.7655644370746377,
+            "double_occupancy": 0.43798263270539595,
+            "kinetic_energy": -1.9845557534273357
+          },
+          "vqe_residual": 2.2956422910716914e-08
+        },
+        {
+          "shots_per_setting": 128,
+          "total_shots": 1280,
+          "seed": 302620,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                23,
+                0,
+                0,
+                34,
+                0,
+                0,
+                53,
+                0,
+                0,
+                18,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                21,
+                0,
+                0,
+                54,
+                0,
+                0,
+                33,
+                0,
+                0,
+                20,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                22,
+                0,
+                0,
+                49,
+                0,
+                0,
+                32,
+                0,
+                0,
+                25,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                26,
+                0,
+                0,
+                28,
+                0,
+                0,
+                44,
+                0,
+                0,
+                30,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                27,
+                0,
+                0,
+                48,
+                0,
+                0,
+                37,
+                0,
+                0,
+                16,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                23,
+                0,
+                0,
+                42,
+                0,
+                0,
+                40,
+                0,
+                0,
+                23,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                0,
+                32,
+                0,
+                0,
+                36,
+                0,
+                35,
+                0,
+                0,
+                0,
+                0,
+                25,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                0,
+                38,
+                0,
+                0,
+                26,
+                1,
+                27,
+                2,
+                0,
+                0,
+                0,
+                34,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                29,
+                0,
+                1,
+                0,
+                0,
+                31,
+                0,
+                0,
+                0,
+                0,
+                34,
+                33,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                40,
+                0,
+                2,
+                0,
+                0,
+                26,
+                0,
+                0,
+                0,
+                0,
+                32,
+                28,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.515625,
+              "standard_error": 0.05296200461370181,
+              "exact_sampling_standard_error": 0.053593307910508106,
+              "ci": [
+                0.07667316648208211,
+                0.9545768335179179
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.37873219353173726,
+              "error_to_prepared_state": 0.13689280646826274
+            },
+            "kinetic_energy": {
+              "estimate": -1.953125,
+              "standard_error": 0.01903591876553458,
+              "exact_sampling_standard_error": 0.021437322073331645,
+              "ci": [
+                -2.5163286607232895,
+                -1.3899213392767105
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9402850063405674,
+              "error_to_prepared_state": -0.012839993659432558
+            },
+            "energy": {
+              "estimate": -1.4375,
+              "standard_error": 0.05627912700060124,
+              "exact_sampling_standard_error": 0.05772175872637877,
+              "ci": [
+                -2.5083892384228568,
+                -0.366610761577143
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.5615528128088303,
+              "error_to_prepared_state": 0.12405281280883029
+            }
+          },
+          "interaction": 1,
+          "exact_ground_state": {
+            "energy": -1.561552812808831,
+            "double_occupancy": 0.37873218748183346,
+            "kinetic_energy": -1.9402850002906644
+          },
+          "vqe_residual": 2.7347880197038924e-08
+        },
+        {
+          "shots_per_setting": 2048,
+          "total_shots": 20480,
+          "seed": 302621,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                395,
+                0,
+                0,
+                630,
+                0,
+                0,
+                616,
+                0,
+                0,
+                407,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                401,
+                0,
+                0,
+                655,
+                0,
+                0,
+                623,
+                0,
+                0,
+                369,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                377,
+                0,
+                0,
+                655,
+                0,
+                0,
+                654,
+                0,
+                0,
+                362,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                396,
+                0,
+                0,
+                634,
+                0,
+                0,
+                622,
+                0,
+                0,
+                396,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                380,
+                0,
+                0,
+                619,
+                0,
+                0,
+                651,
+                0,
+                0,
+                398,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                375,
+                0,
+                0,
+                657,
+                0,
+                0,
+                605,
+                0,
+                0,
+                411,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                5,
+                506,
+                0,
+                0,
+                506,
+                5,
+                505,
+                9,
+                0,
+                0,
+                8,
+                504,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                9,
+                517,
+                0,
+                0,
+                517,
+                10,
+                500,
+                6,
+                0,
+                0,
+                3,
+                486,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                496,
+                0,
+                8,
+                4,
+                0,
+                513,
+                0,
+                0,
+                16,
+                0,
+                536,
+                470,
+                0,
+                5,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                508,
+                0,
+                6,
+                8,
+                0,
+                497,
+                0,
+                0,
+                4,
+                0,
+                524,
+                495,
+                0,
+                6,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.38330078125,
+              "standard_error": 0.013406947303363278,
+              "exact_sampling_standard_error": 0.013398326977627027,
+              "ci": [
+                0.27356282287052053,
+                0.49303873962947947
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.37873219353173726,
+              "error_to_prepared_state": 0.00456858771826274
+            },
+            "kinetic_energy": {
+              "estimate": -1.9453125,
+              "standard_error": 0.005132813762020908,
+              "exact_sampling_standard_error": 0.005359330518332911,
+              "ci": [
+                -2.0861134151808223,
+                -1.8045115848191777
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9402850063405674,
+              "error_to_prepared_state": -0.005027493659432558
+            },
+            "energy": {
+              "estimate": -1.56201171875,
+              "standard_error": 0.014355905165148978,
+              "exact_sampling_standard_error": 0.014430439681594692,
+              "ci": [
+                -1.8297340283557142,
+                -1.2942894091442858
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.5615528128088303,
+              "error_to_prepared_state": -0.0004589059411697072
+            }
+          },
+          "interaction": 1,
+          "exact_ground_state": {
+            "energy": -1.561552812808831,
+            "double_occupancy": 0.37873218748183346,
+            "kinetic_energy": -1.9402850002906644
+          },
+          "vqe_residual": 2.7347880197038924e-08
+        },
+        {
+          "shots_per_setting": 32768,
+          "total_shots": 327680,
+          "seed": 302622,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                6176,
+                0,
+                0,
+                10196,
+                0,
+                0,
+                10261,
+                0,
+                0,
+                6135,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                6092,
+                0,
+                0,
+                10186,
+                0,
+                0,
+                10190,
+                0,
+                0,
+                6300,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                6261,
+                0,
+                0,
+                10064,
+                0,
+                0,
+                10102,
+                0,
+                0,
+                6341,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                6247,
+                0,
+                0,
+                10282,
+                0,
+                0,
+                10068,
+                0,
+                0,
+                6171,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                6327,
+                0,
+                0,
+                10104,
+                0,
+                0,
+                10073,
+                0,
+                0,
+                6264,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                6328,
+                0,
+                0,
+                10138,
+                0,
+                0,
+                10197,
+                0,
+                0,
+                6105,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                114,
+                8073,
+                0,
+                0,
+                8046,
+                140,
+                8064,
+                144,
+                0,
+                0,
+                117,
+                8070,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                127,
+                8064,
+                0,
+                0,
+                8129,
+                126,
+                8077,
+                139,
+                0,
+                0,
+                150,
+                7956,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                8048,
+                0,
+                134,
+                106,
+                0,
+                8094,
+                0,
+                0,
+                135,
+                0,
+                8014,
+                8121,
+                0,
+                116,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                8042,
+                0,
+                121,
+                135,
+                0,
+                8026,
+                0,
+                0,
+                120,
+                0,
+                8075,
+                8120,
+                0,
+                129,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.3791351318359375,
+              "standard_error": 0.003351274226223447,
+              "exact_sampling_standard_error": 0.0033495817444067566,
+              "ci": [
+                0.3517006422410676,
+                0.4065696214308074
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.37873219353173726,
+              "error_to_prepared_state": 0.0004029383042002399
+            },
+            "kinetic_energy": {
+              "estimate": -1.937347412109375,
+              "standard_error": 0.001371887414676347,
+              "exact_sampling_standard_error": 0.0013398326295832278,
+              "ci": [
+                -1.9725476409045806,
+                -1.9021471833141694
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9402850063405674,
+              "error_to_prepared_state": 0.002937594231192442
+            },
+            "energy": {
+              "estimate": -1.5582122802734375,
+              "standard_error": 0.003621203393610599,
+              "exact_sampling_standard_error": 0.003607609920398673,
+              "ci": [
+                -1.625142857674866,
+                -1.491281702872009
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.5615528128088303,
+              "error_to_prepared_state": 0.003340532535392793
+            }
+          },
+          "interaction": 1,
+          "exact_ground_state": {
+            "energy": -1.561552812808831,
+            "double_occupancy": 0.37873218748183346,
+            "kinetic_energy": -1.9402850002906644
+          },
+          "vqe_residual": 2.7347880197038924e-08
+        },
+        {
+          "shots_per_setting": 128,
+          "total_shots": 1280,
+          "seed": 302630,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                18,
+                0,
+                0,
+                45,
+                0,
+                0,
+                48,
+                0,
+                0,
+                17,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                14,
+                0,
+                0,
+                52,
+                0,
+                0,
+                46,
+                0,
+                0,
+                16,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                23,
+                0,
+                0,
+                42,
+                0,
+                0,
+                49,
+                0,
+                0,
+                14,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                24,
+                0,
+                0,
+                43,
+                0,
+                0,
+                41,
+                0,
+                0,
+                20,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                21,
+                0,
+                0,
+                48,
+                0,
+                0,
+                42,
+                0,
+                0,
+                17,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                27,
+                0,
+                0,
+                41,
+                0,
+                0,
+                43,
+                0,
+                0,
+                17,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                1,
+                34,
+                0,
+                0,
+                27,
+                0,
+                30,
+                2,
+                0,
+                0,
+                1,
+                33,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                1,
+                25,
+                0,
+                0,
+                39,
+                1,
+                28,
+                3,
+                0,
+                0,
+                3,
+                28,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                23,
+                0,
+                4,
+                5,
+                0,
+                29,
+                0,
+                0,
+                2,
+                0,
+                32,
+                32,
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                43,
+                0,
+                0,
+                0,
+                0,
+                24,
+                0,
+                0,
+                2,
+                0,
+                28,
+                27,
+                0,
+                4,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.29296875,
+              "standard_error": 0.05304474274340554,
+              "exact_sampling_standard_error": 0.052291251680161376,
+              "ci": [
+                -0.1459830835179179,
+                0.7319205835179179
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.2763932035540129,
+              "error_to_prepared_state": 0.016575546445987077
+            },
+            "kinetic_energy": {
+              "estimate": -1.765625,
+              "standard_error": 0.04147913424549632,
+              "exact_sampling_standard_error": 0.03952847052158938,
+              "ci": [
+                -2.3288286607232895,
+                -1.2024213392767105
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.788854384607815,
+              "error_to_prepared_state": 0.023229384607815096
+            },
+            "energy": {
+              "estimate": -1.1796875,
+              "standard_error": 0.11391004129843955,
+              "exact_sampling_standard_error": 0.11180339883423975,
+              "ci": [
+                -2.70952926917551,
+                0.3501542691755102
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.2360679774997894,
+              "error_to_prepared_state": 0.05638047749978936
+            }
+          },
+          "interaction": 2,
+          "exact_ground_state": {
+            "energy": -1.2360679774997898,
+            "double_occupancy": 0.27639320225002095,
+            "kinetic_energy": -1.7888543819998317
+          },
+          "vqe_residual": 2.362402299911928e-08
+        },
+        {
+          "shots_per_setting": 2048,
+          "total_shots": 20480,
+          "seed": 302631,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                299,
+                0,
+                0,
+                682,
+                0,
+                0,
+                770,
+                0,
+                0,
+                297,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                263,
+                0,
+                0,
+                783,
+                0,
+                0,
+                731,
+                0,
+                0,
+                271,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                289,
+                0,
+                0,
+                756,
+                0,
+                0,
+                710,
+                0,
+                0,
+                293,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                285,
+                0,
+                0,
+                739,
+                0,
+                0,
+                729,
+                0,
+                0,
+                295,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                270,
+                0,
+                0,
+                762,
+                0,
+                0,
+                754,
+                0,
+                0,
+                262,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                298,
+                0,
+                0,
+                734,
+                0,
+                0,
+                746,
+                0,
+                0,
+                270,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                35,
+                515,
+                0,
+                0,
+                470,
+                44,
+                447,
+                29,
+                0,
+                0,
+                28,
+                480,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                22,
+                499,
+                0,
+                0,
+                502,
+                31,
+                485,
+                23,
+                0,
+                0,
+                27,
+                459,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                503,
+                0,
+                42,
+                17,
+                0,
+                502,
+                0,
+                0,
+                28,
+                0,
+                462,
+                472,
+                0,
+                22,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                463,
+                0,
+                21,
+                28,
+                0,
+                494,
+                0,
+                0,
+                24,
+                0,
+                500,
+                492,
+                0,
+                26,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.291015625,
+              "standard_error": 0.013038425584280817,
+              "exact_sampling_standard_error": 0.013072812920040344,
+              "ci": [
+                0.18127766662052053,
+                0.40075358337947947
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.2763932035540129,
+              "error_to_prepared_state": 0.014622421445987077
+            },
+            "kinetic_energy": {
+              "estimate": -1.78173828125,
+              "standard_error": 0.010035431961905119,
+              "exact_sampling_standard_error": 0.009882117630397345,
+              "ci": [
+                -1.9225391964308223,
+                -1.6409373660691777
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.788854384607815,
+              "error_to_prepared_state": 0.007116103357815096
+            },
+            "energy": {
+              "estimate": -1.19970703125,
+              "standard_error": 0.02794122512577681,
+              "exact_sampling_standard_error": 0.027950849708559936,
+              "ci": [
+                -1.5821674735438775,
+                -0.8172465889561225
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.2360679774997894,
+              "error_to_prepared_state": 0.03636094624978936
+            }
+          },
+          "interaction": 2,
+          "exact_ground_state": {
+            "energy": -1.2360679774997898,
+            "double_occupancy": 0.27639320225002095,
+            "kinetic_energy": -1.7888543819998317
+          },
+          "vqe_residual": 2.362402299911928e-08
+        },
+        {
+          "shots_per_setting": 32768,
+          "total_shots": 327680,
+          "seed": 302632,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                4469,
+                0,
+                0,
+                11910,
+                0,
+                0,
+                11849,
+                0,
+                0,
+                4540,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                4347,
+                0,
+                0,
+                11873,
+                0,
+                0,
+                11921,
+                0,
+                0,
+                4627,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                4593,
+                0,
+                0,
+                11841,
+                0,
+                0,
+                11764,
+                0,
+                0,
+                4570,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                4549,
+                0,
+                0,
+                11866,
+                0,
+                0,
+                11803,
+                0,
+                0,
+                4550,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                4485,
+                0,
+                0,
+                11922,
+                0,
+                0,
+                11785,
+                0,
+                0,
+                4576,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                4533,
+                0,
+                0,
+                11822,
+                0,
+                0,
+                11822,
+                0,
+                0,
+                4591,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                436,
+                7896,
+                0,
+                0,
+                7680,
+                439,
+                7742,
+                399,
+                0,
+                0,
+                446,
+                7730,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                451,
+                7764,
+                0,
+                0,
+                7704,
+                463,
+                7770,
+                391,
+                0,
+                0,
+                443,
+                7782,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                7795,
+                0,
+                449,
+                435,
+                0,
+                7786,
+                0,
+                0,
+                405,
+                0,
+                7649,
+                7850,
+                0,
+                399,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                7727,
+                0,
+                453,
+                430,
+                0,
+                7812,
+                0,
+                0,
+                422,
+                0,
+                7733,
+                7745,
+                0,
+                446,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.2739105224609375,
+              "standard_error": 0.0032693479339175125,
+              "exact_sampling_standard_error": 0.003268203230010086,
+              "ci": [
+                0.24647603286606762,
+                0.3013450120558074
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.2763932035540129,
+              "error_to_prepared_state": -0.002482681093075423
+            },
+            "kinetic_energy": {
+              "estimate": -1.789215087890625,
+              "standard_error": 0.002468558555415759,
+              "exact_sampling_standard_error": 0.002470529407599336,
+              "ci": [
+                -1.8244153166858306,
+                -1.7540148590954194
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.788854384607815,
+              "error_to_prepared_state": -0.0003607032828099044
+            },
+            "energy": {
+              "estimate": -1.24139404296875,
+              "standard_error": 0.006989157674109175,
+              "exact_sampling_standard_error": 0.006987712427139984,
+              "ci": [
+                -1.3370091535422195,
+                -1.1457789323952805
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.2360679774997894,
+              "error_to_prepared_state": -0.005326065468960639
+            }
+          },
+          "interaction": 2,
+          "exact_ground_state": {
+            "energy": -1.2360679774997898,
+            "double_occupancy": 0.27639320225002095,
+            "kinetic_energy": -1.7888543819998317
+          },
+          "vqe_residual": 2.362402299911928e-08
+        },
+        {
+          "shots_per_setting": 128,
+          "total_shots": 1280,
+          "seed": 302640,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                12,
+                0,
+                0,
+                48,
+                0,
+                0,
+                57,
+                0,
+                0,
+                11,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                8,
+                0,
+                0,
+                62,
+                0,
+                0,
+                51,
+                0,
+                0,
+                7,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                13,
+                0,
+                0,
+                53,
+                0,
+                0,
+                49,
+                0,
+                0,
+                13,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                9,
+                0,
+                0,
+                61,
+                0,
+                0,
+                44,
+                0,
+                0,
+                14,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                26,
+                0,
+                0,
+                48,
+                0,
+                0,
+                44,
+                0,
+                0,
+                10,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                6,
+                0,
+                0,
+                55,
+                0,
+                0,
+                54,
+                0,
+                0,
+                13,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                4,
+                25,
+                0,
+                0,
+                31,
+                4,
+                25,
+                5,
+                0,
+                0,
+                2,
+                32,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                5,
+                31,
+                0,
+                0,
+                22,
+                4,
+                20,
+                2,
+                0,
+                0,
+                11,
+                33,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                25,
+                0,
+                7,
+                6,
+                0,
+                21,
+                0,
+                0,
+                3,
+                0,
+                28,
+                33,
+                0,
+                5,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                32,
+                0,
+                5,
+                2,
+                0,
+                30,
+                0,
+                0,
+                4,
+                0,
+                25,
+                24,
+                0,
+                6,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.2421875,
+              "standard_error": 0.05102083284770473,
+              "exact_sampling_standard_error": 0.04941058853267576,
+              "ci": [
+                -0.1967643335179179,
+                0.6811393335179179
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.1464466127177122,
+              "error_to_prepared_state": 0.0957408872822878
+            },
+            "kinetic_energy": {
+              "estimate": -1.4140625,
+              "standard_error": 0.0626267477104581,
+              "exact_sampling_standard_error": 0.062499999414694876,
+              "ci": [
+                -1.9772661607232895,
+                -0.8508588392767106
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.4142135756170384,
+              "error_to_prepared_state": 0.00015107561703842087
+            },
+            "energy": {
+              "estimate": -0.4453125,
+              "standard_error": 0.21347626491102983,
+              "exact_sampling_standard_error": 0.2072890495736885,
+              "ci": [
+                -2.893059330680816,
+                2.002434330680816
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8284271247461896,
+              "error_to_prepared_state": 0.3831146247461896
+            }
+          },
+          "interaction": 4,
+          "exact_ground_state": {
+            "energy": -0.82842712474619,
+            "double_occupancy": 0.14644660940672619,
+            "kinetic_energy": -1.4142135623730947
+          },
+          "vqe_residual": 3.5548562423042726e-08
+        },
+        {
+          "shots_per_setting": 2048,
+          "total_shots": 20480,
+          "seed": 302641,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                156,
+                0,
+                0,
+                884,
+                0,
+                0,
+                846,
+                0,
+                0,
+                162,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                140,
+                0,
+                0,
+                891,
+                0,
+                0,
+                865,
+                0,
+                0,
+                152,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                139,
+                0,
+                0,
+                874,
+                0,
+                0,
+                894,
+                0,
+                0,
+                141,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                168,
+                0,
+                0,
+                867,
+                0,
+                0,
+                868,
+                0,
+                0,
+                145,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                164,
+                0,
+                0,
+                886,
+                0,
+                0,
+                838,
+                0,
+                0,
+                160,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                157,
+                0,
+                0,
+                847,
+                0,
+                0,
+                908,
+                0,
+                0,
+                136,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                86,
+                467,
+                0,
+                0,
+                420,
+                78,
+                417,
+                94,
+                0,
+                0,
+                72,
+                414,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                70,
+                473,
+                0,
+                0,
+                433,
+                61,
+                449,
+                64,
+                0,
+                0,
+                58,
+                440,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                446,
+                0,
+                74,
+                82,
+                0,
+                402,
+                0,
+                0,
+                80,
+                0,
+                450,
+                437,
+                0,
+                77,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                384,
+                0,
+                81,
+                79,
+                0,
+                440,
+                0,
+                0,
+                69,
+                0,
+                440,
+                465,
+                0,
+                90,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.14208984375,
+              "standard_error": 0.012383300230614099,
+              "exact_sampling_standard_error": 0.01235264713316894,
+              "ci": [
+                0.03235188537052053,
+                0.25182780212947947
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.1464466127177122,
+              "error_to_prepared_state": -0.004356768967712199
+            },
+            "kinetic_energy": {
+              "estimate": -1.40673828125,
+              "standard_error": 0.015697707023320982,
+              "exact_sampling_standard_error": 0.015624999853673719,
+              "ci": [
+                -1.5475391964308223,
+                -1.2659373660691777
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.4142135756170384,
+              "error_to_prepared_state": 0.007475294367038421
+            },
+            "energy": {
+              "estimate": -0.83837890625,
+              "standard_error": 0.051961100829509534,
+              "exact_sampling_standard_error": 0.05182226239342212,
+              "ci": [
+                -1.450315613920204,
+                -0.22644219857979597
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8284271247461896,
+              "error_to_prepared_state": -0.009951781503810375
+            }
+          },
+          "interaction": 4,
+          "exact_ground_state": {
+            "energy": -0.82842712474619,
+            "double_occupancy": 0.14644660940672619,
+            "kinetic_energy": -1.4142135623730947
+          },
+          "vqe_residual": 3.5548562423042726e-08
+        },
+        {
+          "shots_per_setting": 32768,
+          "total_shots": 327680,
+          "seed": 302642,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                2410,
+                0,
+                0,
+                13957,
+                0,
+                0,
+                14032,
+                0,
+                0,
+                2369,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                2484,
+                0,
+                0,
+                14013,
+                0,
+                0,
+                13905,
+                0,
+                0,
+                2366,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                2409,
+                0,
+                0,
+                14049,
+                0,
+                0,
+                13850,
+                0,
+                0,
+                2460,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                2424,
+                0,
+                0,
+                13916,
+                0,
+                0,
+                14024,
+                0,
+                0,
+                2404,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                2398,
+                0,
+                0,
+                13952,
+                0,
+                0,
+                14019,
+                0,
+                0,
+                2399,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                2393,
+                0,
+                0,
+                14001,
+                0,
+                0,
+                14076,
+                0,
+                0,
+                2298,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                1108,
+                6927,
+                0,
+                0,
+                7105,
+                1241,
+                6978,
+                1154,
+                0,
+                0,
+                1222,
+                7033,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                1158,
+                6965,
+                0,
+                0,
+                7001,
+                1249,
+                6963,
+                1194,
+                0,
+                0,
+                1171,
+                7067,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                7065,
+                0,
+                1207,
+                1198,
+                0,
+                7025,
+                0,
+                0,
+                1185,
+                0,
+                6965,
+                6945,
+                0,
+                1178,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                7013,
+                0,
+                1158,
+                1223,
+                0,
+                6864,
+                0,
+                0,
+                1143,
+                0,
+                7108,
+                7052,
+                0,
+                1207,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.14996337890625,
+              "standard_error": 0.003085235798825177,
+              "exact_sampling_standard_error": 0.003088161783292235,
+              "ci": [
+                0.12252888931138013,
+                0.17739786850111988
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.1464466127177122,
+              "error_to_prepared_state": 0.003516766188537801
+            },
+            "kinetic_energy": {
+              "estimate": -1.4202880859375,
+              "standard_error": 0.003889451767614735,
+              "exact_sampling_standard_error": 0.0039062499634184298,
+              "ci": [
+                -1.4554883147327056,
+                -1.3850878571422944
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.4142135756170384,
+              "error_to_prepared_state": -0.006074510320461579
+            },
+            "energy": {
+              "estimate": -0.8204345703125,
+              "standard_error": 0.012939347510683846,
+              "exact_sampling_standard_error": 0.01295556559835553,
+              "ci": [
+                -0.9734187472300511,
+                -0.6674503933949489
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8284271247461896,
+              "error_to_prepared_state": 0.007992554433689625
+            }
+          },
+          "interaction": 4,
+          "exact_ground_state": {
+            "energy": -0.82842712474619,
+            "double_occupancy": 0.14644660940672619,
+            "kinetic_energy": -1.4142135623730947
+          },
+          "vqe_residual": 3.5548562423042726e-08
+        },
+        {
+          "shots_per_setting": 128,
+          "total_shots": 1280,
+          "seed": 302650,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                6,
+                0,
+                0,
+                68,
+                0,
+                0,
+                48,
+                0,
+                0,
+                6,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                9,
+                0,
+                0,
+                50,
+                0,
+                0,
+                61,
+                0,
+                0,
+                8,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                5,
+                0,
+                0,
+                61,
+                0,
+                0,
+                54,
+                0,
+                0,
+                8,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                5,
+                0,
+                0,
+                59,
+                0,
+                0,
+                60,
+                0,
+                0,
+                4,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                7,
+                0,
+                0,
+                59,
+                0,
+                0,
+                55,
+                0,
+                0,
+                7,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                7,
+                0,
+                0,
+                70,
+                0,
+                0,
+                47,
+                0,
+                0,
+                4,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                6,
+                33,
+                0,
+                0,
+                27,
+                5,
+                20,
+                9,
+                0,
+                0,
+                5,
+                23,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                5,
+                18,
+                0,
+                0,
+                24,
+                8,
+                29,
+                5,
+                0,
+                0,
+                15,
+                24,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                21,
+                0,
+                6,
+                12,
+                0,
+                23,
+                0,
+                0,
+                7,
+                0,
+                28,
+                24,
+                0,
+                7,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                24,
+                0,
+                4,
+                13,
+                0,
+                20,
+                0,
+                0,
+                5,
+                0,
+                30,
+                27,
+                0,
+                5,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.05859375,
+              "standard_error": 0.047925653586728054,
+              "exact_sampling_standard_error": 0.04747215774603733,
+              "ci": [
+                -0.3803580835179179,
+                0.4975455835179179
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.0839748503185793,
+              "error_to_prepared_state": -0.025381100318579305
+            },
+            "kinetic_energy": {
+              "estimate": -1.0859375,
+              "standard_error": 0.07437157261506704,
+              "exact_sampling_standard_error": 0.07354355112097027,
+              "ci": [
+                -1.6491411607232895,
+                -0.5227338392767106
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.1094003773754648,
+              "error_to_prepared_state": 0.02346287737546482
+            },
+            "energy": {
+              "estimate": -0.734375,
+              "standard_error": 0.29701580529490396,
+              "exact_sampling_standard_error": 0.29417420231864355,
+              "ci": [
+                -4.100026892186122,
+                2.631276892186122
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.605551275463989,
+              "error_to_prepared_state": -0.128823724536011
+            }
+          },
+          "interaction": 6,
+          "exact_ground_state": {
+            "energy": -0.60555127546399,
+            "double_occupancy": 0.08397485283107811,
+            "kinetic_energy": -1.1094003924504587
+          },
+          "vqe_residual": 3.488907272469943e-08
+        },
+        {
+          "shots_per_setting": 2048,
+          "total_shots": 20480,
+          "seed": 302651,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                79,
+                0,
+                0,
+                967,
+                0,
+                0,
+                925,
+                0,
+                0,
+                77,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                89,
+                0,
+                0,
+                966,
+                0,
+                0,
+                906,
+                0,
+                0,
+                87,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                86,
+                0,
+                0,
+                932,
+                0,
+                0,
+                943,
+                0,
+                0,
+                87,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                87,
+                0,
+                0,
+                949,
+                0,
+                0,
+                939,
+                0,
+                0,
+                73,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                91,
+                0,
+                0,
+                921,
+                0,
+                0,
+                941,
+                0,
+                0,
+                95,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                84,
+                0,
+                0,
+                950,
+                0,
+                0,
+                917,
+                0,
+                0,
+                97,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                113,
+                387,
+                0,
+                0,
+                398,
+                129,
+                411,
+                110,
+                0,
+                0,
+                118,
+                382,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                124,
+                395,
+                0,
+                0,
+                382,
+                130,
+                406,
+                104,
+                0,
+                0,
+                111,
+                396,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                401,
+                0,
+                115,
+                103,
+                0,
+                405,
+                0,
+                0,
+                121,
+                0,
+                403,
+                387,
+                0,
+                113,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                408,
+                0,
+                99,
+                115,
+                0,
+                423,
+                0,
+                0,
+                106,
+                0,
+                403,
+                384,
+                0,
+                110,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.088134765625,
+              "standard_error": 0.011916781538194206,
+              "exact_sampling_standard_error": 0.011868039436509333,
+              "ci": [
+                -0.021603192754479472,
+                0.19787272400447947
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.0839748503185793,
+              "error_to_prepared_state": 0.0041599153064206945
+            },
+            "kinetic_energy": {
+              "estimate": -1.11083984375,
+              "standard_error": 0.01837642069371746,
+              "exact_sampling_standard_error": 0.01838588778024257,
+              "ci": [
+                -1.2516407589308223,
+                -0.9700389285691776
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.1094003773754648,
+              "error_to_prepared_state": -0.001439466374535181
+            },
+            "energy": {
+              "estimate": -0.58203125,
+              "standard_error": 0.0738243956816319,
+              "exact_sampling_standard_error": 0.07354355057966089,
+              "ci": [
+                -1.4234442230465305,
+                0.2593817230465305
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.605551275463989,
+              "error_to_prepared_state": 0.023520025463989014
+            }
+          },
+          "interaction": 6,
+          "exact_ground_state": {
+            "energy": -0.60555127546399,
+            "double_occupancy": 0.08397485283107811,
+            "kinetic_energy": -1.1094003924504587
+          },
+          "vqe_residual": 3.488907272469943e-08
+        },
+        {
+          "shots_per_setting": 32768,
+          "total_shots": 327680,
+          "seed": 302652,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                1379,
+                0,
+                0,
+                15097,
+                0,
+                0,
+                14960,
+                0,
+                0,
+                1332,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                1413,
+                0,
+                0,
+                14864,
+                0,
+                0,
+                15094,
+                0,
+                0,
+                1397,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                1337,
+                0,
+                0,
+                15044,
+                0,
+                0,
+                15021,
+                0,
+                0,
+                1366,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                1410,
+                0,
+                0,
+                14981,
+                0,
+                0,
+                15019,
+                0,
+                0,
+                1358,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                1372,
+                0,
+                0,
+                15106,
+                0,
+                0,
+                14967,
+                0,
+                0,
+                1323,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                1351,
+                0,
+                0,
+                14953,
+                0,
+                0,
+                15071,
+                0,
+                0,
+                1393,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                1860,
+                6335,
+                0,
+                0,
+                6397,
+                1789,
+                6316,
+                1889,
+                0,
+                0,
+                1809,
+                6373,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                1827,
+                6405,
+                0,
+                0,
+                6299,
+                1808,
+                6351,
+                1872,
+                0,
+                0,
+                1815,
+                6391,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                6346,
+                0,
+                1888,
+                1810,
+                0,
+                6258,
+                0,
+                0,
+                1791,
+                0,
+                6250,
+                6625,
+                0,
+                1800,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                6300,
+                0,
+                1862,
+                1886,
+                0,
+                6408,
+                0,
+                0,
+                1793,
+                0,
+                6315,
+                6356,
+                0,
+                1848,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.080963134765625,
+              "standard_error": 0.002964931756221015,
+              "exact_sampling_standard_error": 0.002967009859127333,
+              "ci": [
+                0.05352864517075513,
+                0.10839762436049487
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.0839748503185793,
+              "error_to_prepared_state": -0.0030117155529543055
+            },
+            "kinetic_energy": {
+              "estimate": -1.104400634765625,
+              "standard_error": 0.004605702507676395,
+              "exact_sampling_standard_error": 0.004596471945060642,
+              "ci": [
+                -1.1396008635608306,
+                -1.0692004059704194
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -1.1094003773754648,
+              "error_to_prepared_state": 0.004999742609839819
+            },
+            "energy": {
+              "estimate": -0.618621826171875,
+              "standard_error": 0.018376126552539267,
+              "exact_sampling_standard_error": 0.018385887644915222,
+              "ci": [
+                -0.8289750694335076,
+                -0.4082685829102424
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.605551275463989,
+              "error_to_prepared_state": -0.013070550707885986
+            }
+          },
+          "interaction": 6,
+          "exact_ground_state": {
+            "energy": -0.60555127546399,
+            "double_occupancy": 0.08397485283107811,
+            "kinetic_energy": -1.1094003924504587
+          },
+          "vqe_residual": 3.488907272469943e-08
+        },
+        {
+          "shots_per_setting": 128,
+          "total_shots": 1280,
+          "seed": 302660,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                66,
+                0,
+                0,
+                58,
+                0,
+                0,
+                3,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                67,
+                0,
+                0,
+                56,
+                0,
+                0,
+                3,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                70,
+                0,
+                0,
+                47,
+                0,
+                0,
+                7,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                60,
+                0,
+                0,
+                61,
+                0,
+                0,
+                3,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                7,
+                0,
+                0,
+                64,
+                0,
+                0,
+                53,
+                0,
+                0,
+                4,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                59,
+                0,
+                0,
+                63,
+                0,
+                0,
+                4,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                4,
+                21,
+                0,
+                0,
+                37,
+                6,
+                20,
+                9,
+                0,
+                0,
+                4,
+                27,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                5,
+                27,
+                0,
+                0,
+                26,
+                8,
+                28,
+                4,
+                0,
+                0,
+                7,
+                23,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                22,
+                0,
+                9,
+                8,
+                0,
+                18,
+                0,
+                0,
+                4,
+                0,
+                39,
+                24,
+                0,
+                4,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                22,
+                0,
+                6,
+                6,
+                0,
+                27,
+                0,
+                0,
+                9,
+                0,
+                26,
+                22,
+                0,
+                10,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.1171875,
+              "standard_error": 0.046741525848875566,
+              "exact_sampling_standard_error": 0.04635124060801015,
+              "ci": [
+                -0.3217643335179179,
+                0.5561393335179179
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.05278640618919383,
+              "error_to_prepared_state": 0.06440109381080616
+            },
+            "kinetic_energy": {
+              "estimate": -1.1953125,
+              "standard_error": 0.071013023898706,
+              "exact_sampling_standard_error": 0.07905694120560681,
+              "ci": [
+                -1.7585161607232895,
+                -0.6321088392767106
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8944272045131296,
+              "error_to_prepared_state": -0.3008852954868704
+            },
+            "energy": {
+              "estimate": -0.2578125,
+              "standard_error": 0.3806154816068689,
+              "exact_sampling_standard_error": 0.37914377263841786,
+              "ci": [
+                -4.541369453691428,
+                4.025744453691428
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.472135954999579,
+              "error_to_prepared_state": 0.214323454999579
+            }
+          },
+          "interaction": 8,
+          "exact_ground_state": {
+            "energy": -0.47213595499958,
+            "double_occupancy": 0.052786404500042065,
+            "kinetic_energy": -0.8944271909999165
+          },
+          "vqe_residual": 4.0002178580703475e-08
+        },
+        {
+          "shots_per_setting": 2048,
+          "total_shots": 20480,
+          "seed": 302661,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                57,
+                0,
+                0,
+                958,
+                0,
+                0,
+                978,
+                0,
+                0,
+                55,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                54,
+                0,
+                0,
+                993,
+                0,
+                0,
+                955,
+                0,
+                0,
+                46,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                52,
+                0,
+                0,
+                957,
+                0,
+                0,
+                977,
+                0,
+                0,
+                62,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                55,
+                0,
+                0,
+                1014,
+                0,
+                0,
+                915,
+                0,
+                0,
+                64,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                62,
+                0,
+                0,
+                919,
+                0,
+                0,
+                1008,
+                0,
+                0,
+                59,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                982,
+                0,
+                0,
+                972,
+                0,
+                0,
+                44,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                139,
+                366,
+                0,
+                0,
+                374,
+                132,
+                386,
+                142,
+                0,
+                0,
+                129,
+                380,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                143,
+                340,
+                0,
+                0,
+                383,
+                127,
+                395,
+                136,
+                0,
+                0,
+                148,
+                376,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                377,
+                0,
+                147,
+                135,
+                0,
+                370,
+                0,
+                0,
+                136,
+                0,
+                370,
+                373,
+                0,
+                140,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                374,
+                0,
+                131,
+                139,
+                0,
+                352,
+                0,
+                0,
+                129,
+                0,
+                372,
+                388,
+                0,
+                163,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.048583984375,
+              "standard_error": 0.011583996811151548,
+              "exact_sampling_standard_error": 0.011587810152002538,
+              "ci": [
+                -0.06115397400447947,
+                0.15832194275447947
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.05278640618919383,
+              "error_to_prepared_state": -0.004202421814193828
+            },
+            "kinetic_energy": {
+              "estimate": -0.91796875,
+              "standard_error": 0.019636162189492802,
+              "exact_sampling_standard_error": 0.019764235301401704,
+              "ci": [
+                -1.0587696651808223,
+                -0.7771678348191776
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8944272045131296,
+              "error_to_prepared_state": -0.023541545486870374
+            },
+            "energy": {
+              "estimate": -0.529296875,
+              "standard_error": 0.09472947651740349,
+              "exact_sampling_standard_error": 0.09478594315960447,
+              "ci": [
+                -1.600186113422857,
+                0.541592363422857
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.472135954999579,
+              "error_to_prepared_state": -0.057160920000421
+            }
+          },
+          "interaction": 8,
+          "exact_ground_state": {
+            "energy": -0.47213595499958,
+            "double_occupancy": 0.052786404500042065,
+            "kinetic_energy": -0.8944271909999165
+          },
+          "vqe_residual": 4.0002178580703475e-08
+        },
+        {
+          "shots_per_setting": 32768,
+          "total_shots": 327680,
+          "seed": 302662,
+          "grouping": "ungrouped",
+          "settings": [
+            {
+              "basis": "ZIII",
+              "counts": [
+                0,
+                0,
+                0,
+                852,
+                0,
+                0,
+                15554,
+                0,
+                0,
+                15458,
+                0,
+                0,
+                904,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IZII",
+              "counts": [
+                0,
+                0,
+                0,
+                880,
+                0,
+                0,
+                15398,
+                0,
+                0,
+                15647,
+                0,
+                0,
+                843,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZI",
+              "counts": [
+                0,
+                0,
+                0,
+                870,
+                0,
+                0,
+                15501,
+                0,
+                0,
+                15556,
+                0,
+                0,
+                841,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIIZ",
+              "counts": [
+                0,
+                0,
+                0,
+                813,
+                0,
+                0,
+                15589,
+                0,
+                0,
+                15501,
+                0,
+                0,
+                865,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "ZZII",
+              "counts": [
+                0,
+                0,
+                0,
+                891,
+                0,
+                0,
+                15485,
+                0,
+                0,
+                15547,
+                0,
+                0,
+                845,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IIZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                913,
+                0,
+                0,
+                15505,
+                0,
+                0,
+                15462,
+                0,
+                0,
+                888,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                2255,
+                5877,
+                0,
+                0,
+                5929,
+                2279,
+                5873,
+                2282,
+                0,
+                0,
+                2292,
+                5981,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                2310,
+                5979,
+                0,
+                0,
+                5963,
+                2249,
+                5858,
+                2287,
+                0,
+                0,
+                2257,
+                5865,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                5984,
+                0,
+                2275,
+                2236,
+                0,
+                5960,
+                0,
+                0,
+                2175,
+                0,
+                5961,
+                5906,
+                0,
+                2271,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                5945,
+                0,
+                2309,
+                2306,
+                0,
+                5892,
+                0,
+                0,
+                2182,
+                0,
+                5894,
+                5954,
+                0,
+                2286,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.0503082275390625,
+              "standard_error": 0.00289975495102443,
+              "exact_sampling_standard_error": 0.0028969525380006344,
+              "ci": [
+                0.022873737944192632,
+                0.07774271713393237
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": 0.05278640618919383,
+              "error_to_prepared_state": -0.0024781786501313283
+            },
+            "kinetic_energy": {
+              "estimate": -0.893707275390625,
+              "standard_error": 0.004942084124677692,
+              "exact_sampling_standard_error": 0.004941058825350426,
+              "ci": [
+                -0.9289075041858306,
+                -0.8585070465954194
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8944272045131296,
+              "error_to_prepared_state": 0.0007199291225046256
+            },
+            "energy": {
+              "estimate": -0.491241455078125,
+              "standard_error": 0.02371862637588433,
+              "exact_sampling_standard_error": 0.023696485789901117,
+              "ci": [
+                -0.7589637646838392,
+                -0.22351914547241075
+              ],
+              "confidence": 0.95,
+              "exact_prepared_state": -0.472135954999579,
+              "error_to_prepared_state": -0.019105500078546
             }
           },
           "interaction": 8,

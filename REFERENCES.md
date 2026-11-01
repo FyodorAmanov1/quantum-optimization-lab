@@ -10,3 +10,5 @@
 The implementation, data provenance and scope limits are documented in [the technical case study](reports/applied-study.md). Citation identifies an algorithmic foundation, not equivalence with the full paper or a claim of hardware performance.
 
 New QO02 links were verified against arXiv and the publisher's indexed Hoeffding record. The DOI landing page restricts automated retrieval; its title, author, volume and pages were verified through the publisher search record. See [QO02](reports/QO02.md) for the implemented estimator and interval formula.
+
+The grouped-versus-independent-term comparison is an implementation experiment on the defined Hubbard dimer. The grouping reference motivates shared local settings; it does not supply the reported precision ratios. Those ratios are computed from this experiment's Born probabilities at matched state-preparation budgets. Both strategies use Hoeffding bounds with their own coefficient-weighted measurement ranges; exact sampling standard deviations are diagnostics, separate from the confidence bounds.

@@ -304,7 +304,7 @@ def experiment():
         "id": "hubbard-shots", "label": "Hubbard measurements",
         "kicker": "FINITE SHOTS / GROUPED PAULI MEASUREMENTS",
         "title": "Can sampled observables resolve electron localization?",
-        "description": "Measure energy, total double occupancy and kinetic energy of the optimized dimer state. Compare three shot budgets with exact prepared-state and ground-state references. Charts show 4,096 shots per setting; the table exports all budgets.",
+        "description": "Measure energy, total double occupancy and kinetic energy of the optimized dimer state. Choose a shot budget and compare grouped measurements with independent Pauli measurements at the same total preparations. Confidence intervals refer to prepared-state expectations; the table exports both strategies at all budgets.",
         "metrics": [metric("Measurement settings", 5),
                     metric("Shots at displayed budget", 20480),
                     metric("Ungrouped Pauli terms", 10),
@@ -317,19 +317,47 @@ def experiment():
                         {"name": "95% lower bound", "values": [r["observables"][name]["ci"][0] for r in selected]},
                         {"name": "95% upper bound", "values": [r["observables"][name]["ci"][1] for r in selected]}]}
                    for name in ("energy", "double_occupancy", "kinetic_energy")],
-        "table": {"columns": ["U/t", "Shots/setting", "Total shots", "Observable", "Estimate", "95% CI low", "95% CI high", "Sample SE", "Exact prepared", "Exact ground"],
-                  "rows": [[r["interaction"], r["shots_per_setting"], r["total_shots"], name,
-                            o["estimate"], *o["ci"], o["standard_error"], o["exact_prepared_state"], r["exact_ground_state"][name]]
-                           for r in measured["runs"] for name, o in r["observables"].items()]},
+        "table": {"columns": ["Strategy", "U/t", "Shots/setting", "Total shots", "Observable", "Estimate", "95% CI low", "95% CI high", "Sample SE", "Exact sampling SD", "Exact prepared", "Exact ground"],
+                  "rows": [[r["grouping"], r["interaction"], r["shots_per_setting"], r["total_shots"], name,
+                            o["estimate"], *o["ci"], o["standard_error"], o["exact_sampling_standard_error"], o["exact_prepared_state"], r["exact_ground_state"][name]]
+                           for r in measured["runs"] + measured["ungrouped_runs"] for name, o in r["observables"].items()]},
         "method": [measured["method"], measured["interval_method"],
                    "Orbital order: 0-up, 0-down, 1-up, 1-down (orbital 0 is least significant bit). Hopping = −(XZXI+YZYI+IXZX+IYZY)/2. D = (2I−ZIII−IZII−IIZI−IIIZ+ZZII+IIZZ)/4. Energy = kinetic + U D, with t=1.",
                    "One ZZZZ shot evaluates all density terms together, retaining covariance. Four additional local settings measure hopping parities. Raw 16-outcome counts and seeds are included in results/latest.json.",
-                   measured["cost"]["assumptions"]],
+                   measured["cost"]["assumptions"],
+                   "Ungrouped density uses six independent Pauli means plus the exact identity offset 1/2. Confidence bounds use each coefficient times its measurement range. Exact sampling SD is computed from Born probabilities as a diagnostic; sample SE is estimated from counts. Neither is the confidence-bound half-width."],
         "limitations": ["Ideal CPU simulation of independent Born shots; no device noise or finite-shot optimization. The exact trained state is held fixed during measurement.",
                         "Intervals cover prepared-state expectations, not ansatz bias. They are conservative, marginal per observable, and not simultaneous across the scan. Sample SE is descriptive, not the CI formula; bounds can extend outside physical ranges.",
-                        "A small fully expressive Hubbard dimer with t=1; no materials prediction or quantum advantage. Fewer settings alone does not prove better accuracy at matched total shots."],
+                        "A small fully expressive Hubbard dimer with t=1; no materials prediction or quantum advantage. Matched preparations exclude circuit and basis-switching costs. Equal shots per setting are not optimized for either strategy."],
         "reproduce": "python lab.py --output results/latest.json",
     }
+    # Keep the original default charts while exposing every recorded shot budget.
+    shot_case["views"] = []
+    for budget in measured["budgets_per_setting"]:
+        grouped = [r for r in measured["runs"] if r["shots_per_setting"] == budget]
+        ungrouped = [r for r in measured["ungrouped_runs"] if r["total_shots"] == 5 * budget]
+        charts = []
+        for name in ("energy", "double_occupancy", "kinetic_energy"):
+            chart = {"title": name.replace("_", " ").title() + " with marginal 95% CI",
+                     "x": interactions, "xlabel": f"U / t; {5 * budget:,} total shots per strategy",
+                     "series": [{"name": "Exact ground state", "values": [r["exact_ground_state"][name] for r in grouped]}]}
+            for label, rows in (("Grouped", grouped), ("Ungrouped", ungrouped)):
+                chart["series"].extend([
+                    {"name": label, "values": [r["observables"][name]["estimate"] for r in rows]},
+                    {"name": label + " 95% low", "values": [r["observables"][name]["ci"][0] for r in rows]},
+                    {"name": label + " 95% high", "values": [r["observables"][name]["ci"][1] for r in rows]}])
+            charts.append(chart)
+        charts.append({"title": "Energy sampling uncertainty at matched preparations",
+                       "x": interactions, "xlabel": "U / t; exact sampling SD is a diagnostic, not a CI",
+                       "series": [{"name": label, "values": [r["observables"]["energy"]["exact_sampling_standard_error"] for r in rows]}
+                                  for label, rows in (("Grouped", grouped), ("Ungrouped", ungrouped))]})
+        shot_case["views"].append({"value": str(budget),
+                                   "label": f"{5 * budget:,} total shots ({budget:,}/grouped setting; {budget // 2:,}/ungrouped term)",
+                                   "charts": charts,
+                                   "metrics": [metric("Grouped settings", 5), metric("Ungrouped settings", 10),
+                                               metric("Shots per strategy", 5 * budget),
+                                               metric("CI confidence (per observable)", 95, "%")]})
+    shot_case["default_view"] = "4096"
     return {
         "schema_version": 1,
         "slug": "quantum-optimization-lab",

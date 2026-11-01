@@ -7,6 +7,7 @@ import numpy as np
 
 
 SETTINGS = ("ZZZZ", "XZXI", "YZYI", "IXZX", "IYZY")
+DENSITY_TERMS = ("ZIII", "IZII", "IIZI", "IIIZ", "ZZII", "IIZZ")
 PAULI = {"I": np.eye(2), "X": np.array([[0, 1], [1, 0]]),
          "Y": np.array([[0, -1j], [1j, 0]]), "Z": np.diag([1, -1])}
 
@@ -30,7 +31,8 @@ def measurement_probabilities(wave, setting):
     return probabilities / probabilities.sum()
 
 
-def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=0.95):
+def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=0.95,
+                    grouping="grouped"):
     """Measure energy, total double occupancy and kinetic energy at t=1.
 
     Independent multinomial counts are actual repeated Born measurements.
@@ -38,11 +40,15 @@ def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=
     Per-observable Hoeffding bounds use a union bound across active groups;
     these are marginal CIs for the prepared state's expectations, not for
     ansatz error. The sample SE includes all covariance within each group.
+    grouping='ungrouped' instead measures ten Pauli terms independently,
+    with shots per term. Exact sampling SE is a Born-probability diagnostic.
     """
     if isinstance(shots, (bool, np.bool_)) or not isinstance(shots, (int, np.integer)) or shots < 2:
         raise ValueError("shots must be an integer >= 2 per setting")
     if not np.isfinite(interaction) or not 0 < confidence < 1:
         raise ValueError("finite interaction and confidence in (0,1) required")
+    if grouping not in ("grouped", "ungrouped"):
+        raise ValueError("grouping must be grouped or ungrouped")
     wave = np.asarray(wave, dtype=complex)
     basis = np.asarray(basis)
     if (wave.shape != (4,) or basis.shape != (4,)
@@ -56,14 +62,16 @@ def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=
     rng = np.random.default_rng(seed)
     outcomes = np.arange(16)
     double = ((outcomes & 3) == 3).astype(float) + ((outcomes & 12) == 12)
-    values = [double]
-    for setting in SETTINGS[1:]:
+    settings = SETTINGS if grouping == "grouped" else DENSITY_TERMS + SETTINGS[1:]
+    values = [double] if grouping == "grouped" else []
+    for setting in settings[1:] if grouping == "grouped" else settings:
         parity = np.ones(16)
         for orbital, symbol in enumerate(setting):
             if symbol != "I":
                 parity *= 1 - 2 * ((outcomes >> orbital) & 1)
-        values.append(-0.5 * parity)
-    counts = [rng.multinomial(shots, measurement_probabilities(full, s)) for s in SETTINGS]
+        values.append(-0.5 * parity if grouping == "grouped" else parity)
+    probabilities = [measurement_probabilities(full, s) for s in settings]
+    counts = [rng.multinomial(shots, p) for p in probabilities]
     means = np.array([c @ v / shots for c, v in zip(counts, values)])
     # Variance of the mean, calculated from grouped per-shot values.
     variances = np.array([c @ (v - m) ** 2 / (shots * (shots - 1))
@@ -76,20 +84,36 @@ def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=
     coefficients = {"double_occupancy": np.array([1, 0, 0, 0, 0]),
                     "kinetic_energy": np.array([0, 1, 1, 1, 1]),
                     "energy": np.array([interaction, 1, 1, 1, 1])}
+    constants = dict.fromkeys(coefficients, 0.0)
+    ranges = np.ones(5)
+    if grouping == "ungrouped":
+        d_weights = np.array([-0.25] * 4 + [0.25] * 2 + [0.] * 4)
+        k_weights = np.array([0.] * 6 + [-0.5] * 4)
+        coefficients = {"double_occupancy": d_weights, "kinetic_energy": k_weights,
+                        "energy": interaction * d_weights + k_weights}
+        constants = {"double_occupancy": 0.5, "kinetic_energy": 0.,
+                     "energy": interaction * 0.5}
+        ranges = np.full(10, 2.)
+    # Analytic sampling variance is a diagnostic baseline, never used for CIs.
+    population_variances = np.array([
+        p @ (v - p @ v)**2 / shots for p, v in zip(probabilities, values)])
     observables = {}
     for name, weights in coefficients.items():
         active = np.count_nonzero(weights)
-        # Each kinetic group has range 1. D has range 1 in the input sector.
-        radius = float(np.abs(weights).sum() * np.sqrt(
+        # D has range 1 in this sector; ungrouped parity has range 2.
+        radius = float((np.abs(weights) @ ranges) * np.sqrt(
             np.log(2 * active / (1 - confidence)) / (2 * shots)))
-        estimate = float(weights @ means)
+        estimate = float(constants[name] + weights @ means)
         observables[name] = {"estimate": estimate,
                              "standard_error": float(np.sqrt(weights**2 @ variances)),
+                             "exact_sampling_standard_error": float(np.sqrt(max(
+                                 0., weights**2 @ population_variances))),
                              "ci": [estimate - radius, estimate + radius],
                              "confidence": confidence, "exact_prepared_state": exact[name],
                              "error_to_prepared_state": estimate - exact[name]}
-    return {"shots_per_setting": int(shots), "total_shots": int(5 * shots), "seed": int(seed),
-            "settings": [{"basis": s, "counts": c.tolist()} for s, c in zip(SETTINGS, counts)],
+    return {"shots_per_setting": int(shots), "total_shots": int(len(settings) * shots),
+            "seed": int(seed), "grouping": grouping,
+            "settings": [{"basis": s, "counts": c.tolist()} for s, c in zip(settings, counts)],
             "observables": observables}
 
 
@@ -102,6 +126,7 @@ def finite_shot_study():
     interactions = [0, 0.5, 1, 2, 4, 6, 8]
     budgets = [256, 4096, 65536]
     runs = []
+    ungrouped_runs = []
     for index, u in enumerate(interactions):
         h, basis = hubbard(u)
         wave, metrics = vqe_state(u)
@@ -116,9 +141,14 @@ def finite_shot_study():
             run.update({"interaction": u, "exact_ground_state": references,
                         "vqe_residual": metrics[3]})
             runs.append(run)
+            baseline = measure_hubbard(wave, basis, u, shots // 2,
+                                       302600 + 10 * index + b, grouping="ungrouped")
+            baseline.update({"interaction": u, "exact_ground_state": references,
+                             "vqe_residual": metrics[3]})
+            ungrouped_runs.append(baseline)
     return {"interactions": interactions, "budgets_per_setting": budgets,
             "method": "Independent Born multinomial draws after local Pauli basis rotations; exact-expectation VQE training",
             "interval_method": "Two-sided Hoeffding per active group, union bound within each observable; marginal 95% CIs for prepared-state expectations",
             "cost": {"grouped_settings": 5, "ungrouped_nonidentity_terms": 10,
-                     "assumptions": "Equal shots per setting; all six Z density terms share one shot; four hopping settings; identity costs no shots. Counts exclude exact training, state preparation and gate compilation. Setting reduction is not an equal-total-shot accuracy comparison."},
-            "runs": runs}
+                     "assumptions": "Equal shots within each strategy; five grouped settings at n shots versus ten independent Pauli terms at n/2 shots, matching total preparations. All observables share those counts. Identity costs no shots. Counts exclude exact training, state preparation and gate compilation. Neither allocation is optimized."},
+            "runs": runs, "ungrouped_runs": ungrouped_runs}
