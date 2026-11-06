@@ -1,0 +1,29 @@
+test_ci_does_not_collapse_on_deterministic_counts_and_scales (test_hubbard_measurement.HubbardMeasurementTests.test_ci_does_not_collapse_on_deterministic_counts_and_scales) ... ok
+test_counts_reconstruct_estimators_and_reproduce (test_hubbard_measurement.HubbardMeasurementTests.test_counts_reconstruct_estimators_and_reproduce) ... ok
+test_density_bound_exact_binomial_coverage_at_small_shot_count (test_hubbard_measurement.HubbardMeasurementTests.test_density_bound_exact_binomial_coverage_at_small_shot_count) ... ok
+test_exact_ground_observables_and_legacy_api (test_hubbard_measurement.HubbardMeasurementTests.test_exact_ground_observables_and_legacy_api) ... ok
+test_invalid_inputs (test_hubbard_measurement.HubbardMeasurementTests.test_invalid_inputs) ... ok
+test_matched_budget_variance_and_ungrouped_coverage (test_hubbard_measurement.HubbardMeasurementTests.test_matched_budget_variance_and_ungrouped_coverage) ... ok
+test_pauli_mapping_matches_independent_fermion_hamiltonian (test_hubbard_measurement.HubbardMeasurementTests.test_pauli_mapping_matches_independent_fermion_hamiltonian) ... ok
+test_preselected_contrast_uses_both_independent_measurement_budgets (test_hubbard_measurement.HubbardMeasurementTests.test_preselected_contrast_uses_both_independent_measurement_budgets) ... ok
+test_repeated_sampling_agrees_with_exact_mean_and_interval_coverage (test_hubbard_measurement.HubbardMeasurementTests.test_repeated_sampling_agrees_with_exact_mean_and_interval_coverage) ... ok
+test_rotations_match_complex_state_pauli_expectations (test_hubbard_measurement.HubbardMeasurementTests.test_rotations_match_complex_state_pauli_expectations) ... ok
+test_studio_views_expose_matched_budgets_and_uncertainty (test_hubbard_measurement.HubbardMeasurementTests.test_studio_views_expose_matched_budgets_and_uncertainty) ... ok
+test_study_design_and_references (test_hubbard_measurement.HubbardMeasurementTests.test_study_design_and_references) ... ok
+test_ungrouped_counts_reconstruct_all_observables (test_hubbard_measurement.HubbardMeasurementTests.test_ungrouped_counts_reconstruct_all_observables) ... ok
+test_weighted_shot_bound_matches_independent_range_calculation (test_hubbard_measurement.HubbardMeasurementTests.test_weighted_shot_bound_matches_independent_range_calculation) ... ok
+test_covariance_psd (test_lab.OptimizationTests.test_covariance_psd) ... ok
+test_exact_known_selection (test_lab.OptimizationTests.test_exact_known_selection) ... ok
+test_gap_and_feasibility (test_lab.OptimizationTests.test_gap_and_feasibility) ... ok
+test_unitarity_and_zero_angles (test_lab.OptimizationTests.test_unitarity_and_zero_angles) ... ok
+test_analytic_uniform_laws_for_cardinalities (test_sampling.SamplingBaselineTests.test_analytic_uniform_laws_for_cardinalities) ... ok
+test_experiment_comparison_and_legacy_metrics (test_sampling.SamplingBaselineTests.test_experiment_comparison_and_legacy_metrics) ... ok
+test_invalid_distributions_rejected (test_sampling.SamplingBaselineTests.test_invalid_distributions_rejected) ... ok
+test_weighted_conditioning_excludes_infeasible_objectives (test_sampling.SamplingBaselineTests.test_weighted_conditioning_excludes_infeasible_objectives) ... ok
+test_zero_angle_qaoa_has_uniform_baseline_metrics (test_sampling.SamplingBaselineTests.test_zero_angle_qaoa_has_uniform_baseline_metrics) ... ok
+test_zero_feasible_mass_is_explicit_and_json_safe (test_sampling.SamplingBaselineTests.test_zero_feasible_mass_is_explicit_and_json_safe) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 4.785s
+
+OK

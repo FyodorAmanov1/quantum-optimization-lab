@@ -37,7 +37,7 @@ def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=
 
     Independent multinomial counts are actual repeated Born measurements.
     One Z shot supplies all six nonconstant density Pauli terms together.
-    Per-observable Hoeffding bounds use a union bound across active groups;
+    Per-observable Hoeffding bounds combine all independent weighted shots;
     these are marginal CIs for the prepared state's expectations, not for
     ansatz error. The sample SE includes all covariance within each group.
     grouping='ungrouped' instead measures ten Pauli terms independently,
@@ -101,14 +101,21 @@ def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=
     for name, weights in coefficients.items():
         active = np.count_nonzero(weights)
         # D has range 1 in this sector; ungrouped parity has range 2.
-        radius = float((np.abs(weights) @ ranges) * np.sqrt(
+        union_radius = float((np.abs(weights) @ ranges) * np.sqrt(
             np.log(2 * active / (1 - confidence)) / (2 * shots)))
+        # Apply Hoeffding to independent weighted individual shots, not to
+        # the correlated Pauli terms within a shared density bitstring.
+        squared_range_over_shots = float(np.sum((weights * ranges)**2) / shots)
+        radius = float(np.sqrt(np.log(2 / (1 - confidence))
+                               * squared_range_over_shots / 2))
         estimate = float(constants[name] + weights @ means)
         observables[name] = {"estimate": estimate,
                              "standard_error": float(np.sqrt(weights**2 @ variances)),
                              "exact_sampling_standard_error": float(np.sqrt(max(
                                  0., weights**2 @ population_variances))),
                              "ci": [estimate - radius, estimate + radius],
+                             "union_bound_ci": [estimate - union_radius, estimate + union_radius],
+                             "squared_range_over_shots": squared_range_over_shots,
                              "confidence": confidence, "exact_prepared_state": exact[name],
                              "error_to_prepared_state": estimate - exact[name]}
     return {"shots_per_setting": int(shots), "total_shots": int(len(settings) * shots),
@@ -146,9 +153,29 @@ def finite_shot_study():
             baseline.update({"interaction": u, "exact_ground_state": references,
                              "vqe_residual": metrics[3]})
             ungrouped_runs.append(baseline)
+    # Preselected physical comparison, not a post-hoc search over the scan.
+    # Different interactions use independent preparations and random streams.
+    contrasts = []
+    for strategy, rows in (("grouped", runs), ("ungrouped", ungrouped_runs)):
+        for shots in budgets:
+            pair = [next(r for r in rows if r["interaction"] == u
+                         and r["total_shots"] == 5 * shots) for u in (6, 8)]
+            left, right = [r["observables"]["double_occupancy"] for r in pair]
+            estimate = left["estimate"] - right["estimate"]
+            radius = float(np.sqrt(np.log(40) * (
+                left["squared_range_over_shots"] + right["squared_range_over_shots"]) / 2))
+            contrasts.append({"grouping": strategy, "observable": "double_occupancy",
+                              "interaction_pair": [6, 8], "grouped_shot_budget": shots,
+                              "total_shots": sum(r["total_shots"] for r in pair),
+                              "estimate": estimate, "ci": [estimate - radius, estimate + radius],
+                              "confidence": 0.95, "resolved_decrease": bool(estimate - radius > 0),
+                              "exact_prepared_state": left["exact_prepared_state"] - right["exact_prepared_state"],
+                              "exact_ground_state": pair[0]["exact_ground_state"]["double_occupancy"]
+                              - pair[1]["exact_ground_state"]["double_occupancy"]})
     return {"interactions": interactions, "budgets_per_setting": budgets,
             "method": "Independent Born multinomial draws after local Pauli basis rotations; exact-expectation VQE training",
-            "interval_method": "Two-sided Hoeffding per active group, union bound within each observable; marginal 95% CIs for prepared-state expectations",
+            "interval_method": "Two-sided Hoeffding across independent weighted shots, retaining within-group covariance; marginal 95% CIs for prepared-state expectations. Older group union-bound intervals are retained as a diagnostic baseline.",
+            "contrast_method": "Preselected D(U/t=6) minus D(U/t=8), using independent preparations at both interactions and a direct two-sided 95% Hoeffding bound. Positive lower bound resolves a decrease; no simultaneous scan coverage is claimed.",
             "cost": {"grouped_settings": 5, "ungrouped_nonidentity_terms": 10,
-                     "assumptions": "Equal shots within each strategy; five grouped settings at n shots versus ten independent Pauli terms at n/2 shots, matching total preparations. All observables share those counts. Identity costs no shots. Counts exclude exact training, state preparation and gate compilation. Neither allocation is optimized."},
-            "runs": runs, "ungrouped_runs": ungrouped_runs}
+                     "assumptions": "Equal shots within each strategy; five grouped settings at n shots versus ten independent Pauli terms at n/2 shots, matching total preparations. All observables share those counts. Identity costs no shots. Shot totals exclude exact training evaluations, state-preparation circuit costs, basis-switching overhead and gate compilation. Neither allocation is optimized."},
+            "runs": runs, "ungrouped_runs": ungrouped_runs, "contrasts": contrasts}

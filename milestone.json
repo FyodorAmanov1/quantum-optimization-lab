@@ -1,7 +1,7 @@
 {
   "task_id": "QO02",
   "status": "completed",
-  "summary": "Implemented and validated finite-shot Hubbard energy, double occupancy and kinetic energy with integer Born counts, marginal 95% Hoeffding intervals and exact prepared-state/ground-state references. Added actual independent-Pauli measurements at matched total preparations and exact sampling-variance diagnostics. The studio budget selector compares both strategies across three budgets and seven interactions. At U/t=8 and 20480 preparations, grouped energy sampling SD is 0.0312500 t versus 0.0947859 t for independent terms, but the grouped CI half-width remains 0.305179 t. All 21 tests, studio reproduction and the independent contract pass. Legacy APIs remain compatible; no hardware advantage or materials accuracy is claimed.",
+  "summary": "Finite-shot Hubbard energy, double occupancy and kinetic energy use actual Born counts, grouped measurements, matched-budget independent-Pauli baselines and exact references. Weighted independent-shot Hoeffding CIs improve on retained union-bound diagnostics. The studio displays a preselected D(6)-D(8) contrast: unresolved at 40,960 combined preparations, resolved for both strategies at 655,360. One low-budget ungrouped kinetic-energy interval misses its reference and is reported. Legacy APIs remain compatible.",
   "evidence_paths": [
     "lab.py",
     "src/hubbard_measurement.py",
@@ -14,6 +14,7 @@
     "reports/QO02.md",
     "reports/applied-study.md",
     "README.md",
-    "REFERENCES.md"
+    "REFERENCES.md",
+    "results/QO02-tests.txt"
   ]
 }

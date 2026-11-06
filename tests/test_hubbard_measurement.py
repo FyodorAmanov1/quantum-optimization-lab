@@ -178,6 +178,65 @@ class HubbardMeasurementTests(unittest.TestCase):
             energy = view["charts"][0]
             self.assertEqual(energy["series"][0]["name"], "Exact ground state")
             self.assertAlmostEqual(energy["series"][0]["values"][-1], (8-np.sqrt(80))/2)
+            self.assertEqual(len(view["metrics"]), 6)
+            self.assertIn("95% CI", view["metrics"][4]["note"])
+            self.assertIn("exact ground-state difference", view["metrics"][5]["note"])
+
+    def test_weighted_shot_bound_matches_independent_range_calculation(self):
+        # Independently derive the ranges, including negative U and U=0.
+        _, basis = hubbard(0)
+        for strategy in ("grouped", "ungrouped"):
+            for u in (-2, 0, 8):
+                run = measure_hubbard([1, 0, 0, 0], basis, u, 64,
+                                      confidence=0.9, grouping=strategy)
+                proxies = ({"double_occupancy": 1/64, "kinetic_energy": 4/64,
+                            "energy": (u*u+4)/64} if strategy == "grouped" else
+                           {"double_occupancy": 1.5/64, "kinetic_energy": 4/64,
+                            "energy": (1.5*u*u+4)/64})
+                for name, proxy in proxies.items():
+                    obs = run["observables"][name]
+                    self.assertAlmostEqual(obs["squared_range_over_shots"], proxy)
+                    radius = np.sqrt(np.log(20)*proxy/2)
+                    np.testing.assert_allclose(obs["ci"], [obs["estimate"]-radius,
+                                                           obs["estimate"]+radius])
+                    self.assertGreaterEqual(obs["ci"][0], obs["union_bound_ci"][0]-1e-14)
+                    self.assertLessEqual(obs["ci"][1], obs["union_bound_ci"][1]+1e-14)
+
+    def test_preselected_contrast_uses_both_independent_measurement_budgets(self):
+        study = finite_shot_study()
+        self.assertEqual(len(study["contrasts"]), 6)
+        for contrast in study["contrasts"]:
+            n = contrast["grouped_shot_budget"]
+            strategy = contrast["grouping"]
+            rows = study["runs" if strategy == "grouped" else "ungrouped_runs"]
+            pair = [next(r for r in rows if r["interaction"] == u
+                         and r["total_shots"] == 5*n) for u in (6, 8)]
+            self.assertNotEqual(pair[0]["seed"], pair[1]["seed"])
+            a, b = [r["observables"]["double_occupancy"] for r in pair]
+            self.assertEqual(contrast["total_shots"], 10*n)
+            self.assertAlmostEqual(contrast["estimate"], a["estimate"]-b["estimate"])
+            # Six independent parity terms at n/2 give three times the
+            # range-squared proxy of one density measurement at n.
+            radius = np.sqrt(np.log(40)*(1 if strategy == "grouped" else 3)/n)
+            self.assertAlmostEqual(contrast["ci"][1]-contrast["estimate"], radius)
+            exact = (8/np.sqrt(80)-6/np.sqrt(52))/2
+            self.assertAlmostEqual(contrast["exact_ground_state"], exact)
+            self.assertEqual(contrast["resolved_decrease"], contrast["ci"][0] > 0)
+
+    def test_density_bound_exact_binomial_coverage_at_small_shot_count(self):
+        # Sum the exact coverage probability, rather than relying on a
+        # favorable seed. The sector density measurement is Bernoulli.
+        from math import comb
+        n, confidence = 16, 0.95
+        _, basis = hubbard(0)
+        for d in (0., 0.01, 0.2, 0.5, 0.99, 1.):
+            wave = np.array([np.sqrt(d), np.sqrt(1-d), 0, 0])
+            run = measure_hubbard(wave, basis, 0, n, confidence=confidence)
+            obs = run["observables"]["double_occupancy"]
+            radius = (obs["ci"][1]-obs["ci"][0])/2
+            coverage = sum(comb(n, k)*d**k*(1-d)**(n-k) for k in range(n+1)
+                           if abs(k/n-d) <= radius)
+            self.assertGreaterEqual(coverage, confidence)
 
 
 if __name__ == "__main__":

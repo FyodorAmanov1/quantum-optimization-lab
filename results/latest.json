@@ -62,11 +62,12 @@
         65536
       ],
       "method": "Independent Born multinomial draws after local Pauli basis rotations; exact-expectation VQE training",
-      "interval_method": "Two-sided Hoeffding per active group, union bound within each observable; marginal 95% CIs for prepared-state expectations",
+      "interval_method": "Two-sided Hoeffding across independent weighted shots, retaining within-group covariance; marginal 95% CIs for prepared-state expectations. Older group union-bound intervals are retained as a diagnostic baseline.",
+      "contrast_method": "Preselected D(U/t=6) minus D(U/t=8), using independent preparations at both interactions and a direct two-sided 95% Hoeffding bound. Positive lower bound resolves a decrease; no simultaneous scan coverage is claimed.",
       "cost": {
         "grouped_settings": 5,
         "ungrouped_nonidentity_terms": 10,
-        "assumptions": "Equal shots within each strategy; five grouped settings at n shots versus ten independent Pauli terms at n/2 shots, matching total preparations. All observables share those counts. Identity costs no shots. Counts exclude exact training, state preparation and gate compilation. Neither allocation is optimized."
+        "assumptions": "Equal shots within each strategy; five grouped settings at n shots versus ten independent Pauli terms at n/2 shots, matching total preparations. All observables share those counts. Identity costs no shots. Shot totals exclude exact training evaluations, state-preparation circuit costs, basis-switching overhead and gate compilation. Neither allocation is optimized."
       },
       "runs": [
         {
@@ -190,6 +191,11 @@
                 0.4424624052662113,
                 0.6122250947337887
               ],
+              "union_bound_ci": [
+                0.4424624052662113,
+                0.6122250947337887
+              ],
+              "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.4999999975616074,
               "error_to_prepared_state": 0.0273437524383926
@@ -199,9 +205,14 @@
               "standard_error": 0.0,
               "exact_sampling_standard_error": 7.428186230560163e-10,
               "ci": [
+                -2.169762689467577,
+                -1.8302373105324226
+              ],
+              "union_bound_ci": [
                 -2.3982451276865255,
                 -1.6017548723134745
               ],
+              "squared_range_over_shots": 0.015625,
               "confidence": 0.95,
               "exact_prepared_state": -2.0,
               "error_to_prepared_state": 0.0
@@ -211,9 +222,14 @@
               "standard_error": 0.0,
               "exact_sampling_standard_error": 7.428186230560163e-10,
               "ci": [
+                -2.169762689467577,
+                -1.8302373105324226
+              ],
+              "union_bound_ci": [
                 -2.3982451276865255,
                 -1.6017548723134745
               ],
+              "squared_range_over_shots": 0.015625,
               "confidence": 0.95,
               "exact_prepared_state": -2.0,
               "error_to_prepared_state": 0.0
@@ -348,6 +364,11 @@
                 0.47853552319155285,
                 0.5209761955584472
               ],
+              "union_bound_ci": [
+                0.47853552319155285,
+                0.5209761955584472
+              ],
+              "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.4999999975616074,
               "error_to_prepared_state": -0.00024413818660740105
@@ -357,9 +378,14 @@
               "standard_error": 0.0,
               "exact_sampling_standard_error": 1.8570465576400407e-10,
               "ci": [
+                -2.042440672366894,
+                -1.9575593276331056
+              ],
+              "union_bound_ci": [
                 -2.0995612819216314,
                 -1.9004387180783686
               ],
+              "squared_range_over_shots": 0.0009765625,
               "confidence": 0.95,
               "exact_prepared_state": -2.0,
               "error_to_prepared_state": 0.0
@@ -369,9 +395,14 @@
               "standard_error": 0.0,
               "exact_sampling_standard_error": 1.8570465576400407e-10,
               "ci": [
+                -2.042440672366894,
+                -1.9575593276331056
+              ],
+              "union_bound_ci": [
                 -2.0995612819216314,
                 -1.9004387180783686
               ],
+              "squared_range_over_shots": 0.0009765625,
               "confidence": 0.95,
               "exact_prepared_state": -2.0,
               "error_to_prepared_state": 0.0
@@ -506,6 +537,11 @@
                 0.4963581239619507,
                 0.5069682920536743
               ],
+              "union_bound_ci": [
+                0.4963581239619507,
+                0.5069682920536743
+              ],
+              "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.4999999975616074,
               "error_to_prepared_state": 0.001663210446205099
@@ -515,9 +551,14 @@
               "standard_error": 0.0,
               "exact_sampling_standard_error": 4.642616394100102e-11,
               "ci": [
+                -2.0106101680917234,
+                -1.9893898319082763
+              ],
+              "union_bound_ci": [
                 -2.024890320480408,
                 -1.9751096795195922
               ],
+              "squared_range_over_shots": 6.103515625e-05,
               "confidence": 0.95,
               "exact_prepared_state": -2.0,
               "error_to_prepared_state": 0.0
@@ -527,9 +568,14 @@
               "standard_error": 0.0,
               "exact_sampling_standard_error": 4.642616394100102e-11,
               "ci": [
+                -2.0106101680917234,
+                -1.9893898319082763
+              ],
+              "union_bound_ci": [
                 -2.024890320480408,
                 -1.9751096795195922
               ],
+              "squared_range_over_shots": 6.103515625e-05,
               "confidence": 0.95,
               "exact_prepared_state": -2.0,
               "error_to_prepared_state": 0.0
@@ -664,6 +710,11 @@
                 0.3877749052662113,
                 0.5575375947337887
               ],
+              "union_bound_ci": [
+                0.3877749052662113,
+                0.5575375947337887
+              ],
+              "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.4379826357034067,
               "error_to_prepared_state": 0.034673614296593325
@@ -673,9 +724,14 @@
               "standard_error": 0.009555803515198417,
               "exact_sampling_standard_error": 0.007752170537074216,
               "ci": [
+                -2.146325189467577,
+                -1.8067998105324226
+              ],
+              "union_bound_ci": [
                 -2.3748076276865255,
                 -1.5783173723134745
               ],
+              "squared_range_over_shots": 0.015625,
               "confidence": 0.95,
               "exact_prepared_state": -1.9845557549263404,
               "error_to_prepared_state": 0.007993254926340398
@@ -685,9 +741,14 @@
               "standard_error": 0.018321528314468743,
               "exact_sampling_standard_error": 0.01733438097491915,
               "ci": [
+                -1.915221749990938,
+                -1.565247000009062
+              ],
+              "union_bound_ci": [
                 -2.1980035211396425,
                 -1.2824652288603575
               ],
+              "squared_range_over_shots": 0.0166015625,
               "confidence": 0.95,
               "exact_prepared_state": -1.765564437074637,
               "error_to_prepared_state": 0.02533006207463706
@@ -822,6 +883,11 @@
                 0.42213903881655285,
                 0.46457971118344715
               ],
+              "union_bound_ci": [
+                0.42213903881655285,
+                0.46457971118344715
+              ],
+              "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.4379826357034067,
               "error_to_prepared_state": 0.005376739296593325
@@ -831,9 +897,14 @@
               "standard_error": 0.0017744035656179062,
               "exact_sampling_standard_error": 0.001938042634268554,
               "ci": [
+                -2.029501219241894,
+                -1.9446198745081056
+              ],
+              "union_bound_ci": [
                 -2.0866218287966314,
                 -1.8874992649533686
               ],
+              "squared_range_over_shots": 0.0009765625,
               "confidence": 0.95,
               "exact_prepared_state": -1.9845557549263404,
               "error_to_prepared_state": -0.0025047919486596015
@@ -843,9 +914,14 @@
               "standard_error": 0.004267922783731047,
               "exact_sampling_standard_error": 0.004333595243729787,
               "ci": [
+                -1.8091277031227346,
+                -1.7216340156272654
+              ],
+              "union_bound_ci": [
                 -1.8798231459099106,
                 -1.6509385728400894
               ],
+              "squared_range_over_shots": 0.00103759765625,
               "confidence": 0.95,
               "exact_prepared_state": -1.765564437074637,
               "error_to_prepared_state": 0.00018357769963706083
@@ -980,6 +1056,11 @@
                 0.4314930116572632,
                 0.4421031797489868
               ],
+              "union_bound_ci": [
+                0.4314930116572632,
+                0.4421031797489868
+              ],
+              "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.4379826357034067,
               "error_to_prepared_state": -0.0011845400002816753
@@ -989,9 +1070,14 @@
               "standard_error": 0.0004901655212876469,
               "exact_sampling_standard_error": 0.0004845106585671385,
               "ci": [
+                -1.9948020626229737,
+                -1.9735817264395263
+              ],
+              "union_bound_ci": [
                 -2.009082215011658,
                 -1.9593015740508422
               ],
+              "squared_range_over_shots": 6.103515625e-05,
               "confidence": 0.95,
               "exact_prepared_state": -1.9845557549263404,
               "error_to_prepared_state": 0.00036386039509039847
@@ -1001,9 +1087,14 @@
               "standard_error": 0.0010856855620575206,
               "exact_sampling_standard_error": 0.0010833988109324468,
               "ci": [
+                -1.776729557616621,
+                -1.754856135742754
+              ],
+              "union_bound_ci": [
                 -1.7944034183134152,
                 -1.7371822750459598
               ],
+              "squared_range_over_shots": 6.4849853515625e-05,
               "confidence": 0.95,
               "exact_prepared_state": -1.765564437074637,
               "error_to_prepared_state": -0.00022840960505043917
@@ -1138,6 +1229,11 @@
                 0.2744936552662113,
                 0.4442563447337887
               ],
+              "union_bound_ci": [
+                0.2744936552662113,
+                0.4442563447337887
+              ],
+              "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.37873219353173726,
               "error_to_prepared_state": -0.01935719353173726
@@ -1147,9 +1243,14 @@
               "standard_error": 0.01893545942866214,
               "exact_sampling_standard_error": 0.015158475808532865,
               "ci": [
+                -2.076012689467577,
+                -1.7364873105324226
+              ],
+              "union_bound_ci": [
                 -2.3044951276865255,
                 -1.5080048723134745
               ],
+              "squared_range_over_shots": 0.015625,
               "confidence": 0.95,
               "exact_prepared_state": -1.9402850063405674,
               "error_to_prepared_state": 0.03403500634056744
@@ -1159,9 +1260,14 @@
               "standard_error": 0.035516098169234005,
               "exact_sampling_standard_error": 0.03389538378051512,
               "ci": [
+                -1.7366754568463454,
+                -1.3570745431536546
+              ],
+              "union_bound_ci": [
                 -2.055507384599603,
                 -1.0382426154003972
               ],
+              "squared_range_over_shots": 0.01953125,
               "confidence": 0.95,
               "exact_prepared_state": -1.5615528128088303,
               "error_to_prepared_state": 0.014677812808830293
@@ -1296,6 +1402,11 @@
                 0.35524450756655285,
                 0.39768517993344715
               ],
+              "union_bound_ci": [
+                0.35524450756655285,
+                0.39768517993344715
+              ],
+              "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.37873219353173726,
               "error_to_prepared_state": -0.00226734978173726
@@ -1305,9 +1416,14 @@
               "standard_error": 0.003920194633896961,
               "exact_sampling_standard_error": 0.0037896189521332163,
               "ci": [
+                -1.9784758286168944,
+                -1.8935944838831056
+              ],
+              "union_bound_ci": [
                 -2.0355964381716314,
                 -1.8364738743283686
               ],
+              "squared_range_over_shots": 0.0009765625,
               "confidence": 0.95,
               "exact_prepared_state": -1.9402850063405674,
               "error_to_prepared_state": 0.004249850090567442
@@ -1317,9 +1433,14 @@
               "standard_error": 0.008525917135742989,
               "exact_sampling_standard_error": 0.00847384594512878,
               "ci": [
+                -1.6070204267115864,
+                -1.5121201982884136
+              ],
+              "union_bound_ci": [
                 -1.6867284086499006,
                 -1.4324122163500994
               ],
+              "squared_range_over_shots": 0.001220703125,
               "confidence": 0.95,
               "exact_prepared_state": -1.5615528128088303,
               "error_to_prepared_state": 0.001982500308830293
@@ -1454,6 +1575,11 @@
                 0.3734028016963257,
                 0.3840129697880493
               ],
+              "union_bound_ci": [
+                0.3734028016963257,
+                0.3840129697880493
+              ],
+              "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.37873219353173726,
               "error_to_prepared_state": -2.4307789549760095e-05
@@ -1463,9 +1589,14 @@
               "standard_error": 0.0009549482853344255,
               "exact_sampling_standard_error": 0.0009474047380333041,
               "ci": [
+                -1.9499259639901612,
+                -1.9287056278067138
+              ],
+              "union_bound_ci": [
                 -1.9642061163788453,
                 -1.9144254754180297
               ],
+              "squared_range_over_shots": 6.103515625e-05,
               "confidence": 0.95,
               "exact_prepared_state": -1.9402850063405674,
               "error_to_prepared_state": 0.0009692104421299419
@@ -1475,9 +1606,14 @@
               "standard_error": 0.0021218374996080365,
               "exact_sampling_standard_error": 0.002118461486282195,
               "ci": [
+                -1.5724704387091466,
+                -1.5487453816033534
+              ],
+              "union_bound_ci": [
                 -1.5923974341937253,
                 -1.5288183861187747
               ],
+              "squared_range_over_shots": 7.62939453125e-05,
               "confidence": 0.95,
               "exact_prepared_state": -1.5615528128088303,
               "error_to_prepared_state": 0.0009449026525802928
@@ -1612,6 +1748,11 @@
                 0.16511865526621128,
                 0.3348813447337887
               ],
+              "union_bound_ci": [
+                0.16511865526621128,
+                0.3348813447337887
+              ],
+              "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.2763932035540129,
               "error_to_prepared_state": -0.026393203554012923
@@ -1621,9 +1762,14 @@
               "standard_error": 0.027425691298461913,
               "exact_sampling_standard_error": 0.0279508495557484,
               "ci": [
+                -1.9666376894675774,
+                -1.6271123105324226
+              ],
+              "union_bound_ci": [
                 -2.1951201276865255,
                 -1.3986298723134745
               ],
+              "squared_range_over_shots": 0.015625,
               "confidence": 0.95,
               "exact_prepared_state": -1.788854384607815,
               "error_to_prepared_state": -0.008020615392184904
@@ -1633,9 +1779,14 @@
               "standard_error": 0.06077289703302587,
               "exact_sampling_standard_error": 0.0625,
               "ci": [
+                -1.53695569782998,
+                -1.05679430217002
+              ],
+              "union_bound_ci": [
                 -1.9072338615195235,
                 -0.6865161384804765
               ],
+              "squared_range_over_shots": 0.03125,
               "confidence": 0.95,
               "exact_prepared_state": -1.2360679774997894,
               "error_to_prepared_state": -0.06080702250021064
@@ -1770,6 +1921,11 @@
                 0.25026403881655285,
                 0.29270471118344715
               ],
+              "union_bound_ci": [
+                0.25026403881655285,
+                0.29270471118344715
+              ],
+              "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.2763932035540129,
               "error_to_prepared_state": -0.004908828554012923
@@ -1779,9 +1935,14 @@
               "standard_error": 0.006942952057422313,
               "exact_sampling_standard_error": 0.0069877123889371,
               "ci": [
+                -1.8341887192418944,
+                -1.7493073745081056
+              ],
+              "union_bound_ci": [
                 -1.8913093287966314,
                 -1.6921867649533686
               ],
+              "squared_range_over_shots": 0.0009765625,
               "confidence": 0.95,
               "exact_prepared_state": -1.788854384607815,
               "error_to_prepared_state": -0.0028936622671849044
@@ -1791,9 +1952,14 @@
               "standard_error": 0.015536951936045254,
               "exact_sampling_standard_error": 0.015625,
               "ci": [
+                -1.308799471332495,
+                -1.188759122417505
+              ],
+              "union_bound_ci": [
                 -1.401369012254881,
                 -1.096189581495119
               ],
+              "squared_range_over_shots": 0.001953125,
               "confidence": 0.95,
               "exact_prepared_state": -1.2360679774997894,
               "error_to_prepared_state": -0.012711319375210639
@@ -1928,6 +2094,11 @@
                 0.2694904481807007,
                 0.2801006162724243
               ],
+              "union_bound_ci": [
+                0.2694904481807007,
+                0.2801006162724243
+              ],
+              "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.2763932035540129,
               "error_to_prepared_state": -0.0015976713274504228
@@ -1937,9 +2108,14 @@
               "standard_error": 0.0017439137185033232,
               "exact_sampling_standard_error": 0.001746928097234275,
               "ci": [
+                -1.8002372432870362,
+                -1.7790169071035888
+              ],
+              "union_bound_ci": [
                 -1.8145173956757203,
                 -1.7647367547149047
               ],
+              "squared_range_over_shots": 6.103515625e-05,
               "confidence": 0.95,
               "exact_prepared_state": -1.788854384607815,
               "error_to_prepared_state": -0.0007726905874974044
@@ -1949,9 +2125,14 @@
               "standard_error": 0.0038993187235261727,
               "exact_sampling_standard_error": 0.00390625,
               "ci": [
+                -1.2550410543565613,
+                -1.2250309671278137
+              ],
+              "union_bound_ci": [
                 -1.2781834395871576,
                 -1.2018885818972174
               ],
+              "squared_range_over_shots": 0.0001220703125,
               "confidence": 0.95,
               "exact_prepared_state": -1.2360679774997894,
               "error_to_prepared_state": -0.003968033242398139
@@ -2086,6 +2267,11 @@
                 0.06746240526621129,
                 0.23722509473378872
               ],
+              "union_bound_ci": [
+                0.06746240526621129,
+                0.23722509473378872
+              ],
+              "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.1464466127177122,
               "error_to_prepared_state": 0.005897137282287801
@@ -2095,9 +2281,14 @@
               "standard_error": 0.044620653288674386,
               "exact_sampling_standard_error": 0.044194173410285996,
               "ci": [
+                -1.5721064394675774,
+                -1.2325810605324226
+              ],
+              "union_bound_ci": [
                 -1.8005888776865255,
                 -1.0040986223134745
               ],
+              "squared_range_over_shots": 0.015625,
               "confidence": 0.95,
               "exact_prepared_state": -1.4142135756170384,
               "error_to_prepared_state": 0.011869825617038421
@@ -2107,9 +2298,14 @@
               "standard_error": 0.10046690603010043,
               "exact_sampling_standard_error": 0.09882117743553108,
               "ci": [
+                -1.1725696636926908,
+                -0.41336783630730933
+              ],
+              "union_bound_ci": [
                 -1.6067805653593645,
                 0.020843065359364532
               ],
+              "squared_range_over_shots": 0.078125,
               "confidence": 0.95,
               "exact_prepared_state": -0.8284271247461896,
               "error_to_prepared_state": 0.035458374746189625
@@ -2244,6 +2440,11 @@
                 0.12306677319155282,
                 0.16550744555844718
               ],
+              "union_bound_ci": [
+                0.12306677319155282,
+                0.16550744555844718
+              ],
+              "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.1464466127177122,
               "error_to_prepared_state": -0.002159503342712199
@@ -2253,9 +2454,14 @@
               "standard_error": 0.011172868214852985,
               "exact_sampling_standard_error": 0.011048543352571499,
               "ci": [
+                -1.4406340317418944,
+                -1.3557526870081056
+              ],
+              "union_bound_ci": [
                 -1.4977546412966314,
                 -1.2986320774533686
               ],
+              "squared_range_over_shots": 0.0009765625,
               "confidence": 0.95,
               "exact_prepared_state": -1.4142135756170384,
               "error_to_prepared_state": 0.01602021624203842
@@ -2265,9 +2471,14 @@
               "standard_error": 0.024642422008295937,
               "exact_sampling_standard_error": 0.02470529435888277,
               "ci": [
+                -0.9159451502981727,
+                -0.7261446934518273
+              ],
+              "union_bound_ci": [
                 -1.024497875714841,
                 -0.6175919680351589
               ],
+              "squared_range_over_shots": 0.0048828125,
               "confidence": 0.95,
               "exact_prepared_state": -0.8284271247461896,
               "error_to_prepared_state": 0.007382202871189625
@@ -2402,6 +2613,11 @@
                 0.1409809266963257,
                 0.1515910947880493
               ],
+              "union_bound_ci": [
+                0.1409809266963257,
+                0.1515910947880493
+              ],
+              "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.1464466127177122,
               "error_to_prepared_state": -0.00016060197552469901
@@ -2411,9 +2627,14 @@
               "standard_error": 0.002760493464792847,
               "exact_sampling_standard_error": 0.0027621358381428747,
               "ci": [
+                -1.4256644893807862,
+                -1.4044441531973388
+              ],
+              "union_bound_ci": [
                 -1.4399446417694703,
                 -1.3901640008086547
               ],
+              "squared_range_over_shots": 6.103515625e-05,
               "confidence": 0.95,
               "exact_prepared_state": -1.4142135756170384,
               "error_to_prepared_state": -0.0008407456720240791
@@ -2423,9 +2644,14 @@
               "standard_error": 0.006173381288593879,
               "exact_sampling_standard_error": 0.0061763235897206925,
               "ci": [
+                -0.8536353354261057,
+                -0.8061852212145193
+              ],
+              "union_bound_ci": [
                 -0.8807735167802728,
                 -0.7790470398603522
               ],
+              "squared_range_over_shots": 0.00030517578125,
               "confidence": 0.95,
               "exact_prepared_state": -0.8284271247461896,
               "error_to_prepared_state": -0.0014831535741228752
@@ -2560,6 +2786,11 @@
                 -0.002850094733788708,
                 0.16691259473378872
               ],
+              "union_bound_ci": [
+                -0.002850094733788708,
+                0.16691259473378872
+              ],
+              "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.0839748503185793,
               "error_to_prepared_state": -0.0019436003185793055
@@ -2569,9 +2800,14 @@
               "standard_error": 0.050175497192708904,
               "exact_sampling_standard_error": 0.05200314371017759,
               "ci": [
+                -1.3611689394675774,
+                -1.0216435605324226
+              ],
+              "union_bound_ci": [
                 -1.5896513776865255,
                 -0.7931611223134745
               ],
+              "squared_range_over_shots": 0.015625,
               "confidence": 0.95,
               "exact_prepared_state": -1.1094003773754648,
               "error_to_prepared_state": -0.08200587262453518
@@ -2581,9 +2817,14 @@
               "standard_error": 0.11466677206567737,
               "exact_sampling_standard_error": 0.11628256255375925,
               "ci": [
+                -1.2360555104334219,
+                -0.16238198956657812
+              ],
+              "union_bound_ci": [
                 -1.7164835191992056,
                 0.3180460191992056
               ],
+              "squared_range_over_shots": 0.15625,
               "confidence": 0.95,
               "exact_prepared_state": -0.605551275463989,
               "error_to_prepared_state": -0.09366747453601099
@@ -2718,6 +2959,11 @@
                 0.06007849194155282,
                 0.10251916430844718
               ],
+              "union_bound_ci": [
+                0.06007849194155282,
+                0.10251916430844718
+              ],
+              "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.0839748503185793,
               "error_to_prepared_state": -0.0026760221935793055
@@ -2727,9 +2973,14 @@
               "standard_error": 0.0130497470976704,
               "exact_sampling_standard_error": 0.013000785927544398,
               "ci": [
+                -1.1420500473668944,
+                -1.0571687026331056
+              ],
+              "union_bound_ci": [
                 -1.1991706569216314,
                 -1.0000480930783686
               ],
+              "squared_range_over_shots": 0.0009765625,
               "confidence": 0.95,
               "exact_prepared_state": -1.1094003773754648,
               "error_to_prepared_state": 0.009791002375464819
@@ -2739,9 +2990,14 @@
               "standard_error": 0.028755962549195855,
               "exact_sampling_standard_error": 0.029070640638439813,
               "ci": [
+                -0.7460255963583555,
+                -0.47760721614164453
+              ],
+              "union_bound_ci": [
                 -0.8661325985498014,
                 -0.3575002139501986
               ],
+              "squared_range_over_shots": 0.009765625,
               "confidence": 0.95,
               "exact_prepared_state": -0.605551275463989,
               "error_to_prepared_state": -0.006265130786010986
@@ -2876,6 +3132,11 @@
                 0.08006784075882571,
                 0.09067800885054929
               ],
+              "union_bound_ci": [
+                0.08006784075882571,
+                0.09067800885054929
+              ],
+              "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.0839748503185793,
               "error_to_prepared_state": 0.0013980744861081945
@@ -2885,9 +3146,14 @@
               "standard_error": 0.0032517127032767375,
               "exact_sampling_standard_error": 0.0032501964818860995,
               "ci": [
+                -1.1188560177010987,
+                -1.0976356815176513
+              ],
+              "union_bound_ci": [
                 -1.1331361700897828,
                 -1.0833555291289672
               ],
+              "squared_range_over_shots": 6.103515625e-05,
               "confidence": 0.95,
               "exact_prepared_state": -1.1094003773754648,
               "error_to_prepared_state": 0.001154527766089819
@@ -2897,9 +3163,14 @@
               "standard_error": 0.007312135508433905,
               "exact_sampling_standard_error": 0.007267660159609953,
               "ci": [
+                -0.6295605983083389,
+                -0.5624560032541611
+              ],
+              "union_bound_ci": [
                 -0.6595873488562003,
                 -0.5324292527062997
               ],
+              "squared_range_over_shots": 0.0006103515625,
               "confidence": 0.95,
               "exact_prepared_state": -0.605551275463989,
               "error_to_prepared_state": 0.009542974682739014
@@ -3034,6 +3305,11 @@
                 -0.018475094733788708,
                 0.15128759473378872
               ],
+              "union_bound_ci": [
+                -0.018475094733788708,
+                0.15128759473378872
+              ],
+              "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.05278640618919383,
               "error_to_prepared_state": 0.013619843810806172
@@ -3043,9 +3319,14 @@
               "standard_error": 0.05599528299762462,
               "exact_sampling_standard_error": 0.05590169922635077,
               "ci": [
+                -1.0642939394675774,
+                -0.7247685605324226
+              ],
+              "union_bound_ci": [
                 -1.2927763776865255,
                 -0.4962861223134744
               ],
+              "squared_range_over_shots": 0.015625,
               "confidence": 0.95,
               "exact_prepared_state": -0.8944272045131296,
               "error_to_prepared_state": -0.0001040454868703744
@@ -3055,9 +3336,14 @@
               "standard_error": 0.13673100435277072,
               "exact_sampling_standard_error": 0.1250000014163968,
               "ci": [
+                -1.0632307499637523,
+                0.33666824996375244
+              ],
+              "union_bound_ci": [
                 -1.583998973039047,
                 0.8574364730390469
               ],
+              "squared_range_over_shots": 0.265625,
               "confidence": 0.95,
               "exact_prepared_state": -0.472135954999579,
               "error_to_prepared_state": 0.108854704999579
@@ -3192,6 +3478,11 @@
                 0.03126989819155282,
                 0.07371057055844718
               ],
+              "union_bound_ci": [
+                0.03126989819155282,
+                0.07371057055844718
+              ],
+              "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.05278640618919383,
               "error_to_prepared_state": -0.00029617181419382826
@@ -3201,9 +3492,14 @@
               "standard_error": 0.014012537506290288,
               "exact_sampling_standard_error": 0.013975424806587693,
               "ci": [
+                -0.9272062973668943,
+                -0.8423249526331057
+              ],
+              "union_bound_ci": [
                 -0.9843269069216314,
                 -0.7852043430783686
               ],
+              "squared_range_over_shots": 0.0009765625,
               "confidence": 0.95,
               "exact_prepared_state": -0.8944272045131296,
               "error_to_prepared_state": 0.009661579513129626
@@ -3213,9 +3509,14 @@
               "standard_error": 0.03120337327596185,
               "exact_sampling_standard_error": 0.0312500003540992,
               "ci": [
+                -0.6398311249909381,
+                -0.2898563750090619
+              ],
+              "union_bound_ci": [
                 -0.7700231807597617,
                 -0.15966431924023827
               ],
+              "squared_range_over_shots": 0.0166015625,
               "confidence": 0.95,
               "exact_prepared_state": -0.472135954999579,
               "error_to_prepared_state": 0.0072922049995789995
@@ -3350,6 +3651,11 @@
                 0.046879974547888205,
                 0.057490142639611795
               ],
+              "union_bound_ci": [
+                0.046879974547888205,
+                0.057490142639611795
+              ],
+              "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.05278640618919383,
               "error_to_prepared_state": -0.0006013475954438283
@@ -3359,9 +3665,14 @@
               "standard_error": 0.003493651922411195,
               "exact_sampling_standard_error": 0.003493856201646923,
               "ci": [
+                -0.9052024532479735,
+                -0.8839821170645265
+              ],
+              "union_bound_ci": [
                 -0.9194826056366578,
                 -0.8697019646758422
               ],
+              "squared_range_over_shots": 6.103515625e-05,
               "confidence": 0.95,
               "exact_prepared_state": -0.8944272045131296,
               "error_to_prepared_state": -0.0001650806431203744
@@ -3371,9 +3682,14 @@
               "standard_error": 0.007778744026489712,
               "exact_sampling_standard_error": 0.0078125000885248,
               "ci": [
+                -0.5208586601539845,
+                -0.4333649726585155
+              ],
+              "union_bound_ci": [
                 -0.5534066740961905,
                 -0.40081695871630957
               ],
+              "squared_range_over_shots": 0.00103759765625,
               "confidence": 0.95,
               "exact_prepared_state": -0.472135954999579,
               "error_to_prepared_state": -0.0049758614066710005
@@ -3612,9 +3928,14 @@
               "standard_error": 0.05420644013460881,
               "exact_sampling_standard_error": 0.05412658773652741,
               "ci": [
+                0.31391869830630903,
+                0.607956301693691
+              ],
+              "union_bound_ci": [
                 0.02198566648208211,
                 0.8998893335179179
               ],
+              "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.4999999975616074,
               "error_to_prepared_state": -0.0390624975616074
@@ -3624,9 +3945,14 @@
               "standard_error": 0.0,
               "exact_sampling_standard_error": 1.050504171109126e-09,
               "ci": [
+                -2.2400806978299803,
+                -1.75991930217002
+              ],
+              "union_bound_ci": [
                 -2.5632036607232895,
                 -1.4367963392767105
               ],
+              "squared_range_over_shots": 0.03125,
               "confidence": 0.95,
               "exact_prepared_state": -2.0,
               "error_to_prepared_state": 0.0
@@ -3636,9 +3962,14 @@
               "standard_error": 0.0,
               "exact_sampling_standard_error": 1.050504171109126e-09,
               "ci": [
+                -2.2400806978299803,
+                -1.75991930217002
+              ],
+              "union_bound_ci": [
                 -2.5632036607232895,
                 -1.4367963392767105
               ],
+              "squared_range_over_shots": 0.03125,
               "confidence": 0.95,
               "exact_prepared_state": -2.0,
               "error_to_prepared_state": 0.0
@@ -3875,9 +4206,14 @@
               "standard_error": 0.013532325825165758,
               "exact_sampling_standard_error": 0.013531646934131853,
               "ci": [
+                0.44688787770157723,
+                0.5203972785484228
+              ],
+              "union_bound_ci": [
                 0.37390461974552053,
                 0.5933805365044795
               ],
+              "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.4999999975616074,
               "error_to_prepared_state": -0.0163574194366074
@@ -3887,9 +4223,14 @@
               "standard_error": 0.0,
               "exact_sampling_standard_error": 2.626260427772815e-10,
               "ci": [
+                -2.060020174457495,
+                -1.939979825542505
+              ],
+              "union_bound_ci": [
                 -2.1408009151808223,
                 -1.8591990848191777
               ],
+              "squared_range_over_shots": 0.001953125,
               "confidence": 0.95,
               "exact_prepared_state": -2.0,
               "error_to_prepared_state": 0.0
@@ -3899,9 +4240,14 @@
               "standard_error": 0.0,
               "exact_sampling_standard_error": 2.626260427772815e-10,
               "ci": [
+                -2.060020174457495,
+                -1.939979825542505
+              ],
+              "union_bound_ci": [
                 -2.1408009151808223,
                 -1.8591990848191777
               ],
+              "squared_range_over_shots": 0.001953125,
               "confidence": 0.95,
               "exact_prepared_state": -2.0,
               "error_to_prepared_state": 0.0
@@ -4138,9 +4484,14 @@
               "standard_error": 0.003382891483013229,
               "exact_sampling_standard_error": 0.0033829117335329633,
               "ci": [
+                0.4994172819253943,
+                0.5177946321371056
+              ],
+              "union_bound_ci": [
                 0.4811714674363801,
                 0.5360404466261198
               ],
+              "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.4999999975616074,
               "error_to_prepared_state": 0.008605959469642599
@@ -4150,9 +4501,14 @@
               "standard_error": 0.0,
               "exact_sampling_standard_error": 6.565651069432037e-11,
               "ci": [
+                -2.015005043614374,
+                -1.9849949563856262
+              ],
+              "union_bound_ci": [
                 -2.0352002287952056,
                 -1.9647997712047944
               ],
+              "squared_range_over_shots": 0.0001220703125,
               "confidence": 0.95,
               "exact_prepared_state": -2.0,
               "error_to_prepared_state": 0.0
@@ -4162,9 +4518,14 @@
               "standard_error": 0.0,
               "exact_sampling_standard_error": 6.565651069432037e-11,
               "ci": [
+                -2.015005043614374,
+                -1.9849949563856262
+              ],
+              "union_bound_ci": [
                 -2.0352002287952056,
                 -1.9647997712047944
               ],
+              "squared_range_over_shots": 0.0001220703125,
               "confidence": 0.95,
               "exact_prepared_state": -2.0,
               "error_to_prepared_state": 0.0
@@ -4401,9 +4762,14 @@
               "standard_error": 0.054152108940867694,
               "exact_sampling_standard_error": 0.053987623238951996,
               "ci": [
+                0.33344994830630903,
+                0.627487551693691
+              ],
+              "union_bound_ci": [
                 0.04151691648208211,
                 0.9194205835179179
               ],
+              "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.4379826357034067,
               "error_to_prepared_state": 0.042486114296593325
@@ -4413,9 +4779,14 @@
               "standard_error": 0.011048543456039806,
               "exact_sampling_standard_error": 0.010963224711359477,
               "ci": [
+                -2.2244556978299803,
+                -1.74429430217002
+              ],
+              "union_bound_ci": [
                 -2.5475786607232895,
                 -1.4211713392767105
               ],
+              "squared_range_over_shots": 0.03125,
               "confidence": 0.95,
               "exact_prepared_state": -1.9845557549263404,
               "error_to_prepared_state": 0.00018075492634039847
@@ -4425,9 +4796,14 @@
               "standard_error": 0.02924351275387245,
               "exact_sampling_standard_error": 0.029135170530125962,
               "ci": [
+                -1.9952230287709383,
+                -1.4930582212290617
+              ],
+              "union_bound_ci": [
                 -2.5855535980465305,
                 -0.9027276519534695
               ],
+              "squared_range_over_shots": 0.0341796875,
               "confidence": 0.95,
               "exact_prepared_state": -1.765564437074637,
               "error_to_prepared_state": 0.02142381207463706
@@ -4664,9 +5040,14 @@
               "standard_error": 0.013499930256753815,
               "exact_sampling_standard_error": 0.013496905809737999,
               "ci": [
+                0.40318670582657723,
+                0.47669610667342277
+              ],
+              "union_bound_ci": [
                 0.33020344787052053,
                 0.5496793646294795
               ],
+              "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.4379826357034067,
               "error_to_prepared_state": 0.0019587705465933247
@@ -4676,9 +5057,14 @@
               "standard_error": 0.0023882301589129014,
               "exact_sampling_standard_error": 0.0027408061778398693,
               "ci": [
+                -2.048301424457495,
+                -1.928261075542505
+              ],
+              "union_bound_ci": [
                 -2.1290821651808223,
                 -1.8474803348191777
               ],
+              "squared_range_over_shots": 0.001953125,
               "confidence": 0.95,
               "exact_prepared_state": -1.9845557549263404,
               "error_to_prepared_state": -0.0037254950736596015
@@ -4688,9 +5074,14 @@
               "standard_error": 0.0071600050646801515,
               "exact_sampling_standard_error": 0.007283792632531491,
               "ci": [
+                -1.8310811478177345,
+                -1.7055399459322655
+              ],
+              "union_bound_ci": [
                 -1.9786637901366326,
                 -1.5579573036133674
               ],
+              "squared_range_over_shots": 0.00213623046875,
               "confidence": 0.95,
               "exact_prepared_state": -1.765564437074637,
               "error_to_prepared_state": -0.002746109800362939
@@ -4927,9 +5318,14 @@
               "standard_error": 0.003374702349928882,
               "exact_sampling_standard_error": 0.0033742264524344997,
               "ci": [
+                0.4296693571207068,
+                0.4480467073324182
+              ],
+              "union_bound_ci": [
                 0.4114235426316926,
                 0.4662925218214324
               ],
+              "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.4379826357034067,
               "error_to_prepared_state": 0.0008753965231558247
@@ -4939,9 +5335,14 @@
               "standard_error": 0.0006878482618011097,
               "exact_sampling_standard_error": 0.0006852015444599673,
               "ci": [
+                -1.9994410787706238,
+                -1.9694309915418762
+              ],
+              "union_bound_ci": [
                 -2.0196362639514556,
                 -1.9492358063610444
               ],
+              "squared_range_over_shots": 0.0001220703125,
               "confidence": 0.95,
               "exact_prepared_state": -1.9845557549263404,
               "error_to_prepared_state": 0.00011971977009039847
@@ -4951,9 +5352,14 @@
               "standard_error": 0.0018221660788514003,
               "exact_sampling_standard_error": 0.0018209481581328726,
               "ci": [
+                -1.7806996692786523,
+                -1.7493143688072852
+              ],
+              "union_bound_ci": [
                 -1.817595329858377,
                 -1.7124187082275606
               ],
+              "squared_range_over_shots": 0.000133514404296875,
               "confidence": 0.95,
               "exact_prepared_state": -1.765564437074637,
               "error_to_prepared_state": 0.0005574180316683108
@@ -5190,9 +5596,14 @@
               "standard_error": 0.05296200461370181,
               "exact_sampling_standard_error": 0.053593307910508106,
               "ci": [
+                0.36860619830630903,
+                0.662643801693691
+              ],
+              "union_bound_ci": [
                 0.07667316648208211,
                 0.9545768335179179
               ],
+              "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.37873219353173726,
               "error_to_prepared_state": 0.13689280646826274
@@ -5202,9 +5613,14 @@
               "standard_error": 0.01903591876553458,
               "exact_sampling_standard_error": 0.021437322073331645,
               "ci": [
+                -2.1932056978299803,
+                -1.71304430217002
+              ],
+              "union_bound_ci": [
                 -2.5163286607232895,
                 -1.3899213392767105
               ],
+              "squared_range_over_shots": 0.03125,
               "confidence": 0.95,
               "exact_prepared_state": -1.9402850063405674,
               "error_to_prepared_state": -0.012839993659432558
@@ -5214,9 +5630,14 @@
               "standard_error": 0.05627912700060124,
               "exact_sampling_standard_error": 0.05772175872637877,
               "ci": [
+                -1.7190195721827863,
+                -1.1559804278172137
+              ],
+              "union_bound_ci": [
                 -2.5083892384228568,
                 -0.366610761577143
               ],
+              "squared_range_over_shots": 0.04296875,
               "confidence": 0.95,
               "exact_prepared_state": -1.5615528128088303,
               "error_to_prepared_state": 0.12405281280883029
@@ -5453,9 +5874,14 @@
               "standard_error": 0.013406947303363278,
               "exact_sampling_standard_error": 0.013398326977627027,
               "ci": [
+                0.34654608082657723,
+                0.42005548167342277
+              ],
+              "union_bound_ci": [
                 0.27356282287052053,
                 0.49303873962947947
               ],
+              "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.37873219353173726,
               "error_to_prepared_state": 0.00456858771826274
@@ -5465,9 +5891,14 @@
               "standard_error": 0.005132813762020908,
               "exact_sampling_standard_error": 0.005359330518332911,
               "ci": [
+                -2.005332674457495,
+                -1.885292325542505
+              ],
+              "union_bound_ci": [
                 -2.0861134151808223,
                 -1.8045115848191777
               ],
+              "squared_range_over_shots": 0.001953125,
               "confidence": 0.95,
               "exact_prepared_state": -1.9402850063405674,
               "error_to_prepared_state": -0.005027493659432558
@@ -5477,9 +5908,14 @@
               "standard_error": 0.014355905165148978,
               "exact_sampling_standard_error": 0.014430439681594692,
               "ci": [
+                -1.6323916117956967,
+                -1.4916318257043033
+              ],
+              "union_bound_ci": [
                 -1.8297340283557142,
                 -1.2942894091442858
               ],
+              "squared_range_over_shots": 0.002685546875,
               "confidence": 0.95,
               "exact_prepared_state": -1.5615528128088303,
               "error_to_prepared_state": -0.0004589059411697072
@@ -5716,9 +6152,14 @@
               "standard_error": 0.003351274226223447,
               "exact_sampling_standard_error": 0.0033495817444067566,
               "ci": [
+                0.3699464567300818,
+                0.3883238069417932
+              ],
+              "union_bound_ci": [
                 0.3517006422410676,
                 0.4065696214308074
               ],
+              "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.37873219353173726,
               "error_to_prepared_state": 0.0004029383042002399
@@ -5728,9 +6169,14 @@
               "standard_error": 0.001371887414676347,
               "exact_sampling_standard_error": 0.0013398326295832278,
               "ci": [
+                -1.9523524557237488,
+                -1.9223423684950012
+              ],
+              "union_bound_ci": [
                 -1.9725476409045806,
                 -1.9021471833141694
               ],
+              "squared_range_over_shots": 0.0001220703125,
               "confidence": 0.95,
               "exact_prepared_state": -1.9402850063405674,
               "error_to_prepared_state": 0.002937594231192442
@@ -5740,9 +6186,14 @@
               "standard_error": 0.003621203393610599,
               "exact_sampling_standard_error": 0.003607609920398673,
               "ci": [
+                -1.5758072535348617,
+                -1.5406173070120133
+              ],
+              "union_bound_ci": [
                 -1.625142857674866,
                 -1.491281702872009
               ],
+              "squared_range_over_shots": 0.0001678466796875,
               "confidence": 0.95,
               "exact_prepared_state": -1.5615528128088303,
               "error_to_prepared_state": 0.003340532535392793
@@ -5979,9 +6430,14 @@
               "standard_error": 0.05304474274340554,
               "exact_sampling_standard_error": 0.052291251680161376,
               "ci": [
+                0.145949948306309,
+                0.43998755169369097
+              ],
+              "union_bound_ci": [
                 -0.1459830835179179,
                 0.7319205835179179
               ],
+              "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.2763932035540129,
               "error_to_prepared_state": 0.016575546445987077
@@ -5991,9 +6447,14 @@
               "standard_error": 0.04147913424549632,
               "exact_sampling_standard_error": 0.03952847052158938,
               "ci": [
+                -2.0057056978299803,
+                -1.52554430217002
+              ],
+              "union_bound_ci": [
                 -2.3288286607232895,
                 -1.2024213392767105
               ],
+              "squared_range_over_shots": 0.03125,
               "confidence": 0.95,
               "exact_prepared_state": -1.788854384607815,
               "error_to_prepared_state": 0.023229384607815096
@@ -6003,9 +6464,14 @@
               "standard_error": 0.11391004129843955,
               "exact_sampling_standard_error": 0.11180339883423975,
               "ci": [
+                -1.5592884136926908,
+                -0.8000865863073093
+              ],
+              "union_bound_ci": [
                 -2.70952926917551,
                 0.3501542691755102
               ],
+              "squared_range_over_shots": 0.078125,
               "confidence": 0.95,
               "exact_prepared_state": -1.2360679774997894,
               "error_to_prepared_state": 0.05638047749978936
@@ -6242,9 +6708,14 @@
               "standard_error": 0.013038425584280817,
               "exact_sampling_standard_error": 0.013072812920040344,
               "ci": [
+                0.25426092457657723,
+                0.32777032542342277
+              ],
+              "union_bound_ci": [
                 0.18127766662052053,
                 0.40075358337947947
               ],
+              "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.2763932035540129,
               "error_to_prepared_state": 0.014622421445987077
@@ -6254,9 +6725,14 @@
               "standard_error": 0.010035431961905119,
               "exact_sampling_standard_error": 0.009882117630397345,
               "ci": [
+                -1.841758455707495,
+                -1.721718106792505
+              ],
+              "union_bound_ci": [
                 -1.9225391964308223,
                 -1.6409373660691777
               ],
+              "squared_range_over_shots": 0.001953125,
               "confidence": 0.95,
               "exact_prepared_state": -1.788854384607815,
               "error_to_prepared_state": 0.007116103357815096
@@ -6266,9 +6742,14 @@
               "standard_error": 0.02794122512577681,
               "exact_sampling_standard_error": 0.027950849708559936,
               "ci": [
+                -1.2946072596731726,
+                -1.1048068028268274
+              ],
+              "union_bound_ci": [
                 -1.5821674735438775,
                 -0.8172465889561225
               ],
+              "squared_range_over_shots": 0.0048828125,
               "confidence": 0.95,
               "exact_prepared_state": -1.2360679774997894,
               "error_to_prepared_state": 0.03636094624978936
@@ -6505,9 +6986,14 @@
               "standard_error": 0.0032693479339175125,
               "exact_sampling_standard_error": 0.003268203230010086,
               "ci": [
+                0.2647218473550818,
+                0.2830991975667932
+              ],
+              "union_bound_ci": [
                 0.24647603286606762,
                 0.3013450120558074
               ],
+              "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.2763932035540129,
               "error_to_prepared_state": -0.002482681093075423
@@ -6517,9 +7003,14 @@
               "standard_error": 0.002468558555415759,
               "exact_sampling_standard_error": 0.002470529407599336,
               "ci": [
+                -1.8042201315049988,
+                -1.7742100442762512
+              ],
+              "union_bound_ci": [
                 -1.8244153166858306,
                 -1.7540148590954194
               ],
+              "squared_range_over_shots": 0.0001220703125,
               "confidence": 0.95,
               "exact_prepared_state": -1.788854384607815,
               "error_to_prepared_state": -0.0003607032828099044
@@ -6529,9 +7020,14 @@
               "standard_error": 0.006989157674109175,
               "exact_sampling_standard_error": 0.006987712427139984,
               "ci": [
+                -1.2651191000745432,
+                -1.2176689858629568
+              ],
+              "union_bound_ci": [
                 -1.3370091535422195,
                 -1.1457789323952805
               ],
+              "squared_range_over_shots": 0.00030517578125,
               "confidence": 0.95,
               "exact_prepared_state": -1.2360679774997894,
               "error_to_prepared_state": -0.005326065468960639
@@ -6768,9 +7264,14 @@
               "standard_error": 0.05102083284770473,
               "exact_sampling_standard_error": 0.04941058853267576,
               "ci": [
+                0.095168698306309,
+                0.38920630169369097
+              ],
+              "union_bound_ci": [
                 -0.1967643335179179,
                 0.6811393335179179
               ],
+              "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.1464466127177122,
               "error_to_prepared_state": 0.0957408872822878
@@ -6780,9 +7281,14 @@
               "standard_error": 0.0626267477104581,
               "exact_sampling_standard_error": 0.062499999414694876,
               "ci": [
+                -1.65414319782998,
+                -1.17398180217002
+              ],
+              "union_bound_ci": [
                 -1.9772661607232895,
                 -0.8508588392767106
               ],
+              "squared_range_over_shots": 0.03125,
               "confidence": 0.95,
               "exact_prepared_state": -1.4142135756170384,
               "error_to_prepared_state": 0.00015107561703842087
@@ -6792,9 +7298,14 @@
               "standard_error": 0.21347626491102983,
               "exact_sampling_standard_error": 0.2072890495736885,
               "ci": [
+                -1.0805063210449717,
+                0.1898813210449718
+              ],
+              "union_bound_ci": [
                 -2.893059330680816,
                 2.002434330680816
               ],
+              "squared_range_over_shots": 0.21875,
               "confidence": 0.95,
               "exact_prepared_state": -0.8284271247461896,
               "error_to_prepared_state": 0.3831146247461896
@@ -7031,9 +7542,14 @@
               "standard_error": 0.012383300230614099,
               "exact_sampling_standard_error": 0.01235264713316894,
               "ci": [
+                0.10533514332657726,
+                0.17884454417342274
+              ],
+              "union_bound_ci": [
                 0.03235188537052053,
                 0.25182780212947947
               ],
+              "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.1464466127177122,
               "error_to_prepared_state": -0.004356768967712199
@@ -7043,9 +7559,14 @@
               "standard_error": 0.015697707023320982,
               "exact_sampling_standard_error": 0.015624999853673719,
               "ci": [
+                -1.466758455707495,
+                -1.346718106792505
+              ],
+              "union_bound_ci": [
                 -1.5475391964308223,
                 -1.2659373660691777
               ],
+              "squared_range_over_shots": 0.001953125,
               "confidence": 0.95,
               "exact_prepared_state": -1.4142135756170384,
               "error_to_prepared_state": 0.007475294367038421
@@ -7055,9 +7576,14 @@
               "standard_error": 0.051961100829509534,
               "exact_sampling_standard_error": 0.05182226239342212,
               "ci": [
+                -0.9971773615112429,
+                -0.6795804509887571
+              ],
+              "union_bound_ci": [
                 -1.450315613920204,
                 -0.22644219857979597
               ],
+              "squared_range_over_shots": 0.013671875,
               "confidence": 0.95,
               "exact_prepared_state": -0.8284271247461896,
               "error_to_prepared_state": -0.009951781503810375
@@ -7294,9 +7820,14 @@
               "standard_error": 0.003085235798825177,
               "exact_sampling_standard_error": 0.003088161783292235,
               "ci": [
+                0.1407747038003943,
+                0.1591520540121057
+              ],
+              "union_bound_ci": [
                 0.12252888931138013,
                 0.17739786850111988
               ],
+              "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.1464466127177122,
               "error_to_prepared_state": 0.003516766188537801
@@ -7306,9 +7837,14 @@
               "standard_error": 0.003889451767614735,
               "exact_sampling_standard_error": 0.0039062499634184298,
               "ci": [
+                -1.4352931295518738,
+                -1.4052830423231262
+              ],
+              "union_bound_ci": [
                 -1.4554883147327056,
                 -1.3850878571422944
               ],
+              "squared_range_over_shots": 0.0001220703125,
               "confidence": 0.95,
               "exact_prepared_state": -1.4142135756170384,
               "error_to_prepared_state": -0.006074510320461579
@@ -7318,9 +7854,14 @@
               "standard_error": 0.012939347510683846,
               "exact_sampling_standard_error": 0.01295556559835553,
               "ci": [
+                -0.8601341841278107,
+                -0.7807349564971893
+              ],
+              "union_bound_ci": [
                 -0.9734187472300511,
                 -0.6674503933949489
               ],
+              "squared_range_over_shots": 0.0008544921875,
               "confidence": 0.95,
               "exact_prepared_state": -0.8284271247461896,
               "error_to_prepared_state": 0.007992554433689625
@@ -7557,9 +8098,14 @@
               "standard_error": 0.047925653586728054,
               "exact_sampling_standard_error": 0.04747215774603733,
               "ci": [
+                -0.088425051693691,
+                0.205612551693691
+              ],
+              "union_bound_ci": [
                 -0.3803580835179179,
                 0.4975455835179179
               ],
+              "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.0839748503185793,
               "error_to_prepared_state": -0.025381100318579305
@@ -7569,9 +8115,14 @@
               "standard_error": 0.07437157261506704,
               "exact_sampling_standard_error": 0.07354355112097027,
               "ci": [
+                -1.32601819782998,
+                -0.8458568021700199
+              ],
+              "union_bound_ci": [
                 -1.6491411607232895,
                 -0.5227338392767106
               ],
+              "squared_range_over_shots": 0.03125,
               "confidence": 0.95,
               "exact_prepared_state": -1.1094003773754648,
               "error_to_prepared_state": 0.02346287737546482
@@ -7581,9 +8132,14 @@
               "standard_error": 0.29701580529490396,
               "exact_sampling_standard_error": 0.29417420231864355,
               "ci": [
+                -1.6485750608853014,
+                0.17982506088530126
+              ],
+              "union_bound_ci": [
                 -4.100026892186122,
                 2.631276892186122
               ],
+              "squared_range_over_shots": 0.453125,
               "confidence": 0.95,
               "exact_prepared_state": -0.605551275463989,
               "error_to_prepared_state": -0.128823724536011
@@ -7820,9 +8376,14 @@
               "standard_error": 0.011916781538194206,
               "exact_sampling_standard_error": 0.011868039436509333,
               "ci": [
+                0.05138006520157725,
+                0.12488946604842274
+              ],
+              "union_bound_ci": [
                 -0.021603192754479472,
                 0.19787272400447947
               ],
+              "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.0839748503185793,
               "error_to_prepared_state": 0.0041599153064206945
@@ -7832,9 +8393,14 @@
               "standard_error": 0.01837642069371746,
               "exact_sampling_standard_error": 0.01838588778024257,
               "ci": [
+                -1.170860018207495,
+                -1.050819669292505
+              ],
+              "union_bound_ci": [
                 -1.2516407589308223,
                 -0.9700389285691776
               ],
+              "squared_range_over_shots": 0.001953125,
               "confidence": 0.95,
               "exact_prepared_state": -1.1094003773754648,
               "error_to_prepared_state": -0.001439466374535181
@@ -7844,9 +8410,14 @@
               "standard_error": 0.0738243956816319,
               "exact_sampling_standard_error": 0.07354355057966089,
               "ci": [
+                -0.8105812652213253,
+                -0.35348123477867466
+              ],
+              "union_bound_ci": [
                 -1.4234442230465305,
                 0.2593817230465305
               ],
+              "squared_range_over_shots": 0.0283203125,
               "confidence": 0.95,
               "exact_prepared_state": -0.605551275463989,
               "error_to_prepared_state": 0.023520025463989014
@@ -8083,9 +8654,14 @@
               "standard_error": 0.002964931756221015,
               "exact_sampling_standard_error": 0.002967009859127333,
               "ci": [
+                0.07177445965976931,
+                0.09015180987148069
+              ],
+              "union_bound_ci": [
                 0.05352864517075513,
                 0.10839762436049487
               ],
+              "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.0839748503185793,
               "error_to_prepared_state": -0.0030117155529543055
@@ -8095,9 +8671,14 @@
               "standard_error": 0.004605702507676395,
               "exact_sampling_standard_error": 0.004596471945060642,
               "ci": [
+                -1.1194056783799988,
+                -1.0893955911512512
+              ],
+              "union_bound_ci": [
                 -1.1396008635608306,
                 -1.0692004059704194
               ],
+              "squared_range_over_shots": 0.0001220703125,
               "confidence": 0.95,
               "exact_prepared_state": -1.1094003773754648,
               "error_to_prepared_state": 0.004999742609839819
@@ -8107,9 +8688,14 @@
               "standard_error": 0.018376126552539267,
               "exact_sampling_standard_error": 0.018385887644915222,
               "ci": [
+                -0.6757593299772063,
+                -0.5614843223665437
+              ],
+              "union_bound_ci": [
                 -0.8289750694335076,
                 -0.4082685829102424
               ],
+              "squared_range_over_shots": 0.00177001953125,
               "confidence": 0.95,
               "exact_prepared_state": -0.605551275463989,
               "error_to_prepared_state": -0.013070550707885986
@@ -8346,9 +8932,14 @@
               "standard_error": 0.046741525848875566,
               "exact_sampling_standard_error": 0.04635124060801015,
               "ci": [
+                -0.029831301693690998,
+                0.26420630169369097
+              ],
+              "union_bound_ci": [
                 -0.3217643335179179,
                 0.5561393335179179
               ],
+              "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.05278640618919383,
               "error_to_prepared_state": 0.06440109381080616
@@ -8358,9 +8949,14 @@
               "standard_error": 0.071013023898706,
               "exact_sampling_standard_error": 0.07905694120560681,
               "ci": [
+                -1.43539319782998,
+                -0.9552318021700199
+              ],
+              "union_bound_ci": [
                 -1.7585161607232895,
                 -0.6321088392767106
               ],
+              "squared_range_over_shots": 0.03125,
               "confidence": 0.95,
               "exact_prepared_state": -0.8944272045131296,
               "error_to_prepared_state": -0.3008852954868704
@@ -8370,9 +8966,14 @@
               "standard_error": 0.3806154816068689,
               "exact_sampling_standard_error": 0.37914377263841786,
               "ci": [
+                -1.458215989149901,
+                0.9425909891499009
+              ],
+              "union_bound_ci": [
                 -4.541369453691428,
                 4.025744453691428
               ],
+              "squared_range_over_shots": 0.78125,
               "confidence": 0.95,
               "exact_prepared_state": -0.472135954999579,
               "error_to_prepared_state": 0.214323454999579
@@ -8609,9 +9210,14 @@
               "standard_error": 0.011583996811151548,
               "exact_sampling_standard_error": 0.011587810152002538,
               "ci": [
+                0.01182928395157725,
+                0.08533868479842274
+              ],
+              "union_bound_ci": [
                 -0.06115397400447947,
                 0.15832194275447947
               ],
+              "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.05278640618919383,
               "error_to_prepared_state": -0.004202421814193828
@@ -8621,9 +9227,14 @@
               "standard_error": 0.019636162189492802,
               "exact_sampling_standard_error": 0.019764235301401704,
               "ci": [
+                -0.9779889244574951,
+                -0.8579485755425049
+              ],
+              "union_bound_ci": [
                 -1.0587696651808223,
                 -0.7771678348191776
               ],
+              "squared_range_over_shots": 0.001953125,
               "confidence": 0.95,
               "exact_prepared_state": -0.8944272045131296,
               "error_to_prepared_state": -0.023541545486870374
@@ -8633,9 +9244,14 @@
               "standard_error": 0.09472947651740349,
               "exact_sampling_standard_error": 0.09478594315960447,
               "ci": [
+                -0.8293977472874752,
+                -0.22919600271252477
+              ],
+              "union_bound_ci": [
                 -1.600186113422857,
                 0.541592363422857
               ],
+              "squared_range_over_shots": 0.048828125,
               "confidence": 0.95,
               "exact_prepared_state": -0.472135954999579,
               "error_to_prepared_state": -0.057160920000421
@@ -8872,9 +9488,14 @@
               "standard_error": 0.00289975495102443,
               "exact_sampling_standard_error": 0.0028969525380006344,
               "ci": [
+                0.041119552433206814,
+                0.059496902644918186
+              ],
+              "union_bound_ci": [
                 0.022873737944192632,
                 0.07774271713393237
               ],
+              "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.05278640618919383,
               "error_to_prepared_state": -0.0024781786501313283
@@ -8884,9 +9505,14 @@
               "standard_error": 0.004942084124677692,
               "exact_sampling_standard_error": 0.004941058825350426,
               "ci": [
+                -0.9087123190049987,
+                -0.8787022317762513
+              ],
+              "union_bound_ci": [
                 -0.9289075041858306,
                 -0.8585070465954194
               ],
+              "squared_range_over_shots": 0.0001220703125,
               "confidence": 0.95,
               "exact_prepared_state": -0.8944272045131296,
               "error_to_prepared_state": 0.0007199291225046256
@@ -8896,9 +9522,14 @@
               "standard_error": 0.02371862637588433,
               "exact_sampling_standard_error": 0.023696485789901117,
               "ci": [
+                -0.5662666731499938,
+                -0.4162162370062562
+              ],
+              "union_bound_ci": [
                 -0.7589637646838392,
                 -0.22351914547241075
               ],
+              "squared_range_over_shots": 0.0030517578125,
               "confidence": 0.95,
               "exact_prepared_state": -0.472135954999579,
               "error_to_prepared_state": -0.019105500078546
@@ -8911,6 +9542,122 @@
             "kinetic_energy": -0.8944271909999165
           },
           "vqe_residual": 4.0002178580703475e-08
+        }
+      ],
+      "contrasts": [
+        {
+          "grouping": "grouped",
+          "observable": "double_occupancy",
+          "interaction_pair": [
+            6,
+            8
+          ],
+          "grouped_shot_budget": 256,
+          "total_shots": 2560,
+          "estimate": 0.015625,
+          "ci": [
+            -0.10441534891499009,
+            0.1356653489149901
+          ],
+          "confidence": 0.95,
+          "resolved_decrease": false,
+          "exact_prepared_state": 0.031188444129385477,
+          "exact_ground_state": 0.031188448331036046
+        },
+        {
+          "grouping": "grouped",
+          "observable": "double_occupancy",
+          "interaction_pair": [
+            6,
+            8
+          ],
+          "grouped_shot_budget": 4096,
+          "total_shots": 40960,
+          "estimate": 0.02880859375,
+          "ci": [
+            -0.0012014934787475222,
+            0.058818680978747526
+          ],
+          "confidence": 0.95,
+          "resolved_decrease": false,
+          "exact_prepared_state": 0.031188444129385477,
+          "exact_ground_state": 0.031188448331036046
+        },
+        {
+          "grouping": "grouped",
+          "observable": "double_occupancy",
+          "interaction_pair": [
+            6,
+            8
+          ],
+          "grouped_shot_budget": 65536,
+          "total_shots": 655360,
+          "estimate": 0.0331878662109375,
+          "ci": [
+            0.02568534440375062,
+            0.04069038801812438
+          ],
+          "confidence": 0.95,
+          "resolved_decrease": true,
+          "exact_prepared_state": 0.031188444129385477,
+          "exact_ground_state": 0.031188448331036046
+        },
+        {
+          "grouping": "ungrouped",
+          "observable": "double_occupancy",
+          "interaction_pair": [
+            6,
+            8
+          ],
+          "grouped_shot_budget": 256,
+          "total_shots": 2560,
+          "estimate": -0.05859375,
+          "ci": [
+            -0.26650973327905836,
+            0.1493222332790584
+          ],
+          "confidence": 0.95,
+          "resolved_decrease": false,
+          "exact_prepared_state": 0.031188444129385477,
+          "exact_ground_state": 0.031188448331036046
+        },
+        {
+          "grouping": "ungrouped",
+          "observable": "double_occupancy",
+          "interaction_pair": [
+            6,
+            8
+          ],
+          "grouped_shot_budget": 4096,
+          "total_shots": 40960,
+          "estimate": 0.03955078125,
+          "ci": [
+            -0.012428214569764597,
+            0.09152977706976459
+          ],
+          "confidence": 0.95,
+          "resolved_decrease": false,
+          "exact_prepared_state": 0.031188444129385477,
+          "exact_ground_state": 0.031188448331036046
+        },
+        {
+          "grouping": "ungrouped",
+          "observable": "double_occupancy",
+          "interaction_pair": [
+            6,
+            8
+          ],
+          "grouped_shot_budget": 65536,
+          "total_shots": 655360,
+          "estimate": 0.0306549072265625,
+          "ci": [
+            0.017660158271621353,
+            0.04364965618150365
+          ],
+          "confidence": 0.95,
+          "resolved_decrease": true,
+          "exact_prepared_state": 0.031188444129385477,
+          "exact_ground_state": 0.031188448331036046
         }
       ]
     }

@@ -321,7 +321,7 @@ def experiment():
                   "rows": [[r["grouping"], r["interaction"], r["shots_per_setting"], r["total_shots"], name,
                             o["estimate"], *o["ci"], o["standard_error"], o["exact_sampling_standard_error"], o["exact_prepared_state"], r["exact_ground_state"][name]]
                            for r in measured["runs"] + measured["ungrouped_runs"] for name, o in r["observables"].items()]},
-        "method": [measured["method"], measured["interval_method"],
+        "method": [measured["method"], measured["interval_method"], measured["contrast_method"],
                    "Orbital order: 0-up, 0-down, 1-up, 1-down (orbital 0 is least significant bit). Hopping = −(XZXI+YZYI+IXZX+IYZY)/2. D = (2I−ZIII−IZII−IIZI−IIIZ+ZZII+IIZZ)/4. Energy = kinetic + U D, with t=1.",
                    "One ZZZZ shot evaluates all density terms together, retaining covariance. Four additional local settings measure hopping parities. Raw 16-outcome counts and seeds are included in results/latest.json.",
                    measured["cost"]["assumptions"],
@@ -357,6 +357,15 @@ def experiment():
                                    "metrics": [metric("Grouped settings", 5), metric("Ungrouped settings", 10),
                                                metric("Shots per strategy", 5 * budget),
                                                metric("CI confidence (per observable)", 95, "%")]})
+        for contrast in measured["contrasts"]:
+            if contrast["grouped_shot_budget"] == budget:
+                low, high = contrast["ci"]
+                verdict = "Decrease resolved" if contrast["resolved_decrease"] else "Decrease unresolved"
+                shot_case["views"][-1]["metrics"].append(metric(
+                    "D(6) - D(8): " + contrast["grouping"], contrast["estimate"],
+                    note=f"95% CI [{low:.5f}, {high:.5f}]. {verdict}. "
+                         f"{contrast['total_shots']:,} total preparations across both interactions; "
+                         f"exact ground-state difference {contrast['exact_ground_state']:.5f}."))
     shot_case["default_view"] = "4096"
     return {
         "schema_version": 1,

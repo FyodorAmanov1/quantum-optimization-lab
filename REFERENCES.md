@@ -3,7 +3,7 @@
 - [Quantum alternating operator ansatz](https://arxiv.org/abs/1709.03489)
 - [Variational quantum eigensolver](https://arxiv.org/abs/1304.3061)
 - [Verteletskyi, Yen and Izmaylov: Measurement Optimization in the Variational Quantum Eigensolver Using a Minimum Clique Cover (2020)](https://arxiv.org/abs/1907.03358): qubit-wise commuting measurement groups. This implementation uses an explicit five-setting partition, not a general clique-cover optimizer.
-- [Hoeffding: Probability Inequalities for Sums of Bounded Random Variables (1963)](https://doi.org/10.1080/01621459.1963.10500830): bounded independent sample means. Applied per measurement group with a union bound to obtain conservative marginal confidence intervals.
+- [Hoeffding: Probability Inequalities for Sums of Bounded Random Variables (1963)](https://doi.org/10.1080/01621459.1963.10500830): bounded independent sample means. Theorem 2 applied to all independent weighted shots yields marginal confidence intervals; group union-bound intervals are retained as a diagnostic baseline. A direct difference between independent interaction runs adds their squared-range contributions. [Original paper scan](https://www.cs.rpi.edu/academics/courses/spring06/random/hoefding.pdf).
 - [Carrascal et al.: The Hubbard Dimer: A density functional case study of a many-body problem (2015)](https://arxiv.org/abs/1502.02194): exact solvable dimer context. The implemented symmetric, half-filled dimer uses t=1 and no external site potential.
 - [Battery-design inspiration: EnergetiQ](https://github.com/FyodorAmanov1/EnergetiQ)
 
@@ -12,3 +12,5 @@ The implementation, data provenance and scope limits are documented in [the tech
 New QO02 links were verified against arXiv and the publisher's indexed Hoeffding record. The DOI landing page restricts automated retrieval; its title, author, volume and pages were verified through the publisher search record. See [QO02](reports/QO02.md) for the implemented estimator and interval formula.
 
 The grouped-versus-independent-term comparison is an implementation experiment on the defined Hubbard dimer. The grouping reference motivates shared local settings; it does not supply the reported precision ratios. Those ratios are computed from this experiment's Born probabilities at matched state-preparation budgets. Both strategies use Hoeffding bounds with their own coefficient-weighted measurement ranges; exact sampling standard deviations are diagnostics, separate from the confidence bounds.
+
+The weighted-shot bound uses the unequal-range form in Hoeffding Theorem 2. It combines complete shared-shot group values before treating distinct preparations as independent; it does not assume density Pauli terms within a bitstring are independent. The publisher record, original-paper scan and arXiv grouping record were verified for this study.
