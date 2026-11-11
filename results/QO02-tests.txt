@@ -1,3 +1,5 @@
+test_binomial_contrast_uses_count_only_adjusted_components (test_hubbard_measurement.HubbardMeasurementTests.test_binomial_contrast_uses_count_only_adjusted_components) ... ok
+test_binomial_intervals_match_scipy_and_have_exact_coverage (test_hubbard_measurement.HubbardMeasurementTests.test_binomial_intervals_match_scipy_and_have_exact_coverage) ... ok
 test_ci_does_not_collapse_on_deterministic_counts_and_scales (test_hubbard_measurement.HubbardMeasurementTests.test_ci_does_not_collapse_on_deterministic_counts_and_scales) ... ok
 test_counts_reconstruct_estimators_and_reproduce (test_hubbard_measurement.HubbardMeasurementTests.test_counts_reconstruct_estimators_and_reproduce) ... ok
 test_density_bound_exact_binomial_coverage_at_small_shot_count (test_hubbard_measurement.HubbardMeasurementTests.test_density_bound_exact_binomial_coverage_at_small_shot_count) ... ok
@@ -10,6 +12,7 @@ test_repeated_sampling_agrees_with_exact_mean_and_interval_coverage (test_hubbar
 test_rotations_match_complex_state_pauli_expectations (test_hubbard_measurement.HubbardMeasurementTests.test_rotations_match_complex_state_pauli_expectations) ... ok
 test_studio_views_expose_matched_budgets_and_uncertainty (test_hubbard_measurement.HubbardMeasurementTests.test_studio_views_expose_matched_budgets_and_uncertainty) ... ok
 test_study_design_and_references (test_hubbard_measurement.HubbardMeasurementTests.test_study_design_and_references) ... ok
+test_ungrouped_binomial_interval_transforms_signed_parity_bounds (test_hubbard_measurement.HubbardMeasurementTests.test_ungrouped_binomial_interval_transforms_signed_parity_bounds) ... ok
 test_ungrouped_counts_reconstruct_all_observables (test_hubbard_measurement.HubbardMeasurementTests.test_ungrouped_counts_reconstruct_all_observables) ... ok
 test_weighted_shot_bound_matches_independent_range_calculation (test_hubbard_measurement.HubbardMeasurementTests.test_weighted_shot_bound_matches_independent_range_calculation) ... ok
 test_covariance_psd (test_lab.OptimizationTests.test_covariance_psd) ... ok
@@ -24,6 +27,6 @@ test_zero_angle_qaoa_has_uniform_baseline_metrics (test_sampling.SamplingBaselin
 test_zero_feasible_mass_is_explicit_and_json_safe (test_sampling.SamplingBaselineTests.test_zero_feasible_mass_is_explicit_and_json_safe) ... ok
 
 ----------------------------------------------------------------------
-Ran 24 tests in 4.785s
+Ran 27 tests in 3.053s
 
 OK

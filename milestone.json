@@ -1,7 +1,7 @@
 {
   "task_id": "QO02",
   "status": "completed",
-  "summary": "Finite-shot Hubbard energy, double occupancy and kinetic energy use actual Born counts, grouped measurements, matched-budget independent-Pauli baselines and exact references. Weighted independent-shot Hoeffding CIs improve on retained union-bound diagnostics. The studio displays a preselected D(6)-D(8) contrast: unresolved at 40,960 combined preparations, resolved for both strategies at 655,360. One low-budget ungrouped kinetic-energy interval misses its reference and is reported. Legacy APIs remain compatible.",
+  "summary": "Finite-shot Hubbard energy, double occupancy and kinetic energy use actual grouped Born counts, matched-budget independent-Pauli baselines, exact references and Hoeffding confidence bounds. Additional exact binomial D intervals resolve the grouped D(6)-D(8) contrast at 40,960 combined preparations with CI [0.0111513,0.0464101], while Hoeffding remains unresolved there. The ungrouped binomial contrast remains unresolved even at the largest budget; both findings are exposed in studio charts, contrast cards, exports and the report. Legacy APIs remain compatible.",
   "evidence_paths": [
     "lab.py",
     "src/hubbard_measurement.py",

@@ -4,12 +4,55 @@ Pauli strings list orbital 0 first; integer outcome bits use orbital 0 as LSB.
 No energy-eigenvalue sampling or Gaussian perturbations are used.
 """
 import numpy as np
+from scipy.stats import beta
 
 
 SETTINGS = ("ZZZZ", "XZXI", "YZYI", "IXZX", "IYZY")
 DENSITY_TERMS = ("ZIII", "IZII", "IIZI", "IIIZ", "ZZII", "IIZZ")
 PAULI = {"I": np.eye(2), "X": np.array([[0, 1], [1, 0]]),
          "Y": np.array([[0, -1j], [1j, 0]]), "Z": np.diag([1, -1])}
+
+
+def binomial_interval(successes, shots, confidence=0.95):
+    """Equal-tailed Clopper-Pearson interval, including zero/all successes."""
+    if (isinstance(shots, (bool, np.bool_))
+            or not isinstance(shots, (int, np.integer)) or shots < 1
+            or isinstance(successes, (bool, np.bool_))
+            or not isinstance(successes, (int, np.integer))
+            or not 0 <= successes <= shots or not 0 < confidence < 1):
+        raise ValueError("integer counts 0 <= successes <= shots and confidence in (0,1) required")
+    tail = (1 - confidence) / 2
+    return [0. if successes == 0 else float(beta.ppf(tail, successes, shots-successes+1)),
+            1. if successes == shots else float(beta.isf(tail, successes+1, shots-successes))]
+
+
+def density_binomial_interval(settings, grouping, confidence=0.95):
+    """Count-only D interval; Bonferroni combines six independent parities.
+
+    Grouped D is binary in the validated one-up/one-down sector. For the
+    independent-term baseline, transform each parity's binomial interval
+    before adding it, reversing endpoints for negative coefficients.
+    """
+    outcomes = np.arange(16)
+    if grouping == "grouped":
+        group = settings[0]
+        counts = np.asarray(group["counts"])
+        double = ((outcomes & 3) == 3) | ((outcomes & 12) == 12)
+        return binomial_interval(int(counts @ double), int(counts.sum()), confidence)
+    low, high = 0.5, 0.5
+    for index, group in enumerate(settings[:6]):
+        parity = np.ones(16, dtype=int)
+        for q, symbol in enumerate(group["basis"]):
+            if symbol != "I":
+                parity *= 1 - 2 * ((outcomes >> q) & 1)
+        counts = np.asarray(group["counts"])
+        bounds = binomial_interval(int(counts @ (parity == 1)), int(counts.sum()),
+                                   1 - (1-confidence)/6)
+        coefficient = -0.25 if index < 4 else 0.25
+        endpoints = [coefficient * (2*p - 1) for p in bounds]
+        low += min(endpoints)
+        high += max(endpoints)
+    return [low, high]
 
 
 def pauli_matrix(word):
@@ -118,9 +161,12 @@ def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=
                              "squared_range_over_shots": squared_range_over_shots,
                              "confidence": confidence, "exact_prepared_state": exact[name],
                              "error_to_prepared_state": estimate - exact[name]}
+    recorded_settings = [{"basis": s, "counts": c.tolist()} for s, c in zip(settings, counts)]
+    observables["double_occupancy"]["binomial_ci"] = density_binomial_interval(
+        recorded_settings, grouping, confidence)
     return {"shots_per_setting": int(shots), "total_shots": int(len(settings) * shots),
             "seed": int(seed), "grouping": grouping,
-            "settings": [{"basis": s, "counts": c.tolist()} for s, c in zip(settings, counts)],
+            "settings": recorded_settings,
             "observables": observables}
 
 
@@ -164,11 +210,17 @@ def finite_shot_study():
             estimate = left["estimate"] - right["estimate"]
             radius = float(np.sqrt(np.log(40) * (
                 left["squared_range_over_shots"] + right["squared_range_over_shots"]) / 2))
+            # Two 97.5% component intervals give a >=95% difference interval.
+            # For ungrouped data this allocates error across twelve parities.
+            a, b = [density_binomial_interval(r["settings"], strategy, 0.975) for r in pair]
+            binomial_ci = [a[0] - b[1], a[1] - b[0]]
             contrasts.append({"grouping": strategy, "observable": "double_occupancy",
                               "interaction_pair": [6, 8], "grouped_shot_budget": shots,
                               "total_shots": sum(r["total_shots"] for r in pair),
                               "estimate": estimate, "ci": [estimate - radius, estimate + radius],
                               "confidence": 0.95, "resolved_decrease": bool(estimate - radius > 0),
+                              "binomial_ci": binomial_ci,
+                              "binomial_resolved_decrease": bool(binomial_ci[0] > 0),
                               "exact_prepared_state": left["exact_prepared_state"] - right["exact_prepared_state"],
                               "exact_ground_state": pair[0]["exact_ground_state"]["double_occupancy"]
                               - pair[1]["exact_ground_state"]["double_occupancy"]})
@@ -176,6 +228,7 @@ def finite_shot_study():
             "method": "Independent Born multinomial draws after local Pauli basis rotations; exact-expectation VQE training",
             "interval_method": "Two-sided Hoeffding across independent weighted shots, retaining within-group covariance; marginal 95% CIs for prepared-state expectations. Older group union-bound intervals are retained as a diagnostic baseline.",
             "contrast_method": "Preselected D(U/t=6) minus D(U/t=8), using independent preparations at both interactions and a direct two-sided 95% Hoeffding bound. Positive lower bound resolves a decrease; no simultaneous scan coverage is claimed.",
+            "binomial_interval_method": "Additional count-only equal-tailed Clopper-Pearson intervals for D: one Bernoulli density count when grouped, six Bonferroni-adjusted parity intervals when ungrouped. Contrast subtracts two 97.5% D intervals for at least 95% coverage. No interval selection or intersection; Hoeffding results remain separate. Guarantees assume ideal independent shots and exact sector membership.",
             "cost": {"grouped_settings": 5, "ungrouped_nonidentity_terms": 10,
                      "assumptions": "Equal shots within each strategy; five grouped settings at n shots versus ten independent Pauli terms at n/2 shots, matching total preparations. All observables share those counts. Identity costs no shots. Shot totals exclude exact training evaluations, state-preparation circuit costs, basis-switching overhead and gate compilation. Neither allocation is optimized."},
             "runs": runs, "ungrouped_runs": ungrouped_runs, "contrasts": contrasts}

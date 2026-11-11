@@ -317,11 +317,11 @@ def experiment():
                         {"name": "95% lower bound", "values": [r["observables"][name]["ci"][0] for r in selected]},
                         {"name": "95% upper bound", "values": [r["observables"][name]["ci"][1] for r in selected]}]}
                    for name in ("energy", "double_occupancy", "kinetic_energy")],
-        "table": {"columns": ["Strategy", "U/t", "Shots/setting", "Total shots", "Observable", "Estimate", "95% CI low", "95% CI high", "Sample SE", "Exact sampling SD", "Exact prepared", "Exact ground"],
+        "table": {"columns": ["Strategy", "U/t", "Shots/setting", "Total shots", "Observable", "Estimate", "95% Hoeffding low", "95% Hoeffding high", "Sample SE", "Exact sampling SD", "Exact prepared", "Exact ground", "D binomial 95% low", "D binomial 95% high"],
                   "rows": [[r["grouping"], r["interaction"], r["shots_per_setting"], r["total_shots"], name,
-                            o["estimate"], *o["ci"], o["standard_error"], o["exact_sampling_standard_error"], o["exact_prepared_state"], r["exact_ground_state"][name]]
+                            o["estimate"], *o["ci"], o["standard_error"], o["exact_sampling_standard_error"], o["exact_prepared_state"], r["exact_ground_state"][name], *o.get("binomial_ci", ["", ""])]
                            for r in measured["runs"] + measured["ungrouped_runs"] for name, o in r["observables"].items()]},
-        "method": [measured["method"], measured["interval_method"], measured["contrast_method"],
+        "method": [measured["method"], measured["interval_method"], measured["contrast_method"], measured["binomial_interval_method"],
                    "Orbital order: 0-up, 0-down, 1-up, 1-down (orbital 0 is least significant bit). Hopping = −(XZXI+YZYI+IXZX+IYZY)/2. D = (2I−ZIII−IZII−IIZI−IIIZ+ZZII+IIZZ)/4. Energy = kinetic + U D, with t=1.",
                    "One ZZZZ shot evaluates all density terms together, retaining covariance. Four additional local settings measure hopping parities. Raw 16-outcome counts and seeds are included in results/latest.json.",
                    measured["cost"]["assumptions"],
@@ -338,7 +338,7 @@ def experiment():
         ungrouped = [r for r in measured["ungrouped_runs"] if r["total_shots"] == 5 * budget]
         charts = []
         for name in ("energy", "double_occupancy", "kinetic_energy"):
-            chart = {"title": name.replace("_", " ").title() + " with marginal 95% CI",
+            chart = {"title": name.replace("_", " ").title() + " with marginal 95% Hoeffding CI",
                      "x": interactions, "xlabel": f"U / t; {5 * budget:,} total shots per strategy",
                      "series": [{"name": "Exact ground state", "values": [r["exact_ground_state"][name] for r in grouped]}]}
             for label, rows in (("Grouped", grouped), ("Ungrouped", ungrouped)):
@@ -351,6 +351,15 @@ def experiment():
                        "x": interactions, "xlabel": "U / t; exact sampling SD is a diagnostic, not a CI",
                        "series": [{"name": label, "values": [r["observables"]["energy"]["exact_sampling_standard_error"] for r in rows]}
                                   for label, rows in (("Grouped", grouped), ("Ungrouped", ungrouped))]})
+        density_chart = {"title": "Double occupancy with exact binomial 95% bounds",
+                         "x": interactions, "xlabel": f"U / t; {5 * budget:,} total shots per strategy",
+                         "series": [{"name": "Exact ground state", "values": [r["exact_ground_state"]["double_occupancy"] for r in grouped]}]}
+        for label, rows in (("Grouped", grouped), ("Ungrouped", ungrouped)):
+            density_chart["series"].append({"name": label, "values": [r["observables"]["double_occupancy"]["estimate"] for r in rows]})
+            for side, index in (("low", 0), ("high", 1)):
+                density_chart["series"].append({"name": label + " binomial 95% " + side,
+                    "values": [r["observables"]["double_occupancy"]["binomial_ci"][index] for r in rows]})
+        charts.append(density_chart)
         shot_case["views"].append({"value": str(budget),
                                    "label": f"{5 * budget:,} total shots ({budget:,}/grouped setting; {budget // 2:,}/ungrouped term)",
                                    "charts": charts,
@@ -362,10 +371,19 @@ def experiment():
                 low, high = contrast["ci"]
                 verdict = "Decrease resolved" if contrast["resolved_decrease"] else "Decrease unresolved"
                 shot_case["views"][-1]["metrics"].append(metric(
-                    "D(6) - D(8): " + contrast["grouping"], contrast["estimate"],
+                    "D(6) - D(8), Hoeffding: " + contrast["grouping"], contrast["estimate"],
                     note=f"95% CI [{low:.5f}, {high:.5f}]. {verdict}. "
                          f"{contrast['total_shots']:,} total preparations across both interactions; "
                          f"exact ground-state difference {contrast['exact_ground_state']:.5f}."))
+        for contrast in measured["contrasts"]:
+            if contrast["grouped_shot_budget"] == budget:
+                low, high = contrast["binomial_ci"]
+                verdict = "Decrease resolved" if contrast["binomial_resolved_decrease"] else "Decrease unresolved"
+                shot_case["views"][-1]["metrics"].append(metric(
+                    "D(6) - D(8), binomial: " + contrast["grouping"], contrast["estimate"],
+                    note=f"95% CI [{low:.5f}, {high:.5f}]. {verdict}. "
+                         f"{contrast['total_shots']:,} total preparations across both interactions. "
+                         "Clopper-Pearson component intervals with Bonferroni coverage; same counts as Hoeffding."))
     shot_case["default_view"] = "4096"
     return {
         "schema_version": 1,
@@ -377,6 +395,7 @@ def experiment():
         "cases": [portfolio, materials, shot_case],
         "provenance": "Explicit synthetic financial parameters and a defined effective Hamiltonian. CPU statevector calculations; no quantum hardware calls.",
         "references": [
+            {"title": "Clopper and Pearson: exact binomial confidence limits", "url": "https://doi.org/10.1093/biomet/26.4.404"},
             {"title": "The Hubbard Dimer: exact model context", "url": "https://arxiv.org/abs/1502.02194"},
             {"title": "Measurement grouping with a minimum clique cover", "url": "https://arxiv.org/abs/1907.03358"},
             {"title": "Hoeffding: Probability inequalities for sums of bounded random variables", "url": "https://doi.org/10.1080/01621459.1963.10500830"},

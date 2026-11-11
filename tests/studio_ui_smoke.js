@@ -30,7 +30,7 @@ vm.runInContext("renderChart = (chart) => charts.push(chart)", context);
 const study = JSON.parse(fs.readFileSync(path.join(root, "docs/study.json"), "utf8"));
 context.testCase = study.cases.find((c) => c.id === "hubbard-shots");
 vm.runInContext("render(testCase)", context);
-assert.equal(context.charts.length, 4);
+assert.equal(context.charts.length, 5);
 assert.match(context.charts[0].xlabel, /20,480/);
 const label = elements.get("charts").children[0];
 const selector = label.children[0];
@@ -40,7 +40,8 @@ for (const [value, total] of [["256", "1,280"], ["65536", "327,680"]]) {
   selector.value = value;
   context.charts.length = 0;
   selector.onchange();
-  assert.equal(context.charts.length, 4);
+  assert.equal(context.charts.length, 5);
+  assert.match(context.charts[4].title, /binomial/);
   assert.match(context.charts[0].xlabel, new RegExp(total));
   assert.equal(elements.get("charts").children[0], label);
 }

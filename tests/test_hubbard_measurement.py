@@ -4,7 +4,8 @@ import unittest
 import numpy as np
 
 from src.hubbard_measurement import (
-    SETTINGS, finite_shot_study, measure_hubbard, measurement_probabilities, pauli_matrix,
+    SETTINGS, binomial_interval, density_binomial_interval, finite_shot_study,
+    measure_hubbard, measurement_probabilities, pauli_matrix,
 )
 from src.studio import experiment as studio_experiment, hubbard, vqe, vqe_state
 
@@ -169,7 +170,7 @@ class HubbardMeasurementTests(unittest.TestCase):
         for view, budget in zip(case["views"], (256, 4096, 65536)):
             self.assertEqual(view["value"], str(budget))
             self.assertEqual(view["metrics"][2]["value"], 5*budget)
-            self.assertEqual(len(view["charts"]), 4)
+            self.assertEqual(len(view["charts"]), 5)
             for chart in view["charts"]:
                 self.assertEqual(chart["x"], [0, 0.5, 1, 2, 4, 6, 8])
                 for series in chart["series"]:
@@ -178,9 +179,55 @@ class HubbardMeasurementTests(unittest.TestCase):
             energy = view["charts"][0]
             self.assertEqual(energy["series"][0]["name"], "Exact ground state")
             self.assertAlmostEqual(energy["series"][0]["values"][-1], (8-np.sqrt(80))/2)
-            self.assertEqual(len(view["metrics"]), 6)
+            self.assertEqual(len(view["metrics"]), 8)
             self.assertIn("95% CI", view["metrics"][4]["note"])
             self.assertIn("exact ground-state difference", view["metrics"][5]["note"])
+            self.assertIn("binomial", view["metrics"][6]["label"])
+            self.assertIn("same counts", view["metrics"][7]["note"])
+
+    def test_binomial_intervals_match_scipy_and_have_exact_coverage(self):
+        from math import comb
+        from scipy.stats import binomtest
+        n = 16
+        intervals = [binomial_interval(k, n) for k in range(n+1)]
+        for k, interval in enumerate(intervals):
+            expected = binomtest(k, n).proportion_ci(method="exact")
+            np.testing.assert_allclose(interval, [expected.low, expected.high], atol=1e-12)
+        for p in (0., 0.001, 0.01, 0.05, 0.2, 0.5, 0.99, 1.):
+            coverage = sum(comb(n, k)*p**k*(1-p)**(n-k)
+                           for k, (low, high) in enumerate(intervals) if low <= p <= high)
+            self.assertGreaterEqual(coverage, 0.95 - 1e-12)
+        self.assertGreater(intervals[0][1], 0)
+        self.assertLess(intervals[-1][0], 1)
+        for k, shots, confidence in ((-1, 5, .95), (6, 5, .95), (1, 0, .95),
+                                      (1.5, 5, .95), (True, 5, .95), (1, 5, np.nan)):
+            with self.assertRaises(ValueError):
+                binomial_interval(k, shots, confidence)
+
+    def test_binomial_contrast_uses_count_only_adjusted_components(self):
+        study = finite_shot_study()
+        for contrast in study["contrasts"]:
+            strategy = contrast["grouping"]
+            rows = study["runs" if strategy == "grouped" else "ungrouped_runs"]
+            pair = [next(r for r in rows if r["interaction"] == u and
+                         r["total_shots"] * 2 == contrast["total_shots"]) for u in (6, 8)]
+            a, b = [density_binomial_interval(r["settings"], strategy, 0.975) for r in pair]
+            np.testing.assert_allclose(contrast["binomial_ci"], [a[0]-b[1], a[1]-b[0]])
+            self.assertEqual(contrast["binomial_resolved_decrease"], a[0]-b[1] > 0)
+        # Preselected intermediate-budget grouped finding; retain Hoeffding's negative result.
+        grouped = next(c for c in study["contrasts"] if c["grouping"] == "grouped"
+                       and c["grouped_shot_budget"] == 4096)
+        self.assertTrue(grouped["binomial_resolved_decrease"])
+        self.assertFalse(grouped["resolved_decrease"])
+
+    def test_ungrouped_binomial_interval_transforms_signed_parity_bounds(self):
+        _, basis = hubbard(8)
+        run = measure_hubbard([1, 0, 0, 0], basis, 8, 128, grouping="ungrouped")
+        # All six Z parities are deterministic in a number basis state.
+        # Four singles cancel in D; both pair parities are +1 for this state.
+        error = 1 - (0.05/12)**(1/128)
+        np.testing.assert_allclose(run["observables"]["double_occupancy"]["binomial_ci"],
+                                   [1 - 2*error, 1 + error], atol=1e-12)
 
     def test_weighted_shot_bound_matches_independent_range_calculation(self):
         # Independently derive the ranges, including negative U and U=0.

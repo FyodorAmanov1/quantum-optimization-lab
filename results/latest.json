@@ -64,6 +64,7 @@
       "method": "Independent Born multinomial draws after local Pauli basis rotations; exact-expectation VQE training",
       "interval_method": "Two-sided Hoeffding across independent weighted shots, retaining within-group covariance; marginal 95% CIs for prepared-state expectations. Older group union-bound intervals are retained as a diagnostic baseline.",
       "contrast_method": "Preselected D(U/t=6) minus D(U/t=8), using independent preparations at both interactions and a direct two-sided 95% Hoeffding bound. Positive lower bound resolves a decrease; no simultaneous scan coverage is claimed.",
+      "binomial_interval_method": "Additional count-only equal-tailed Clopper-Pearson intervals for D: one Bernoulli density count when grouped, six Bonferroni-adjusted parity intervals when ungrouped. Contrast subtracts two 97.5% D intervals for at least 95% coverage. No interval selection or intersection; Hoeffding results remain separate. Guarantees assume ideal independent shots and exact sector membership.",
       "cost": {
         "grouped_settings": 5,
         "ungrouped_nonidentity_terms": 10,
@@ -198,7 +199,11 @@
               "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.4999999975616074,
-              "error_to_prepared_state": 0.0273437524383926
+              "error_to_prepared_state": 0.0273437524383926,
+              "binomial_ci": [
+                0.4642229873267296,
+                0.5898241594360849
+              ]
             },
             "kinetic_energy": {
               "estimate": -2.0,
@@ -371,7 +376,11 @@
               "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.4999999975616074,
-              "error_to_prepared_state": -0.00024413818660740105
+              "error_to_prepared_state": -0.00024413818660740105,
+              "binomial_ci": [
+                0.48432635664111284,
+                0.515185710649422
+              ]
             },
             "kinetic_energy": {
               "estimate": -2.0,
@@ -544,7 +553,11 @@
               "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.4999999975616074,
-              "error_to_prepared_state": 0.001663210446205099
+              "error_to_prepared_state": 0.001663210446205099,
+              "binomial_ci": [
+                0.4978275425235647,
+                0.5054987262005763
+              ]
             },
             "kinetic_energy": {
               "estimate": -2.0,
@@ -717,7 +730,11 @@
               "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.4379826357034067,
-              "error_to_prepared_state": 0.034673614296593325
+              "error_to_prepared_state": 0.034673614296593325,
+              "binomial_ci": [
+                0.4101758405639151,
+                0.5357770126732704
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.9765625,
@@ -890,7 +907,11 @@
               "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.4379826357034067,
-              "error_to_prepared_state": 0.005376739296593325
+              "error_to_prepared_state": 0.005376739296593325,
+              "binomial_ci": [
+                0.4280686344923086,
+                0.4587309823460076
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.987060546875,
@@ -1063,7 +1084,11 @@
               "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.4379826357034067,
-              "error_to_prepared_state": -0.0011845400002816753
+              "error_to_prepared_state": -0.0011845400002816753,
+              "binomial_ci": [
+                0.4329959854332264,
+                0.4406058031684157
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.98419189453125,
@@ -1236,7 +1261,11 @@
               "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.37873219353173726,
-              "error_to_prepared_state": -0.01935719353173726
+              "error_to_prepared_state": -0.01935719353173726,
+              "binomial_ci": [
+                0.30058087163821046,
+                0.42146755760279103
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.90625,
@@ -1409,7 +1438,11 @@
               "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.37873219353173726,
-              "error_to_prepared_state": -0.00226734978173726
+              "error_to_prepared_state": -0.00226734978173726,
+              "binomial_ci": [
+                0.3615977981513866,
+                0.3915083093837325
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.93603515625,
@@ -1582,7 +1615,11 @@
               "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.37873219353173726,
-              "error_to_prepared_state": -2.4307789549760095e-05
+              "error_to_prepared_state": -2.4307789549760095e-05,
+              "binomial_ci": [
+                0.3749919821439367,
+                0.3824345316786966
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.9393157958984375,
@@ -1755,7 +1792,11 @@
               "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.2763932035540129,
-              "error_to_prepared_state": -0.026393203554012923
+              "error_to_prepared_state": -0.026393203554012923,
+              "binomial_ci": [
+                0.19817606466307527,
+                0.30771329620860344
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.796875,
@@ -1928,7 +1969,11 @@
               "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.2763932035540129,
-              "error_to_prepared_state": -0.004908828554012923
+              "error_to_prepared_state": -0.004908828554012923,
+              "binomial_ci": [
+                0.25790970978151206,
+                0.28538569452718654
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.791748046875,
@@ -2101,7 +2146,11 @@
               "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.2763932035540129,
-              "error_to_prepared_state": -0.0015976713274504228
+              "error_to_prepared_state": -0.0015976713274504228,
+              "binomial_ci": [
+                0.2713801598848564,
+                0.2782308546767681
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.7896270751953125,
@@ -2274,7 +2323,11 @@
               "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.1464466127177122,
-              "error_to_prepared_state": 0.005897137282287801
+              "error_to_prepared_state": 0.005897137282287801,
+              "binomial_ci": [
+                0.11062855558899677,
+                0.20232259566603766
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.40234375,
@@ -2447,7 +2500,11 @@
               "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.1464466127177122,
-              "error_to_prepared_state": -0.002159503342712199
+              "error_to_prepared_state": -0.002159503342712199,
+              "binomial_ci": [
+                0.13366074813511755,
+                0.1554235176608221
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.398193359375,
@@ -2620,7 +2677,11 @@
               "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.1464466127177122,
-              "error_to_prepared_state": -0.00016060197552469901
+              "error_to_prepared_state": -0.00016060197552469901,
+              "binomial_ci": [
+                0.14358847083855364,
+                0.1490149092773821
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.4150543212890625,
@@ -2793,7 +2854,11 @@
               "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.0839748503185793,
-              "error_to_prepared_state": -0.0019436003185793055
+              "error_to_prepared_state": -0.0019436003185793055,
+              "binomial_ci": [
+                0.051495077829813524,
+                0.12266053070019506
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.19140625,
@@ -2966,7 +3031,11 @@
               "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.0839748503185793,
-              "error_to_prepared_state": -0.0026760221935793055
+              "error_to_prepared_state": -0.0026760221935793055,
+              "binomial_ci": [
+                0.073108182255103,
+                0.09009234349432432
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.099609375,
@@ -3139,7 +3208,11 @@
               "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.0839748503185793,
-              "error_to_prepared_state": 0.0013980744861081945
+              "error_to_prepared_state": 0.0013980744861081945,
+              "binomial_ci": [
+                0.08324429480100147,
+                0.08753834985629748
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.108245849609375,
@@ -3312,7 +3385,11 @@
               "squared_range_over_shots": 0.00390625,
               "confidence": 0.95,
               "exact_prepared_state": 0.05278640618919383,
-              "error_to_prepared_state": 0.013619843810806172
+              "error_to_prepared_state": 0.013619843810806172,
+              "binomial_ci": [
+                0.039156799438977076,
+                0.10419556906152572
+              ]
             },
             "kinetic_energy": {
               "estimate": -0.89453125,
@@ -3485,7 +3562,11 @@
               "squared_range_over_shots": 0.000244140625,
               "confidence": 0.95,
               "exact_prepared_state": 0.05278640618919383,
-              "error_to_prepared_state": -0.00029617181419382826
+              "error_to_prepared_state": -0.00029617181419382826,
+              "binomial_ci": [
+                0.04585978035042883,
+                0.05976774291002601
+              ]
             },
             "kinetic_energy": {
               "estimate": -0.884765625,
@@ -3658,7 +3739,11 @@
               "squared_range_over_shots": 1.52587890625e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.05278640618919383,
-              "error_to_prepared_state": -0.0006013475954438283
+              "error_to_prepared_state": -0.0006013475954438283,
+              "binomial_ci": [
+                0.05049456760026217,
+                0.053915337604920614
+              ]
             },
             "kinetic_energy": {
               "estimate": -0.89459228515625,
@@ -3938,7 +4023,11 @@
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.4999999975616074,
-              "error_to_prepared_state": -0.0390624975616074
+              "error_to_prepared_state": -0.0390624975616074,
+              "binomial_ci": [
+                0.10763424290878937,
+                0.8173541710894193
+              ]
             },
             "kinetic_energy": {
               "estimate": -2.0,
@@ -4216,7 +4305,11 @@
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.4999999975616074,
-              "error_to_prepared_state": -0.0163574194366074
+              "error_to_prepared_state": -0.0163574194366074,
+              "binomial_ci": [
+                0.39560721251116754,
+                0.5717582216442284
+              ]
             },
             "kinetic_energy": {
               "estimate": -2.0,
@@ -4494,7 +4587,11 @@
               "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.4999999975616074,
-              "error_to_prepared_state": 0.008605959469642599
+              "error_to_prepared_state": 0.008605959469642599,
+              "binomial_ci": [
+                0.486698994611762,
+                0.5305102995391489
+              ]
             },
             "kinetic_energy": {
               "estimate": -2.0,
@@ -4772,7 +4869,11 @@
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.4379826357034067,
-              "error_to_prepared_state": 0.042486114296593325
+              "error_to_prepared_state": 0.042486114296593325,
+              "binomial_ci": [
+                0.126728643223872,
+                0.8357644617076235
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.984375,
@@ -5050,7 +5151,11 @@
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.4379826357034067,
-              "error_to_prepared_state": 0.0019587705465933247
+              "error_to_prepared_state": 0.0019587705465933247,
+              "binomial_ci": [
+                0.35222281753206264,
+                0.5279547726843581
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.98828125,
@@ -5328,7 +5433,11 @@
               "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.4379826357034067,
-              "error_to_prepared_state": 0.0008753965231558247
+              "error_to_prepared_state": 0.0008753965231558247,
+              "binomial_ci": [
+                0.4170147310480988,
+                0.46071994724667986
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.98443603515625,
@@ -5606,7 +5715,11 @@
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.37873219353173726,
-              "error_to_prepared_state": 0.13689280646826274
+              "error_to_prepared_state": 0.13689280646826274,
+              "binomial_ci": [
+                0.16796026471391654,
+                0.8620606197312377
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.953125,
@@ -5884,7 +5997,11 @@
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.37873219353173726,
-              "error_to_prepared_state": 0.00456858771826274
+              "error_to_prepared_state": 0.00456858771826274,
+              "binomial_ci": [
+                0.2963279860989408,
+                0.4708464932176609
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.9453125,
@@ -6162,7 +6279,11 @@
               "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.37873219353173726,
-              "error_to_prepared_state": 0.0004029383042002399
+              "error_to_prepared_state": 0.0004029383042002399,
+              "binomial_ci": [
+                0.3574541449688059,
+                0.4008529166381849
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.937347412109375,
@@ -6440,7 +6561,11 @@
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.2763932035540129,
-              "error_to_prepared_state": 0.016575546445987077
+              "error_to_prepared_state": 0.016575546445987077,
+              "binomial_ci": [
+                -0.046190162819686936,
+                0.6486689085140076
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.765625,
@@ -6718,7 +6843,11 @@
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.2763932035540129,
-              "error_to_prepared_state": 0.014622421445987077
+              "error_to_prepared_state": 0.014622421445987077,
+              "binomial_ci": [
+                0.20676925338562324,
+                0.3762892738386873
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.78173828125,
@@ -6996,7 +7125,11 @@
               "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.2763932035540129,
-              "error_to_prepared_state": -0.002482681093075423
+              "error_to_prepared_state": -0.002482681093075423,
+              "binomial_ci": [
+                0.2528004076472957,
+                0.29508948860422063
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.789215087890625,
@@ -7274,7 +7407,11 @@
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.1464466127177122,
-              "error_to_prepared_state": 0.0957408872822878
+              "error_to_prepared_state": 0.0957408872822878,
+              "binomial_ci": [
+                -0.08044090534341064,
+                0.5856082483957912
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.4140625,
@@ -7552,7 +7689,11 @@
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.1464466127177122,
-              "error_to_prepared_state": -0.004356768967712199
+              "error_to_prepared_state": -0.004356768967712199,
+              "binomial_ci": [
+                0.06317218208265285,
+                0.22277166905661536
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.40673828125,
@@ -7830,7 +7971,11 @@
               "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.1464466127177122,
-              "error_to_prepared_state": 0.003516766188537801
+              "error_to_prepared_state": 0.003516766188537801,
+              "binomial_ci": [
+                0.13026950848701258,
+                0.16976394280159718
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.4202880859375,
@@ -8108,7 +8253,11 @@
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.0839748503185793,
-              "error_to_prepared_state": -0.025381100318579305
+              "error_to_prepared_state": -0.025381100318579305,
+              "binomial_ci": [
+                -0.23225250727297972,
+                0.38541352447787314
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.0859375,
@@ -8386,7 +8535,11 @@
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.0839748503185793,
-              "error_to_prepared_state": 0.0041599153064206945
+              "error_to_prepared_state": 0.0041599153064206945,
+              "binomial_ci": [
+                0.013542242336855581,
+                0.16476536619776763
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.11083984375,
@@ -8664,7 +8817,11 @@
               "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.0839748503185793,
-              "error_to_prepared_state": -0.0030117155529543055
+              "error_to_prepared_state": -0.0030117155529543055,
+              "binomial_ci": [
+                0.06238717547929509,
+                0.09966695963393901
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.104400634765625,
@@ -8942,7 +9099,11 @@
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
               "exact_prepared_state": 0.05278640618919383,
-              "error_to_prepared_state": 0.06440109381080616
+              "error_to_prepared_state": 0.06440109381080616,
+              "binomial_ci": [
+                -0.16414167579947828,
+                0.43028923635567495
+              ]
             },
             "kinetic_energy": {
               "estimate": -1.1953125,
@@ -9220,7 +9381,11 @@
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
               "exact_prepared_state": 0.05278640618919383,
-              "error_to_prepared_state": -0.004202421814193828
+              "error_to_prepared_state": -0.004202421814193828,
+              "binomial_ci": [
+                -0.022231780908768095,
+                0.12164548146204338
+              ]
             },
             "kinetic_energy": {
               "estimate": -0.91796875,
@@ -9498,7 +9663,11 @@
               "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
               "exact_prepared_state": 0.05278640618919383,
-              "error_to_prepared_state": -0.0024781786501313283
+              "error_to_prepared_state": -0.0024781786501313283,
+              "binomial_ci": [
+                0.032464443321983644,
+                0.068289386878116
+              ]
             },
             "kinetic_energy": {
               "estimate": -0.893707275390625,
@@ -9561,6 +9730,11 @@
           ],
           "confidence": 0.95,
           "resolved_decrease": false,
+          "binomial_ci": [
+            -0.06198145714748866,
+            0.09267994608277436
+          ],
+          "binomial_resolved_decrease": false,
           "exact_prepared_state": 0.031188444129385477,
           "exact_ground_state": 0.031188448331036046
         },
@@ -9580,6 +9754,11 @@
           ],
           "confidence": 0.95,
           "resolved_decrease": false,
+          "binomial_ci": [
+            0.011151310160052046,
+            0.04641014442667685
+          ],
+          "binomial_resolved_decrease": true,
           "exact_prepared_state": 0.031188444129385477,
           "exact_ground_state": 0.031188448331036046
         },
@@ -9599,6 +9778,11 @@
           ],
           "confidence": 0.95,
           "resolved_decrease": true,
+          "binomial_ci": [
+            0.028776837357845288,
+            0.03759509503105943
+          ],
+          "binomial_resolved_decrease": true,
           "exact_prepared_state": 0.031188444129385477,
           "exact_ground_state": 0.031188448331036046
         },
@@ -9618,6 +9802,11 @@
           ],
           "confidence": 0.95,
           "resolved_decrease": false,
+          "binomial_ci": [
+            -0.7110774735757619,
+            0.5988509492659129
+          ],
+          "binomial_resolved_decrease": false,
           "exact_prepared_state": 0.031188444129385477,
           "exact_ground_state": 0.031188448331036046
         },
@@ -9637,6 +9826,11 @@
           ],
           "confidence": 0.95,
           "resolved_decrease": false,
+          "binomial_ci": [
+            -0.12067138473756484,
+            0.19953209706308872
+          ],
+          "binomial_resolved_decrease": false,
           "exact_prepared_state": 0.031188444129385477,
           "exact_ground_state": 0.031188448331036046
         },
@@ -9656,6 +9850,11 @@
           ],
           "confidence": 0.95,
           "resolved_decrease": true,
+          "binomial_ci": [
+            -0.009039910853535615,
+            0.07033864082253205
+          ],
+          "binomial_resolved_decrease": false,
           "exact_prepared_state": 0.031188444129385477,
           "exact_ground_state": 0.031188448331036046
         }

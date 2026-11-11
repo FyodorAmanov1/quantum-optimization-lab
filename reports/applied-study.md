@@ -75,7 +75,7 @@ Each result obeys the variational bound and agrees with E₀=(U−√(U²+16t²)
 
 The [QO02 study](QO02.md) evaluates energy, total double occupancy and kinetic energy using actual ideal Born counts after exact-expectation VQE training. Five shared Pauli settings are compared with ten independent terms at matched preparations across seven interactions and three budgets. Exact prepared-state expectations isolate sampling error; independent diagonalization supplies ground-state references.
 
-At 4,096 shots per grouped setting (20,480 preparations per interaction), double occupancy decreases from 0.499756 to 0.052490 between U/t=0 and 8, with marginal 95% half-width 0.021220. The direct D(6)-D(8) interval is [-0.00120149,0.0588187]: this smaller change remains unresolved. At the largest tested budget, both strategies resolve it, costing 655,360 preparations each across the two interactions. The studio displays the contrast intervals, exact difference, verdict and combined cost for every budget.
+At 4,096 shots per grouped setting (20,480 preparations per interaction), double occupancy decreases from 0.499756 to 0.052490 between U/t=0 and 8, with marginal 95% half-width 0.021220. The direct D(6)-D(8) interval is [-0.00120149,0.0588187]: this smaller change remains unresolved. At the largest tested budget, both strategies resolve it, costing 655,360 preparations each across the two interactions. The studio displays Hoeffding and exact binomial contrast intervals, verdicts and combined cost for every budget. On the same counts, the grouped Clopper-Pearson contrast resolves the decrease at 40,960 combined preparations with CI [0.0111513,0.0464101]. The independent-term binomial contrast remains unresolved even at 655,360 preparations because summing twelve adjusted parity intervals is conservative. These procedures are reported separately; no narrower-interval selection is used.
 
 Confidence bounds now apply Hoeffding directly to independent weighted shots, combining correlated density terms within each bitstring first. The previous group union-bound intervals remain in the raw artifact. At U/t=8 and the intermediate budget, grouped energy is -0.464844 t versus exact -0.472136 t with CI [-0.639831,-0.289856] t. The half-width improves from 0.305179 to 0.174987 t but remains broad. Exact sampling SD is 0.0312500 t grouped versus 0.0947859 t ungrouped; energy scan RMSEs are 0.00668117 and 0.0273847 t, descriptive of one seeded scan. Grouping and fixed shot allocation both affect precision; neither strategy is optimized.
 
@@ -91,6 +91,6 @@ Explain the objective and units, where each baseline obtains its information, wh
 
 ## Next work
 
-- Study variance-adaptive intervals and shot allocation for the finite-shot Hubbard observables; current distribution-free bounds are conservative.
+- Study energy variance-adaptive intervals and shot allocation for the finite-shot Hubbard observables; current distribution-free bounds are conservative.
 - Compare constrained ansatz depths and classical solvers at matched objective-evaluation budgets.
 - Extend the effective electron model and assess when the restricted ansatz fails; do not relabel toy energies as battery properties.
