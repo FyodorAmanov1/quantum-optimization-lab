@@ -69,7 +69,17 @@ Each result obeys the variational bound and agrees with E₀=(U−√(U²+16t²)
 
 - This is an effective correlated-electron benchmark, not an ab initio molecule or a battery-material prediction. It is a foundation for extending the battery-design theme.
 - The ansatz can span this tiny real sector; success does not demonstrate a scalable chemistry algorithm.
-- No finite-shot Pauli measurement, molecular geometry, basis-set error, device noise or battery voltage is represented.
+- Finite-shot evaluation is now available in the separate Hubbard measurements case, described below. Molecular geometry, basis-set error, device noise and battery voltage are not represented.
+
+## Finite-shot Hubbard observables
+
+The [QO02 study](QO02.md) evaluates energy, total double occupancy and kinetic energy using actual ideal Born counts after exact-expectation VQE training. Five shared Pauli settings are compared with ten independent terms at matched preparations across seven interactions and three budgets. Exact prepared-state expectations isolate sampling error; independent diagonalization supplies ground-state references.
+
+At 4,096 shots per grouped setting (20,480 preparations per interaction), double occupancy decreases from 0.499756 to 0.052490 between U/t=0 and 8, with marginal 95% half-width 0.021220. The direct D(6)-D(8) interval is [-0.00120149,0.0588187]: this smaller change remains unresolved. At the largest tested budget, both strategies resolve it, costing 655,360 preparations each across the two interactions. The studio displays Hoeffding and exact binomial contrast intervals, verdicts and combined cost for every budget. On the same counts, the grouped Clopper-Pearson contrast resolves the decrease at 40,960 combined preparations with CI [0.0111513,0.0464101]. The independent-term binomial contrast remains unresolved even at 655,360 preparations because summing twelve adjusted parity intervals is conservative. These procedures are reported separately; no narrower-interval selection is used.
+
+Confidence bounds now apply Hoeffding directly to independent weighted shots, combining correlated density terms within each bitstring first. The previous group union-bound intervals remain in the raw artifact. At U/t=8 and the intermediate budget, grouped energy is -0.464844 t versus exact -0.472136 t with CI [-0.639831,-0.289856] t. The half-width improves from 0.305179 to 0.174987 t but remains broad. Exact sampling SD is 0.0312500 t grouped versus 0.0947859 t ungrouped; energy scan RMSEs are 0.00668117 and 0.0273847 t, descriptive of one seeded scan. Grouping and fixed shot allocation both affect precision; neither strategy is optimized.
+
+All 63 grouped primary intervals cover their exact ground references, while 62 of 63 ungrouped intervals do. The low-budget U/t=8 kinetic-energy interval misses its reference, a retained negative finding consistent with marginal rather than simultaneous coverage. Confidence intervals cover prepared-state expectations, excluding ansatz and model error. Raw counts, old and new intervals, deterministic seeds and direct contrasts are in [results/latest.json](../results/latest.json). No hardware or materials accuracy claim follows.
 
 ## Interpretation
 
@@ -81,6 +91,6 @@ Explain the objective and units, where each baseline obtains its information, wh
 
 ## Next work
 
-- Add finite-shot observable measurement to the Hubbard VQE, with measurement grouping and uncertainty.
+- Study energy variance-adaptive intervals and shot allocation for the finite-shot Hubbard observables; current distribution-free bounds are conservative.
 - Compare constrained ansatz depths and classical solvers at matched objective-evaluation budgets.
 - Extend the effective electron model and assess when the restricted ansatz fails; do not relabel toy energies as battery properties.

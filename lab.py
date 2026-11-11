@@ -86,6 +86,7 @@ def distribution_metrics(probabilities, raw, feasible, optimum):
 
 
 def experiment():
+    from src.hubbard_measurement import finite_shot_study
     returns, covariance = problem()
     bits = np.array(list(itertools.product((0, 1), repeat=len(returns))))
     raw = np.array([objective(x, returns, covariance) for x in bits])
@@ -115,8 +116,9 @@ def experiment():
                         "conditional_gap_to_optimum": comparison["qaoa"]["conditional_gap_to_optimum"],
                         "gamma": float(gamma), "beta": float(beta), "parameter_evaluations": 289,
                         "logical_qubits": 6, "statevector_amplitudes": 64,
-                        "sampling_comparison": comparison},
-            "method": {"evaluation": "Exact distribution expectations; no finite-shot sampling",
+                        "sampling_comparison": comparison,
+                        "hubbard_finite_shots": finite_shot_study()},
+            "method": {"evaluation": "Portfolio: exact distribution expectations. Hubbard: finite-shot Pauli evaluation after exact-expectation training.",
                        "assets": 6, "cardinality": 3, "risk_aversion": 2.0, "penalty": penalty,
                        "objective": "Minimize 2*x.T@covariance@x - returns@x",
                        "gap": "Conditional feasible objective minus exact feasible minimum (additive)",
@@ -129,13 +131,14 @@ def experiment():
                            "rejection_cost": "1 / feasible_probability independent draws per accepted portfolio",
                            "feasible_sampler": "Uniform over fixed-cardinality subsets; no rejected draws",
                            "excluded_costs": "No timing, hardware, monetary, or end-to-end speed comparison; enumeration shared"}},
-            "provenance": {"data": "Synthetic PSD covariance and expected returns", "numpy": np.__version__},
+            "provenance": {"data": "Synthetic PSD covariance and expected returns; defined two-site Hubbard Hamiltonian with t=1", "numpy": np.__version__},
             "limitations": ["Exponential CPU statevector and a coarse p=1 grid; no quantum speedup claim.",
                             "Feasibility is measured before postselection; conditional objective excludes rejected samples.",
                             "Binary unit holdings, not continuous normalized portfolio weights.",
-                            "One synthetic instance; exact distribution metrics are not finite-shot observations.",
+                            "Portfolio: one synthetic instance; exact distribution metrics are not finite-shot observations.",
                             "Uniform feasible distribution uses the enumerated mask here; general constraints may be harder to sample.",
-                            "Training uses exact penalized expectations; rejection cost excludes training and sampler setup."]}
+                            "Portfolio training uses exact penalized expectations; rejection cost excludes training and sampler setup.",
+                            "Hubbard: ideal Born shots after exact training; marginal CIs cover prepared-state expectations, not ansatz bias or model error. No hardware noise or materials predictions."]}
 
 
 if __name__ == "__main__":

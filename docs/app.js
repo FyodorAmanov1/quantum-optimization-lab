@@ -27,7 +27,7 @@ let study,
   current,
   registry,
   timer = null;
-const palette = ["#65d6b1", "#b3bbf9", "#f4bf76", "#f596aa", "#7cb8e9"];
+const palette = ["#65d6b1", "#b3bbf9", "#f4bf76", "#f596aa", "#7cb8e9", "#e7c6ff", "#efdc88"];
 async function load() {
   try {
     const response = await fetch("study.json");
@@ -95,14 +95,39 @@ function render(c) {
   $("kicker").textContent = c.kicker;
   $("case-title").textContent = c.title;
   $("description").textContent = c.description;
-  $("metrics").innerHTML = c.metrics
+  const renderMetrics = (metrics) => { $("metrics").innerHTML = metrics
     .map(
       (m) =>
         `<article class="metric"><span>${esc(m.label)}</span><strong>${esc(fmt(m.value))}<small>${esc(m.unit || "")}</small></strong>${m.note ? `<p>${esc(m.note)}</p>` : ""}</article>`,
     )
-    .join("");
+    .join(""); };
+  renderMetrics(c.metrics);
   $("charts").replaceChildren();
-  for (const chart of c.charts || []) renderChart(chart);
+  if (c.views?.length) {
+    const control = document.createElement("label");
+    control.className = "panel";
+    control.textContent = "Measurement budget ";
+    const select = document.createElement("select");
+    select.setAttribute("aria-label", "Measurement budget");
+    for (const view of c.views) {
+      const option = document.createElement("option");
+      option.value = view.value;
+      option.textContent = view.label;
+      select.append(option);
+    }
+    select.value = c.default_view || c.views[0].value;
+    control.append(select);
+    const drawView = () => {
+      const view = c.views.find((v) => v.value === select.value);
+      $("charts").replaceChildren(control);
+      renderMetrics(view.metrics || c.metrics);
+      for (const chart of view.charts) renderChart(chart);
+    };
+    select.onchange = drawView;
+    drawView();
+  } else {
+    for (const chart of c.charts || []) renderChart(chart);
+  }
   $("table").innerHTML =
     `<thead><tr>${c.table.columns.map((s) => `<th scope="col">${esc(s)}</th>`).join("")}</tr></thead><tbody>${c.table.rows.map((row) => `<tr>${row.map((v) => `<td>${esc(fmt(v))}</td>`).join("")}</tr>`).join("")}</tbody>`;
   $("method").innerHTML = c.method.map((s) => `<li>${esc(s)}</li>`).join("");
