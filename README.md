@@ -40,6 +40,8 @@ The **Hubbard measurements** studio case samples energy, total double occupancy 
 
 This is a transparent demonstration of electron correlation on a tiny solvable system. It is not a battery chemistry calculation or a prediction of voltage, capacity or materials performance.
 
+An additional energy-focused allocation uses the same preparation budgets and only the known Hamiltonian coefficients. At U/t=8 and 20,480 preparations it narrows the energy CI half-width by **34.9%** to **0.11388 t**, while kinetic-energy uncertainty grows by **54.9%**. Its energy error across this seeded scan is worse than equal grouping, and at U=0 its two density shots give an uninformative density interval. The studio shows both the energy comparison and the precision tradeoff; the [report](reports/QO02.md) explains why narrower bounds do not guarantee lower sampling variance.
+
 ## What to examine
 
 - Compare the full allocation distribution with the exact cost ranking.

@@ -81,6 +81,8 @@ Confidence bounds now apply Hoeffding directly to independent weighted shots, co
 
 All 63 grouped primary intervals cover their exact ground references, while 62 of 63 ungrouped intervals do. The low-budget U/t=8 kinetic-energy interval misses its reference, a retained negative finding consistent with marginal rather than simultaneous coverage. Confidence intervals cover prepared-state expectations, excluding ansatz and model error. Raw counts, old and new intervals, deterministic seeds and direct contrasts are in [results/latest.json](../results/latest.json). No hardware or materials accuracy claim follows.
 
+An additional 21 grouped runs redistribute the same total shots using known energy coefficient ranges, reserving two shots per setting and rounding the remainder proportional to (abs(U),1,1,1,1). At U/t=8 and 20,480 preparations, counts [13648,1708,1708,1708,1708] give E=-0.4708152 t and marginal 95% CI [-0.5846955,-0.3569349] t. The half-width narrows by 34.9209% versus equal grouping, but kinetic half-width grows by 54.8589%. At U=0 only two density shots remain, giving an uninformative D interval. At U=0.5 the energy bound narrows while exact sampling SD grows: range-based allocation is not variance-optimal. The intermediate-budget energy scan RMSE is 0.0231264 t, worse than equal grouping's 0.00668117 t; this negative seeded result is retained. The studio exposes the allocation comparison, precision tradeoffs and per-setting shot counts. See [QO02](QO02.md) for the derivation, all budgets and limitations.
+
 ## Interpretation
 
 The depth-2 ansatz improves optimal-sample probability over uniform feasible sampling, but its expected objective remains above the exact minimum and local search is a strong baseline. The Hubbard energy agreement follows from a tiny fully expressive real-sector ansatz; double occupancy provides an independent physical observable.
@@ -91,6 +93,6 @@ Explain the objective and units, where each baseline obtains its information, wh
 
 ## Next work
 
-- Study energy variance-adaptive intervals and shot allocation for the finite-shot Hubbard observables; current distribution-free bounds are conservative.
+- Study energy variance-adaptive intervals and shot allocations with precision constraints for multiple observables; current range-based allocation can sacrifice density or kinetic precision.
 - Compare constrained ansatz depths and classical solvers at matched objective-evaluation budgets.
 - Extend the effective electron model and assess when the restricted ansatz fails; do not relabel toy energies as battery properties.

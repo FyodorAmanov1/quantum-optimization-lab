@@ -4,13 +4,111 @@ import unittest
 import numpy as np
 
 from src.hubbard_measurement import (
-    SETTINGS, binomial_interval, density_binomial_interval, finite_shot_study,
+    SETTINGS, binomial_interval, density_binomial_interval, energy_shot_allocation, finite_shot_study,
     measure_hubbard, measurement_probabilities, pauli_matrix,
 )
 from src.studio import experiment as studio_experiment, hubbard, vqe, vqe_state
 
 
 class HubbardMeasurementTests(unittest.TestCase):
+    def test_energy_allocation_preserves_budget_without_state_information(self):
+        for total in (10, 11, 1280, 20480, 327680):
+            for u in (-8, 0, 0.5, 1, 8):
+                allocation = energy_shot_allocation(total, u)
+                self.assertEqual(sum(allocation), total)
+                self.assertEqual(len(allocation), 5)
+                self.assertGreaterEqual(min(allocation), 2)
+                self.assertEqual(allocation, energy_shot_allocation(total, -u))
+        self.assertEqual(energy_shot_allocation(20480, 1), [4096]*5)
+        self.assertEqual(energy_shot_allocation(20480, 0)[0], 2)
+        for total, u in ((9, 1), (True, 1), (20.5, 1), (20, np.nan), (20, np.inf)):
+            with self.assertRaises(ValueError):
+                energy_shot_allocation(total, u)
+
+    def test_unequal_shots_reconstruct_means_variance_and_bounds(self):
+        _, basis = hubbard(-2)
+        wave = np.array([1, 1j, -1, 2j]) / np.sqrt(7)
+        for strategy in ("grouped", "ungrouped"):
+            allocation = [17, 31, 43, 59, 73] if strategy == "grouped" else list(range(17, 27))
+            run = measure_hubbard(wave, basis, -2, seed=88, grouping=strategy,
+                                  shot_allocation=allocation)
+            self.assertIsNone(run["shots_per_setting"])
+            self.assertEqual(run["total_shots"], sum(allocation))
+            self.assertEqual(run["shot_allocation"], allocation)
+            means, variances = [], []
+            for i, (group, n) in enumerate(zip(run["settings"], allocation)):
+                self.assertEqual(sum(group["counts"]), n)
+                outcomes = np.arange(16)
+                if strategy == "grouped" and i == 0:
+                    values = ((outcomes & 3) == 3).astype(float) + ((outcomes & 12) == 12)
+                else:
+                    values = np.array([(-1)**sum((outcome >> q) & 1 for q, s in
+                                       enumerate(group["basis"]) if s != "I") for outcome in outcomes])
+                    if strategy == "grouped":
+                        values = -0.5 * values
+                counts = np.array(group["counts"])
+                mean = counts @ values / n
+                means.append(mean)
+                variances.append(counts @ (values-mean)**2 / (n*(n-1)))
+            d = np.array([1, 0, 0, 0, 0]) if strategy == "grouped" else np.array([-.25]*4 + [.25]*2 + [0]*4)
+            k = np.array([0, 1, 1, 1, 1]) if strategy == "grouped" else np.array([0]*6 + [-.5]*4)
+            ranges = np.ones(5) if strategy == "grouped" else np.full(10, 2.)
+            for name, weights, constant in (("double_occupancy", d, 0 if strategy == "grouped" else .5),
+                                             ("kinetic_energy", k, 0),
+                                             ("energy", k-2*d, 0 if strategy == "grouped" else -1)):
+                obs = run["observables"][name]
+                expected = constant + weights @ means
+                radius = np.sqrt(np.log(40) * np.sum((weights*ranges)**2/allocation)/2)
+                self.assertAlmostEqual(obs["estimate"], expected)
+                self.assertAlmostEqual(obs["standard_error"]**2, weights**2 @ variances)
+                np.testing.assert_allclose(obs["ci"], [expected-radius, expected+radius])
+            self.assertEqual(run, measure_hubbard(wave, basis, -2, seed=88, grouping=strategy,
+                                                  shot_allocation=allocation))
+
+    def test_unequal_shot_sampling_statistics_and_coverage(self):
+        h, basis = hubbard(8)
+        wave = np.linalg.eigh(h)[1][:, 0]
+        allocation = energy_shot_allocation(1280, 8)
+        values, sample_variances, covered = [], [], 0
+        for seed in range(200):
+            obs = measure_hubbard(wave, basis, 8, seed=seed,
+                                  shot_allocation=allocation)["observables"]["energy"]
+            values.append(obs["estimate"])
+            sample_variances.append(obs["standard_error"]**2)
+            covered += obs["ci"][0] <= obs["exact_prepared_state"] <= obs["ci"][1]
+        variance = obs["exact_sampling_standard_error"]**2
+        self.assertAlmostEqual(np.var(values, ddof=1) / variance, 1, delta=.3)
+        self.assertAlmostEqual(np.mean(sample_variances) / variance, 1, delta=.1)
+        self.assertLess(abs(np.mean(values)-np.linalg.eigvalsh(h)[0]), 4*np.sqrt(variance/200))
+        self.assertGreater(covered, 190)
+
+    def test_allocation_validation_and_uniform_api_compatibility(self):
+        _, basis = hubbard(0)
+        wave = [1, 0, 0, 0]
+        for allocation in ([2]*4, [2]*6, [1]*5, [2.5]*5, [True]*5, [np.nan]*5):
+            with self.assertRaises(ValueError):
+                measure_hubbard(wave, basis, 0, shot_allocation=allocation)
+        self.assertEqual(measure_hubbard(wave, basis, 0, shots=31),
+                         measure_hubbard(wave, basis, 0, shot_allocation=[31]*5))
+
+    def test_energy_allocation_comparison_keeps_precision_tradeoffs(self):
+        study = finite_shot_study()
+        self.assertEqual(len(study["allocated_runs"]), 21)
+        for equal, allocated in zip(study["runs"], study["allocated_runs"]):
+            self.assertEqual(equal["total_shots"], allocated["total_shots"])
+            self.assertEqual(equal["exact_ground_state"], allocated["exact_ground_state"])
+            self.assertNotEqual(equal["seed"], allocated["seed"])
+            self.assertEqual(allocated["shot_allocation"],
+                             energy_shot_allocation(equal["total_shots"], equal["interaction"]))
+            def proxy(run, observable):
+                return run["observables"][observable]["squared_range_over_shots"]
+            self.assertLessEqual(proxy(allocated, "energy"), proxy(equal, "energy") + 1e-14)
+            if equal["interaction"] == 0:
+                self.assertGreater(proxy(allocated, "double_occupancy"), proxy(equal, "double_occupancy"))
+            if equal["interaction"] == 8:
+                self.assertGreater(proxy(allocated, "kinetic_energy"), proxy(equal, "kinetic_energy"))
+            json.dumps(allocated, allow_nan=False)
+
     def test_pauli_mapping_matches_independent_fermion_hamiltonian(self):
         kinetic = sum(-0.5 * pauli_matrix(s) for s in SETTINGS[1:])
         z = [pauli_matrix("I" * q + "Z" + "I" * (3 - q)) for q in range(4)]
@@ -165,12 +263,13 @@ class HubbardMeasurementTests(unittest.TestCase):
         self.assertEqual([c["id"] for c in cases], ["allocation", "electrons", "hubbard-shots"])
         case = cases[-1]
         self.assertEqual(case["default_view"], "4096")
-        self.assertEqual(len(case["table"]["rows"]), 126)
-        self.assertEqual({row[0] for row in case["table"]["rows"]}, {"grouped", "ungrouped"})
+        self.assertEqual(len(case["table"]["rows"]), 189)
+        self.assertEqual({row[0] for row in case["table"]["rows"]}, {"grouped", "ungrouped", "energy_range_weighted"})
+        self.assertTrue(all(len(row) == len(case["table"]["columns"]) for row in case["table"]["rows"]))
         for view, budget in zip(case["views"], (256, 4096, 65536)):
             self.assertEqual(view["value"], str(budget))
             self.assertEqual(view["metrics"][2]["value"], 5*budget)
-            self.assertEqual(len(view["charts"]), 5)
+            self.assertEqual(len(view["charts"]), 7)
             for chart in view["charts"]:
                 self.assertEqual(chart["x"], [0, 0.5, 1, 2, 4, 6, 8])
                 for series in chart["series"]:
@@ -179,11 +278,14 @@ class HubbardMeasurementTests(unittest.TestCase):
             energy = view["charts"][0]
             self.assertEqual(energy["series"][0]["name"], "Exact ground state")
             self.assertAlmostEqual(energy["series"][0]["values"][-1], (8-np.sqrt(80))/2)
-            self.assertEqual(len(view["metrics"]), 8)
+            self.assertEqual(len(view["metrics"]), 9)
             self.assertIn("95% CI", view["metrics"][4]["note"])
             self.assertIn("exact ground-state difference", view["metrics"][5]["note"])
             self.assertIn("binomial", view["metrics"][6]["label"])
             self.assertIn("same counts", view["metrics"][7]["note"])
+            self.assertIn("coefficient ranges", view["metrics"][8]["note"])
+            self.assertIn("Energy-focused allocation", view["charts"][5]["title"])
+            self.assertIn("tradeoff", view["charts"][6]["title"])
 
     def test_binomial_intervals_match_scipy_and_have_exact_coverage(self):
         from math import comb

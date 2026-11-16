@@ -13,6 +13,28 @@ PAULI = {"I": np.eye(2), "X": np.array([[0, 1], [1, 0]]),
          "Y": np.array([[0, -1j], [1j, 0]]), "Z": np.diag([1, -1])}
 
 
+def energy_shot_allocation(total_shots, interaction):
+    """Allocate grouped shots from known energy coefficient ranges only.
+
+    Reserve two shots per setting so all three observables remain estimable.
+    Apportion the remainder in proportion to (abs(U), 1, 1, 1, 1), with
+    deterministic largest-remainder rounding. This approximates the relaxed
+    minimum of sum(range_g**2 / n_g); it does not minimize sampling variance.
+    No state, pilot counts or exact reference enters the allocation.
+    """
+    if (isinstance(total_shots, (bool, np.bool_))
+            or not isinstance(total_shots, (int, np.integer)) or total_shots < 10
+            or not np.isfinite(interaction)):
+        raise ValueError("integer total_shots >= 10 and finite interaction required")
+    weights = np.array([abs(interaction), 1., 1., 1., 1.])
+    shares = (int(total_shots) - 10) * (weights / weights.sum())
+    allocation = np.floor(shares).astype(int) + 2
+    remainder = int(total_shots) - int(allocation.sum())
+    order = np.argsort(-(shares - np.floor(shares)), kind="stable")
+    allocation[order[:remainder]] += 1
+    return allocation.tolist()
+
+
 def binomial_interval(successes, shots, confidence=0.95):
     """Equal-tailed Clopper-Pearson interval, including zero/all successes."""
     if (isinstance(shots, (bool, np.bool_))
@@ -75,7 +97,7 @@ def measurement_probabilities(wave, setting):
 
 
 def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=0.95,
-                    grouping="grouped"):
+                    grouping="grouped", shot_allocation=None):
     """Measure energy, total double occupancy and kinetic energy at t=1.
 
     Independent multinomial counts are actual repeated Born measurements.
@@ -85,6 +107,8 @@ def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=
     ansatz error. The sample SE includes all covariance within each group.
     grouping='ungrouped' instead measures ten Pauli terms independently,
     with shots per term. Exact sampling SE is a Born-probability diagnostic.
+    Optional shot_allocation supplies a fixed integer count >=2 per setting,
+    overriding the uniform shots value. It must be fixed before sampling.
     """
     if isinstance(shots, (bool, np.bool_)) or not isinstance(shots, (int, np.integer)) or shots < 2:
         raise ValueError("shots must be an integer >= 2 per setting")
@@ -106,6 +130,13 @@ def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=
     outcomes = np.arange(16)
     double = ((outcomes & 3) == 3).astype(float) + ((outcomes & 12) == 12)
     settings = SETTINGS if grouping == "grouped" else DENSITY_TERMS + SETTINGS[1:]
+    allocations = np.full(len(settings), shots, dtype=int)
+    if shot_allocation is not None:
+        allocations = np.asarray(shot_allocation)
+        if (allocations.shape != (len(settings),)
+                or not np.issubdtype(allocations.dtype, np.integer)
+                or np.any(allocations < 2)):
+            raise ValueError("shot_allocation must give an integer >= 2 for each setting")
     values = [double] if grouping == "grouped" else []
     for setting in settings[1:] if grouping == "grouped" else settings:
         parity = np.ones(16)
@@ -114,11 +145,11 @@ def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=
                 parity *= 1 - 2 * ((outcomes >> orbital) & 1)
         values.append(-0.5 * parity if grouping == "grouped" else parity)
     probabilities = [measurement_probabilities(full, s) for s in settings]
-    counts = [rng.multinomial(shots, p) for p in probabilities]
-    means = np.array([c @ v / shots for c, v in zip(counts, values)])
+    counts = [rng.multinomial(int(n), p) for n, p in zip(allocations, probabilities)]
+    means = np.array([c @ v / n for c, v, n in zip(counts, values, allocations)])
     # Variance of the mean, calculated from grouped per-shot values.
-    variances = np.array([c @ (v - m) ** 2 / (shots * (shots - 1))
-                          for c, v, m in zip(counts, values, means)])
+    variances = np.array([c @ (v - m) ** 2 / (n * (n - 1))
+                          for c, v, m, n in zip(counts, values, means, allocations)])
     exact_d = float(np.abs(wave) ** 2 @ double[basis])
     kinetic = sum(-0.5 * pauli_matrix(s) for s in SETTINGS[1:])
     exact_k = float(np.vdot(full, kinetic @ full).real)
@@ -139,16 +170,16 @@ def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=
         ranges = np.full(10, 2.)
     # Analytic sampling variance is a diagnostic baseline, never used for CIs.
     population_variances = np.array([
-        p @ (v - p @ v)**2 / shots for p, v in zip(probabilities, values)])
+        p @ (v - p @ v)**2 / n for p, v, n in zip(probabilities, values, allocations)])
     observables = {}
     for name, weights in coefficients.items():
         active = np.count_nonzero(weights)
         # D has range 1 in this sector; ungrouped parity has range 2.
-        union_radius = float((np.abs(weights) @ ranges) * np.sqrt(
-            np.log(2 * active / (1 - confidence)) / (2 * shots)))
+        union_radius = float(np.sum(np.abs(weights) * ranges / np.sqrt(allocations)) * np.sqrt(
+            np.log(2 * active / (1 - confidence)) / 2))
         # Apply Hoeffding to independent weighted individual shots, not to
         # the correlated Pauli terms within a shared density bitstring.
-        squared_range_over_shots = float(np.sum((weights * ranges)**2) / shots)
+        squared_range_over_shots = float(np.sum((weights * ranges)**2 / allocations))
         radius = float(np.sqrt(np.log(2 / (1 - confidence))
                                * squared_range_over_shots / 2))
         estimate = float(constants[name] + weights @ means)
@@ -164,7 +195,8 @@ def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=
     recorded_settings = [{"basis": s, "counts": c.tolist()} for s, c in zip(settings, counts)]
     observables["double_occupancy"]["binomial_ci"] = density_binomial_interval(
         recorded_settings, grouping, confidence)
-    return {"shots_per_setting": int(shots), "total_shots": int(len(settings) * shots),
+    return {"shots_per_setting": int(allocations[0]) if np.all(allocations == allocations[0]) else None,
+            "shot_allocation": allocations.tolist(), "total_shots": int(allocations.sum()),
             "seed": int(seed), "grouping": grouping,
             "settings": recorded_settings,
             "observables": observables}
@@ -180,6 +212,7 @@ def finite_shot_study():
     budgets = [256, 4096, 65536]
     runs = []
     ungrouped_runs = []
+    allocated_runs = []
     for index, u in enumerate(interactions):
         h, basis = hubbard(u)
         wave, metrics = vqe_state(u)
@@ -199,6 +232,12 @@ def finite_shot_study():
             baseline.update({"interaction": u, "exact_ground_state": references,
                              "vqe_residual": metrics[3]})
             ungrouped_runs.append(baseline)
+            allocated = measure_hubbard(
+                wave, basis, u, seed=402600 + 10 * index + b,
+                shot_allocation=energy_shot_allocation(5 * shots, u))
+            allocated.update({"interaction": u, "exact_ground_state": references,
+                              "vqe_residual": metrics[3], "allocation_strategy": "energy_range_weighted"})
+            allocated_runs.append(allocated)
     # Preselected physical comparison, not a post-hoc search over the scan.
     # Different interactions use independent preparations and random streams.
     contrasts = []
@@ -231,4 +270,6 @@ def finite_shot_study():
             "binomial_interval_method": "Additional count-only equal-tailed Clopper-Pearson intervals for D: one Bernoulli density count when grouped, six Bonferroni-adjusted parity intervals when ungrouped. Contrast subtracts two 97.5% D intervals for at least 95% coverage. No interval selection or intersection; Hoeffding results remain separate. Guarantees assume ideal independent shots and exact sector membership.",
             "cost": {"grouped_settings": 5, "ungrouped_nonidentity_terms": 10,
                      "assumptions": "Equal shots within each strategy; five grouped settings at n shots versus ten independent Pauli terms at n/2 shots, matching total preparations. All observables share those counts. Identity costs no shots. Shot totals exclude exact training evaluations, state-preparation circuit costs, basis-switching overhead and gate compilation. Neither allocation is optimized."},
-            "runs": runs, "ungrouped_runs": ungrouped_runs, "contrasts": contrasts}
+            "allocation_method": "Energy-focused grouped allocation at the same 5n preparations: reserve two shots per setting, then apportion the remainder proportional to (abs(U),1,1,1,1) with largest-remainder rounding. Fixed before sampling; no pilot or exact-state information. Approximately minimizes the relaxed Hoeffding range proxy, not the actual variance. All three observables use these counts; improving energy can worsen density or kinetic precision. Independent seeds 402600+10*i+b. Training and circuit overhead remain excluded.",
+            "runs": runs, "ungrouped_runs": ungrouped_runs,
+            "allocated_runs": allocated_runs, "contrasts": contrasts}

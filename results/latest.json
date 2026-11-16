@@ -70,9 +70,17 @@
         "ungrouped_nonidentity_terms": 10,
         "assumptions": "Equal shots within each strategy; five grouped settings at n shots versus ten independent Pauli terms at n/2 shots, matching total preparations. All observables share those counts. Identity costs no shots. Shot totals exclude exact training evaluations, state-preparation circuit costs, basis-switching overhead and gate compilation. Neither allocation is optimized."
       },
+      "allocation_method": "Energy-focused grouped allocation at the same 5n preparations: reserve two shots per setting, then apportion the remainder proportional to (abs(U),1,1,1,1) with largest-remainder rounding. Fixed before sampling; no pilot or exact-state information. Approximately minimizes the relaxed Hoeffding range proxy, not the actual variance. All three observables use these counts; improving energy can worsen density or kinetic precision. Independent seeds 402600+10*i+b. Training and circuit overhead remain excluded.",
       "runs": [
         {
           "shots_per_setting": 256,
+          "shot_allocation": [
+            256,
+            256,
+            256,
+            256,
+            256
+          ],
           "total_shots": 1280,
           "seed": 202600,
           "grouping": "grouped",
@@ -250,6 +258,13 @@
         },
         {
           "shots_per_setting": 4096,
+          "shot_allocation": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
           "total_shots": 20480,
           "seed": 202601,
           "grouping": "grouped",
@@ -427,6 +442,13 @@
         },
         {
           "shots_per_setting": 65536,
+          "shot_allocation": [
+            65536,
+            65536,
+            65536,
+            65536,
+            65536
+          ],
           "total_shots": 327680,
           "seed": 202602,
           "grouping": "grouped",
@@ -604,6 +626,13 @@
         },
         {
           "shots_per_setting": 256,
+          "shot_allocation": [
+            256,
+            256,
+            256,
+            256,
+            256
+          ],
           "total_shots": 1280,
           "seed": 202610,
           "grouping": "grouped",
@@ -781,6 +810,13 @@
         },
         {
           "shots_per_setting": 4096,
+          "shot_allocation": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
           "total_shots": 20480,
           "seed": 202611,
           "grouping": "grouped",
@@ -958,6 +994,13 @@
         },
         {
           "shots_per_setting": 65536,
+          "shot_allocation": [
+            65536,
+            65536,
+            65536,
+            65536,
+            65536
+          ],
           "total_shots": 327680,
           "seed": 202612,
           "grouping": "grouped",
@@ -1135,6 +1178,13 @@
         },
         {
           "shots_per_setting": 256,
+          "shot_allocation": [
+            256,
+            256,
+            256,
+            256,
+            256
+          ],
           "total_shots": 1280,
           "seed": 202620,
           "grouping": "grouped",
@@ -1312,6 +1362,13 @@
         },
         {
           "shots_per_setting": 4096,
+          "shot_allocation": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
           "total_shots": 20480,
           "seed": 202621,
           "grouping": "grouped",
@@ -1489,6 +1546,13 @@
         },
         {
           "shots_per_setting": 65536,
+          "shot_allocation": [
+            65536,
+            65536,
+            65536,
+            65536,
+            65536
+          ],
           "total_shots": 327680,
           "seed": 202622,
           "grouping": "grouped",
@@ -1666,6 +1730,13 @@
         },
         {
           "shots_per_setting": 256,
+          "shot_allocation": [
+            256,
+            256,
+            256,
+            256,
+            256
+          ],
           "total_shots": 1280,
           "seed": 202630,
           "grouping": "grouped",
@@ -1843,6 +1914,13 @@
         },
         {
           "shots_per_setting": 4096,
+          "shot_allocation": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
           "total_shots": 20480,
           "seed": 202631,
           "grouping": "grouped",
@@ -2020,6 +2098,13 @@
         },
         {
           "shots_per_setting": 65536,
+          "shot_allocation": [
+            65536,
+            65536,
+            65536,
+            65536,
+            65536
+          ],
           "total_shots": 327680,
           "seed": 202632,
           "grouping": "grouped",
@@ -2197,6 +2282,13 @@
         },
         {
           "shots_per_setting": 256,
+          "shot_allocation": [
+            256,
+            256,
+            256,
+            256,
+            256
+          ],
           "total_shots": 1280,
           "seed": 202640,
           "grouping": "grouped",
@@ -2374,6 +2466,13 @@
         },
         {
           "shots_per_setting": 4096,
+          "shot_allocation": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
           "total_shots": 20480,
           "seed": 202641,
           "grouping": "grouped",
@@ -2551,6 +2650,13 @@
         },
         {
           "shots_per_setting": 65536,
+          "shot_allocation": [
+            65536,
+            65536,
+            65536,
+            65536,
+            65536
+          ],
           "total_shots": 327680,
           "seed": 202642,
           "grouping": "grouped",
@@ -2728,6 +2834,13 @@
         },
         {
           "shots_per_setting": 256,
+          "shot_allocation": [
+            256,
+            256,
+            256,
+            256,
+            256
+          ],
           "total_shots": 1280,
           "seed": 202650,
           "grouping": "grouped",
@@ -2905,6 +3018,13 @@
         },
         {
           "shots_per_setting": 4096,
+          "shot_allocation": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
           "total_shots": 20480,
           "seed": 202651,
           "grouping": "grouped",
@@ -3082,6 +3202,13 @@
         },
         {
           "shots_per_setting": 65536,
+          "shot_allocation": [
+            65536,
+            65536,
+            65536,
+            65536,
+            65536
+          ],
           "total_shots": 327680,
           "seed": 202652,
           "grouping": "grouped",
@@ -3259,6 +3386,13 @@
         },
         {
           "shots_per_setting": 256,
+          "shot_allocation": [
+            256,
+            256,
+            256,
+            256,
+            256
+          ],
           "total_shots": 1280,
           "seed": 202660,
           "grouping": "grouped",
@@ -3436,6 +3570,13 @@
         },
         {
           "shots_per_setting": 4096,
+          "shot_allocation": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
           "total_shots": 20480,
           "seed": 202661,
           "grouping": "grouped",
@@ -3613,6 +3754,13 @@
         },
         {
           "shots_per_setting": 65536,
+          "shot_allocation": [
+            65536,
+            65536,
+            65536,
+            65536,
+            65536
+          ],
           "total_shots": 327680,
           "seed": 202662,
           "grouping": "grouped",
@@ -3792,6 +3940,18 @@
       "ungrouped_runs": [
         {
           "shots_per_setting": 128,
+          "shot_allocation": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ],
           "total_shots": 1280,
           "seed": 302600,
           "grouping": "ungrouped",
@@ -4017,8 +4177,8 @@
                 0.607956301693691
               ],
               "union_bound_ci": [
-                0.02198566648208211,
-                0.8998893335179179
+                0.021985666482082222,
+                0.8998893335179178
               ],
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
@@ -4074,6 +4234,18 @@
         },
         {
           "shots_per_setting": 2048,
+          "shot_allocation": [
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048
+          ],
           "total_shots": 20480,
           "seed": 302601,
           "grouping": "ungrouped",
@@ -4299,8 +4471,8 @@
                 0.5203972785484228
               ],
               "union_bound_ci": [
-                0.37390461974552053,
-                0.5933805365044795
+                0.3739046197455206,
+                0.5933805365044794
               ],
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
@@ -4356,6 +4528,18 @@
         },
         {
           "shots_per_setting": 32768,
+          "shot_allocation": [
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768
+          ],
           "total_shots": 327680,
           "seed": 302602,
           "grouping": "ungrouped",
@@ -4638,6 +4822,18 @@
         },
         {
           "shots_per_setting": 128,
+          "shot_allocation": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ],
           "total_shots": 1280,
           "seed": 302610,
           "grouping": "ungrouped",
@@ -4863,8 +5059,8 @@
                 0.627487551693691
               ],
               "union_bound_ci": [
-                0.04151691648208211,
-                0.9194205835179179
+                0.04151691648208222,
+                0.9194205835179178
               ],
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
@@ -4920,6 +5116,18 @@
         },
         {
           "shots_per_setting": 2048,
+          "shot_allocation": [
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048
+          ],
           "total_shots": 20480,
           "seed": 302611,
           "grouping": "ungrouped",
@@ -5145,8 +5353,8 @@
                 0.47669610667342277
               ],
               "union_bound_ci": [
-                0.33020344787052053,
-                0.5496793646294795
+                0.3302034478705206,
+                0.5496793646294794
               ],
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
@@ -5202,6 +5410,18 @@
         },
         {
           "shots_per_setting": 32768,
+          "shot_allocation": [
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768
+          ],
           "total_shots": 327680,
           "seed": 302612,
           "grouping": "ungrouped",
@@ -5484,6 +5704,18 @@
         },
         {
           "shots_per_setting": 128,
+          "shot_allocation": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ],
           "total_shots": 1280,
           "seed": 302620,
           "grouping": "ungrouped",
@@ -5709,8 +5941,8 @@
                 0.662643801693691
               ],
               "union_bound_ci": [
-                0.07667316648208211,
-                0.9545768335179179
+                0.07667316648208222,
+                0.9545768335179178
               ],
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
@@ -5766,6 +5998,18 @@
         },
         {
           "shots_per_setting": 2048,
+          "shot_allocation": [
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048
+          ],
           "total_shots": 20480,
           "seed": 302621,
           "grouping": "ungrouped",
@@ -5991,8 +6235,8 @@
                 0.42005548167342277
               ],
               "union_bound_ci": [
-                0.27356282287052053,
-                0.49303873962947947
+                0.2735628228705206,
+                0.4930387396294794
               ],
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
@@ -6048,6 +6292,18 @@
         },
         {
           "shots_per_setting": 32768,
+          "shot_allocation": [
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768
+          ],
           "total_shots": 327680,
           "seed": 302622,
           "grouping": "ungrouped",
@@ -6330,6 +6586,18 @@
         },
         {
           "shots_per_setting": 128,
+          "shot_allocation": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ],
           "total_shots": 1280,
           "seed": 302630,
           "grouping": "ungrouped",
@@ -6555,8 +6823,8 @@
                 0.43998755169369097
               ],
               "union_bound_ci": [
-                -0.1459830835179179,
-                0.7319205835179179
+                -0.14598308351791778,
+                0.7319205835179178
               ],
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
@@ -6612,6 +6880,18 @@
         },
         {
           "shots_per_setting": 2048,
+          "shot_allocation": [
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048
+          ],
           "total_shots": 20480,
           "seed": 302631,
           "grouping": "ungrouped",
@@ -6837,8 +7117,8 @@
                 0.32777032542342277
               ],
               "union_bound_ci": [
-                0.18127766662052053,
-                0.40075358337947947
+                0.18127766662052056,
+                0.4007535833794794
               ],
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
@@ -6894,6 +7174,18 @@
         },
         {
           "shots_per_setting": 32768,
+          "shot_allocation": [
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768
+          ],
           "total_shots": 327680,
           "seed": 302632,
           "grouping": "ungrouped",
@@ -7119,7 +7411,7 @@
                 0.2830991975667932
               ],
               "union_bound_ci": [
-                0.24647603286606762,
+                0.24647603286606765,
                 0.3013450120558074
               ],
               "squared_range_over_shots": 4.57763671875e-05,
@@ -7176,6 +7468,18 @@
         },
         {
           "shots_per_setting": 128,
+          "shot_allocation": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ],
           "total_shots": 1280,
           "seed": 302640,
           "grouping": "ungrouped",
@@ -7401,8 +7705,8 @@
                 0.38920630169369097
               ],
               "union_bound_ci": [
-                -0.1967643335179179,
-                0.6811393335179179
+                -0.19676433351791778,
+                0.6811393335179178
               ],
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
@@ -7458,6 +7762,18 @@
         },
         {
           "shots_per_setting": 2048,
+          "shot_allocation": [
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048
+          ],
           "total_shots": 20480,
           "seed": 302641,
           "grouping": "ungrouped",
@@ -7683,8 +7999,8 @@
                 0.17884454417342274
               ],
               "union_bound_ci": [
-                0.03235188537052053,
-                0.25182780212947947
+                0.032351885370520556,
+                0.2518278021294794
               ],
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
@@ -7740,6 +8056,18 @@
         },
         {
           "shots_per_setting": 32768,
+          "shot_allocation": [
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768
+          ],
           "total_shots": 327680,
           "seed": 302642,
           "grouping": "ungrouped",
@@ -7965,8 +8293,8 @@
                 0.1591520540121057
               ],
               "union_bound_ci": [
-                0.12252888931138013,
-                0.17739786850111988
+                0.12252888931138015,
+                0.17739786850111985
               ],
               "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
@@ -8022,6 +8350,18 @@
         },
         {
           "shots_per_setting": 128,
+          "shot_allocation": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ],
           "total_shots": 1280,
           "seed": 302650,
           "grouping": "ungrouped",
@@ -8247,8 +8587,8 @@
                 0.205612551693691
               ],
               "union_bound_ci": [
-                -0.3803580835179179,
-                0.4975455835179179
+                -0.3803580835179178,
+                0.4975455835179178
               ],
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
@@ -8286,7 +8626,7 @@
               ],
               "union_bound_ci": [
                 -4.100026892186122,
-                2.631276892186122
+                2.6312768921861225
               ],
               "squared_range_over_shots": 0.453125,
               "confidence": 0.95,
@@ -8304,6 +8644,18 @@
         },
         {
           "shots_per_setting": 2048,
+          "shot_allocation": [
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048
+          ],
           "total_shots": 20480,
           "seed": 302651,
           "grouping": "ungrouped",
@@ -8529,8 +8881,8 @@
                 0.12488946604842274
               ],
               "union_bound_ci": [
-                -0.021603192754479472,
-                0.19787272400447947
+                -0.021603192754479444,
+                0.19787272400447944
               ],
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
@@ -8568,7 +8920,7 @@
               ],
               "union_bound_ci": [
                 -1.4234442230465305,
-                0.2593817230465305
+                0.2593817230465306
               ],
               "squared_range_over_shots": 0.0283203125,
               "confidence": 0.95,
@@ -8586,6 +8938,18 @@
         },
         {
           "shots_per_setting": 32768,
+          "shot_allocation": [
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768
+          ],
           "total_shots": 327680,
           "seed": 302652,
           "grouping": "ungrouped",
@@ -8811,8 +9175,8 @@
                 0.09015180987148069
               ],
               "union_bound_ci": [
-                0.05352864517075513,
-                0.10839762436049487
+                0.05352864517075514,
+                0.10839762436049485
               ],
               "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
@@ -8868,6 +9232,18 @@
         },
         {
           "shots_per_setting": 128,
+          "shot_allocation": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ],
           "total_shots": 1280,
           "seed": 302660,
           "grouping": "ungrouped",
@@ -9093,8 +9469,8 @@
                 0.26420630169369097
               ],
               "union_bound_ci": [
-                -0.3217643335179179,
-                0.5561393335179179
+                -0.3217643335179178,
+                0.5561393335179178
               ],
               "squared_range_over_shots": 0.01171875,
               "confidence": 0.95,
@@ -9150,6 +9526,18 @@
         },
         {
           "shots_per_setting": 2048,
+          "shot_allocation": [
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048,
+            2048
+          ],
           "total_shots": 20480,
           "seed": 302661,
           "grouping": "ungrouped",
@@ -9375,8 +9763,8 @@
                 0.08533868479842274
               ],
               "union_bound_ci": [
-                -0.06115397400447947,
-                0.15832194275447947
+                -0.061153974004479444,
+                0.15832194275447944
               ],
               "squared_range_over_shots": 0.000732421875,
               "confidence": 0.95,
@@ -9432,6 +9820,18 @@
         },
         {
           "shots_per_setting": 32768,
+          "shot_allocation": [
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768,
+            32768
+          ],
           "total_shots": 327680,
           "seed": 302662,
           "grouping": "ungrouped",
@@ -9657,8 +10057,8 @@
                 0.059496902644918186
               ],
               "union_bound_ci": [
-                0.022873737944192632,
-                0.07774271713393237
+                0.02287373794419264,
+                0.07774271713393235
               ],
               "squared_range_over_shots": 4.57763671875e-05,
               "confidence": 0.95,
@@ -9711,6 +10111,3893 @@
             "kinetic_energy": -0.8944271909999165
           },
           "vqe_residual": 4.0002178580703475e-08
+        }
+      ],
+      "allocated_runs": [
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            2,
+            320,
+            320,
+            319,
+            319
+          ],
+          "total_shots": 1280,
+          "seed": 402600,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                0,
+                75,
+                0,
+                0,
+                86,
+                0,
+                86,
+                0,
+                0,
+                0,
+                0,
+                73,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                0,
+                90,
+                0,
+                0,
+                68,
+                0,
+                81,
+                0,
+                0,
+                0,
+                0,
+                81,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                73,
+                0,
+                0,
+                0,
+                0,
+                81,
+                0,
+                0,
+                0,
+                0,
+                86,
+                79,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                79,
+                0,
+                0,
+                0,
+                0,
+                78,
+                0,
+                0,
+                0,
+                0,
+                74,
+                88,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.5,
+              "standard_error": 0.5,
+              "exact_sampling_standard_error": 0.3535533905932738,
+              "ci": [
+                -0.4603227913199206,
+                1.4603227913199206
+              ],
+              "union_bound_ci": [
+                -0.4603227913199206,
+                1.4603227913199206
+              ],
+              "squared_range_over_shots": 0.5,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4999999975616074,
+              "error_to_prepared_state": 2.438392598946848e-09,
+              "binomial_ci": [
+                0.01257911709342506,
+                0.9874208829065749
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "exact_sampling_standard_error": 6.651143714883781e-10,
+              "ci": [
+                -2.1519593160362334,
+                -1.8480406839637664
+              ],
+              "union_bound_ci": [
+                -2.356480207056106,
+                -1.643519792943894
+              ],
+              "squared_range_over_shots": 0.012519592476489028,
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            },
+            "energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "exact_sampling_standard_error": 6.651143714883781e-10,
+              "ci": [
+                -2.1519593160362334,
+                -1.8480406839637664
+              ],
+              "union_bound_ci": [
+                -2.356480207056106,
+                -1.643519792943894
+              ],
+              "squared_range_over_shots": 0.012519592476489028,
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            }
+          },
+          "interaction": 0,
+          "exact_ground_state": {
+            "energy": -2.0,
+            "double_occupancy": 0.5,
+            "kinetic_energy": -2.0
+          },
+          "vqe_residual": 1.8168026177692338e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            2,
+            5120,
+            5120,
+            5119,
+            5119
+          ],
+          "total_shots": 20480,
+          "seed": 402601,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                0,
+                1324,
+                0,
+                0,
+                1212,
+                0,
+                1343,
+                0,
+                0,
+                0,
+                0,
+                1241,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                0,
+                1308,
+                0,
+                0,
+                1248,
+                0,
+                1275,
+                0,
+                0,
+                0,
+                0,
+                1289,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                1308,
+                0,
+                0,
+                0,
+                0,
+                1309,
+                0,
+                0,
+                0,
+                0,
+                1232,
+                1270,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                1296,
+                0,
+                0,
+                0,
+                0,
+                1299,
+                0,
+                0,
+                0,
+                0,
+                1264,
+                1260,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 1.0,
+              "standard_error": 0.0,
+              "exact_sampling_standard_error": 0.3535533905932738,
+              "ci": [
+                0.0396772086800794,
+                1.9603227913199206
+              ],
+              "union_bound_ci": [
+                0.0396772086800794,
+                1.9603227913199206
+              ],
+              "squared_range_over_shots": 0.5,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4999999975616074,
+              "error_to_prepared_state": 0.5000000024383926,
+              "binomial_ci": [
+                0.15811388300841903,
+                1.0
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "exact_sampling_standard_error": 1.6611047263182562e-10,
+              "ci": [
+                -2.0379619452061744,
+                -1.9620380547938256
+              ],
+              "union_bound_ci": [
+                -2.0890546665186016,
+                -1.9109453334813984
+              ],
+              "squared_range_over_shots": 0.0007813263088493847,
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            },
+            "energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "exact_sampling_standard_error": 1.6611047263182562e-10,
+              "ci": [
+                -2.0379619452061744,
+                -1.9620380547938256
+              ],
+              "union_bound_ci": [
+                -2.0890546665186016,
+                -1.9109453334813984
+              ],
+              "squared_range_over_shots": 0.0007813263088493847,
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            }
+          },
+          "interaction": 0,
+          "exact_ground_state": {
+            "energy": -2.0,
+            "double_occupancy": 0.5,
+            "kinetic_energy": -2.0
+          },
+          "vqe_residual": 1.8168026177692338e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            2,
+            81920,
+            81920,
+            81919,
+            81919
+          ],
+          "total_shots": 327680,
+          "seed": 402602,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                0,
+                20489,
+                0,
+                0,
+                20583,
+                0,
+                20289,
+                0,
+                0,
+                0,
+                0,
+                20559,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                0,
+                20455,
+                0,
+                0,
+                20639,
+                0,
+                20295,
+                0,
+                0,
+                0,
+                0,
+                20531,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                20519,
+                0,
+                0,
+                0,
+                0,
+                20543,
+                0,
+                0,
+                0,
+                0,
+                20492,
+                20365,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                20396,
+                0,
+                0,
+                0,
+                0,
+                20596,
+                0,
+                0,
+                0,
+                0,
+                20406,
+                20521,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.5,
+              "standard_error": 0.5,
+              "exact_sampling_standard_error": 0.3535533905932738,
+              "ci": [
+                -0.4603227913199206,
+                1.4603227913199206
+              ],
+              "union_bound_ci": [
+                -0.4603227913199206,
+                1.4603227913199206
+              ],
+              "squared_range_over_shots": 0.5,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4999999975616074,
+              "error_to_prepared_state": 2.438392598946848e-09,
+              "binomial_ci": [
+                0.01257911709342506,
+                0.9874208829065749
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "exact_sampling_standard_error": 4.152499804838354e-11,
+              "ci": [
+                -2.009490051803878,
+                -1.9905099481961221
+              ],
+              "union_bound_ci": [
+                -2.0222626473710017,
+                -1.9777373526289983
+              ],
+              "squared_range_over_shots": 4.8828423026861906e-05,
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            },
+            "energy": {
+              "estimate": -2.0,
+              "standard_error": 0.0,
+              "exact_sampling_standard_error": 4.152499804838354e-11,
+              "ci": [
+                -2.009490051803878,
+                -1.9905099481961221
+              ],
+              "union_bound_ci": [
+                -2.0222626473710017,
+                -1.9777373526289983
+              ],
+              "squared_range_over_shots": 4.8828423026861906e-05,
+              "confidence": 0.95,
+              "exact_prepared_state": -2.0,
+              "error_to_prepared_state": 0.0
+            }
+          },
+          "interaction": 0,
+          "exact_ground_state": {
+            "energy": -2.0,
+            "double_occupancy": 0.5,
+            "kinetic_energy": -2.0
+          },
+          "vqe_residual": 1.8168026177692338e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            143,
+            285,
+            284,
+            284,
+            284
+          ],
+          "total_shots": 1280,
+          "seed": 402610,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                41,
+                0,
+                0,
+                36,
+                0,
+                0,
+                37,
+                0,
+                0,
+                29,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                1,
+                83,
+                0,
+                0,
+                60,
+                0,
+                64,
+                1,
+                0,
+                0,
+                0,
+                76,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                0,
+                63,
+                0,
+                0,
+                82,
+                0,
+                72,
+                0,
+                0,
+                0,
+                0,
+                67,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                68,
+                0,
+                0,
+                0,
+                0,
+                79,
+                0,
+                0,
+                0,
+                0,
+                62,
+                74,
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                65,
+                0,
+                0,
+                0,
+                0,
+                67,
+                0,
+                0,
+                1,
+                0,
+                88,
+                63,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.48951048951048953,
+              "standard_error": 0.04194983340040535,
+              "exact_sampling_standard_error": 0.041489222336768564,
+              "ci": [
+                0.3759403353788283,
+                0.6030806436421507
+              ],
+              "union_bound_ci": [
+                0.3759403353788283,
+                0.6030806436421507
+              ],
+              "squared_range_over_shots": 0.006993006993006993,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4379826357034067,
+              "error_to_prepared_state": 0.05152785380708286,
+              "binomial_ci": [
+                0.4050630810615783,
+                0.5744013786014035
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.9859402026192239,
+              "standard_error": 0.007023740290783286,
+              "exact_sampling_standard_error": 0.0073568782183168775,
+              "ci": [
+                -2.147046492329186,
+                -1.8248339129092617
+              ],
+              "union_bound_ci": [
+                -2.3638782322045424,
+                -1.6080021730339054
+              ],
+              "squared_range_over_shots": 0.014072152211514703,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9845557549263404,
+              "error_to_prepared_state": -0.0013844476928834837
+            },
+            "energy": {
+              "estimate": -1.7411849578639793,
+              "standard_error": 0.02211967581708225,
+              "exact_sampling_standard_error": 0.02201050998152017,
+              "ci": [
+                -1.912005862795087,
+                -1.5703640529328715
+              ],
+              "union_bound_ci": [
+                -2.195396504502366,
+                -1.286973411225593
+              ],
+              "squared_range_over_shots": 0.01582040395976645,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.765564437074637,
+              "error_to_prepared_state": 0.02437947921065775
+            }
+          },
+          "interaction": 0.5,
+          "exact_ground_state": {
+            "energy": -1.7655644370746377,
+            "double_occupancy": 0.43798263270539595,
+            "kinetic_energy": -1.9845557534273357
+          },
+          "vqe_residual": 2.2956422910716914e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            2276,
+            4551,
+            4551,
+            4551,
+            4551
+          ],
+          "total_shots": 20480,
+          "seed": 402611,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                509,
+                0,
+                0,
+                657,
+                0,
+                0,
+                641,
+                0,
+                0,
+                469,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                5,
+                1136,
+                0,
+                0,
+                1106,
+                4,
+                1135,
+                4,
+                0,
+                0,
+                2,
+                1159,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                4,
+                1155,
+                0,
+                0,
+                1133,
+                6,
+                1112,
+                8,
+                0,
+                0,
+                3,
+                1130,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                1167,
+                0,
+                5,
+                6,
+                0,
+                1137,
+                0,
+                0,
+                4,
+                0,
+                1162,
+                1066,
+                0,
+                4,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                1110,
+                0,
+                3,
+                3,
+                0,
+                1112,
+                0,
+                0,
+                6,
+                0,
+                1204,
+                1108,
+                0,
+                5,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.429701230228471,
+              "standard_error": 0.010378720473522767,
+              "exact_sampling_standard_error": 0.010399613149441763,
+              "ci": [
+                0.4012339415744475,
+                0.45816851888249455
+              ],
+              "union_bound_ci": [
+                0.4012339415744475,
+                0.45816851888249455
+              ],
+              "squared_range_over_shots": 0.0004393673110720562,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4379826357034067,
+              "error_to_prepared_state": -0.008281405474935666,
+              "binomial_ci": [
+                0.40924568452658955,
+                0.4503380019644644
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.984179301252472,
+              "standard_error": 0.0018609438393376433,
+              "exact_sampling_standard_error": 0.0018386111221608114,
+              "ci": [
+                -2.0244425497827114,
+                -1.9439160527222323
+              ],
+              "union_bound_ci": [
+                -2.0786325795451797,
+                -1.8897260229597646
+              ],
+              "squared_range_over_shots": 0.0008789277081960009,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9845557549263404,
+              "error_to_prepared_state": 0.00037645367386840434
+            },
+            "energy": {
+              "estimate": -1.7693286861382365,
+              "standard_error": 0.00551294582233935,
+              "exact_sampling_standard_error": 0.005515295030462463,
+              "ci": [
+                -1.8120337890304636,
+                -1.7266235832460093
+              ],
+              "union_bound_ci": [
+                -1.8828944568740265,
+                -1.6557629154024465
+              ],
+              "squared_range_over_shots": 0.000988769535964015,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.765564437074637,
+              "error_to_prepared_state": -0.003764249063599401
+            }
+          },
+          "interaction": 0.5,
+          "exact_ground_state": {
+            "energy": -1.7655644370746377,
+            "double_occupancy": 0.43798263270539595,
+            "kinetic_energy": -1.9845557534273357
+          },
+          "vqe_residual": 2.2956422910716914e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            36410,
+            72818,
+            72818,
+            72817,
+            72817
+          ],
+          "total_shots": 327680,
+          "seed": 402612,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                7921,
+                0,
+                0,
+                10306,
+                0,
+                0,
+                10315,
+                0,
+                0,
+                7868,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                71,
+                18095,
+                0,
+                0,
+                18095,
+                80,
+                18147,
+                77,
+                0,
+                0,
+                63,
+                18190,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                65,
+                18016,
+                0,
+                0,
+                18215,
+                74,
+                18279,
+                72,
+                0,
+                0,
+                79,
+                18018,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                18042,
+                0,
+                65,
+                62,
+                0,
+                18021,
+                0,
+                0,
+                73,
+                0,
+                18277,
+                18205,
+                0,
+                72,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                18007,
+                0,
+                60,
+                66,
+                0,
+                18258,
+                0,
+                0,
+                63,
+                0,
+                18157,
+                18134,
+                0,
+                72,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.43364460313100794,
+              "standard_error": 0.0025972103154923345,
+              "exact_sampling_standard_error": 0.00260011749742801,
+              "ci": [
+                0.42652719460147687,
+                0.440762011660539
+              ],
+              "union_bound_ci": [
+                0.42652719460147687,
+                0.440762011660539
+              ],
+              "squared_range_over_shots": 2.7464982147761604e-05,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.4379826357034067,
+              "error_to_prepared_state": -0.004338032572398731,
+              "binomial_ci": [
+                0.42854596392252087,
+                0.43875382909500055
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.984701484252255,
+              "standard_error": 0.0004574839620725698,
+              "exact_sampling_standard_error": 0.0004596480462308439,
+              "ci": [
+                -1.9947671927094526,
+                -1.9746357757950574
+              ],
+              "union_bound_ci": [
+                -2.008314560613972,
+                -1.9610884078905382
+              ],
+              "squared_range_over_shots": 5.493185017596861e-05,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9845557549263404,
+              "error_to_prepared_state": -0.00014572932591461196
+            },
+            "energy": {
+              "estimate": -1.7678791826867508,
+              "standard_error": 0.0013768322088324942,
+              "exact_sampling_standard_error": 0.0013789231583056602,
+              "ci": [
+                -1.7785554583852028,
+                -1.7572029069882988
+              ],
+              "union_bound_ci": [
+                -1.7962707282366956,
+                -1.739487637136806
+              ],
+              "squared_range_over_shots": 6.1798095712909e-05,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.765564437074637,
+              "error_to_prepared_state": -0.0023147456121137555
+            }
+          },
+          "interaction": 0.5,
+          "exact_ground_state": {
+            "energy": -1.7655644370746377,
+            "double_occupancy": 0.43798263270539595,
+            "kinetic_energy": -1.9845557534273357
+          },
+          "vqe_residual": 2.2956422910716914e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": 256,
+          "shot_allocation": [
+            256,
+            256,
+            256,
+            256,
+            256
+          ],
+          "total_shots": 1280,
+          "seed": 402620,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                47,
+                0,
+                0,
+                87,
+                0,
+                0,
+                76,
+                0,
+                0,
+                46,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                1,
+                66,
+                0,
+                0,
+                69,
+                0,
+                58,
+                0,
+                0,
+                0,
+                3,
+                59,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                1,
+                70,
+                0,
+                0,
+                60,
+                1,
+                59,
+                0,
+                0,
+                0,
+                1,
+                64,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                74,
+                0,
+                1,
+                0,
+                0,
+                55,
+                0,
+                0,
+                2,
+                0,
+                64,
+                59,
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                59,
+                0,
+                0,
+                2,
+                0,
+                67,
+                0,
+                0,
+                0,
+                0,
+                58,
+                68,
+                0,
+                2,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.36328125,
+              "standard_error": 0.030117937030518287,
+              "exact_sampling_standard_error": 0.030316953224071363,
+              "ci": [
+                0.2783999052662113,
+                0.4481625947337887
+              ],
+              "union_bound_ci": [
+                0.2783999052662113,
+                0.4481625947337887
+              ],
+              "squared_range_over_shots": 0.00390625,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.37873219353173726,
+              "error_to_prepared_state": -0.01545094353173726,
+              "binomial_ci": [
+                0.3043044012703302,
+                0.42546460167831696
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.94140625,
+              "standard_error": 0.015045551622367441,
+              "exact_sampling_standard_error": 0.015158475808532865,
+              "ci": [
+                -2.111168939467577,
+                -1.7716435605324226
+              ],
+              "union_bound_ci": [
+                -2.3396513776865255,
+                -1.5431611223134745
+              ],
+              "squared_range_over_shots": 0.015625,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9402850063405674,
+              "error_to_prepared_state": -0.001121243659432558
+            },
+            "energy": {
+              "estimate": -1.578125,
+              "standard_error": 0.03366687919299305,
+              "exact_sampling_standard_error": 0.03389538378051512,
+              "ci": [
+                -1.7679254568463454,
+                -1.3883245431536546
+              ],
+              "union_bound_ci": [
+                -2.086757384599603,
+                -1.0694926154003972
+              ],
+              "squared_range_over_shots": 0.01953125,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.5615528128088303,
+              "error_to_prepared_state": -0.016572187191169707
+            }
+          },
+          "interaction": 1,
+          "exact_ground_state": {
+            "energy": -1.561552812808831,
+            "double_occupancy": 0.37873218748183346,
+            "kinetic_energy": -1.9402850002906644
+          },
+          "vqe_residual": 2.7347880197038924e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": 4096,
+          "shot_allocation": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          "total_shots": 20480,
+          "seed": 402621,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                759,
+                0,
+                0,
+                1295,
+                0,
+                0,
+                1284,
+                0,
+                0,
+                758,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                12,
+                960,
+                0,
+                0,
+                1043,
+                13,
+                1001,
+                15,
+                0,
+                0,
+                12,
+                1040,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                13,
+                1043,
+                0,
+                0,
+                991,
+                16,
+                991,
+                20,
+                0,
+                0,
+                23,
+                999,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                1003,
+                0,
+                18,
+                21,
+                0,
+                1002,
+                0,
+                0,
+                17,
+                0,
+                1008,
+                1004,
+                0,
+                23,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                953,
+                0,
+                17,
+                23,
+                0,
+                1013,
+                0,
+                0,
+                15,
+                0,
+                1034,
+                1027,
+                0,
+                14,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.370361328125,
+              "standard_error": 0.007546256456616884,
+              "exact_sampling_standard_error": 0.007579238306017841,
+              "ci": [
+                0.34914099194155285,
+                0.39158166430844715
+              ],
+              "union_bound_ci": [
+                0.34914099194155285,
+                0.39158166430844715
+              ],
+              "squared_range_over_shots": 0.000244140625,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.37873219353173726,
+              "error_to_prepared_state": -0.00837086540673726,
+              "binomial_ci": [
+                0.3555475306393149,
+                0.38536026860229616
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.93359375,
+              "standard_error": 0.003992677004292829,
+              "exact_sampling_standard_error": 0.0037896189521332163,
+              "ci": [
+                -1.9760344223668944,
+                -1.8911530776331056
+              ],
+              "union_bound_ci": [
+                -2.0331550319216314,
+                -1.8340324680783686
+              ],
+              "squared_range_over_shots": 0.0009765625,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9402850063405674,
+              "error_to_prepared_state": 0.006691256340567442
+            },
+            "energy": {
+              "estimate": -1.563232421875,
+              "standard_error": 0.008537415075398453,
+              "exact_sampling_standard_error": 0.00847384594512878,
+              "ci": [
+                -1.6106825360865864,
+                -1.5157823076634136
+              ],
+              "union_bound_ci": [
+                -1.6903905180249006,
+                -1.4360743257250994
+              ],
+              "squared_range_over_shots": 0.001220703125,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.5615528128088303,
+              "error_to_prepared_state": -0.0016796090661697072
+            }
+          },
+          "interaction": 1,
+          "exact_ground_state": {
+            "energy": -1.561552812808831,
+            "double_occupancy": 0.37873218748183346,
+            "kinetic_energy": -1.9402850002906644
+          },
+          "vqe_residual": 2.7347880197038924e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": 65536,
+          "shot_allocation": [
+            65536,
+            65536,
+            65536,
+            65536,
+            65536
+          ],
+          "total_shots": 327680,
+          "seed": 402622,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                12280,
+                0,
+                0,
+                20601,
+                0,
+                0,
+                20245,
+                0,
+                0,
+                12410,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                229,
+                16211,
+                0,
+                0,
+                16308,
+                241,
+                16036,
+                239,
+                0,
+                0,
+                249,
+                16023,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                243,
+                15883,
+                0,
+                0,
+                16155,
+                242,
+                16319,
+                232,
+                0,
+                0,
+                241,
+                16221,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                16171,
+                0,
+                237,
+                257,
+                0,
+                16254,
+                0,
+                0,
+                215,
+                0,
+                16051,
+                16083,
+                0,
+                268,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                16295,
+                0,
+                257,
+                227,
+                0,
+                15895,
+                0,
+                0,
+                221,
+                0,
+                16309,
+                16099,
+                0,
+                233,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.376739501953125,
+              "standard_error": 0.0018928610249737694,
+              "exact_sampling_standard_error": 0.0018948095765044602,
+              "ci": [
+                0.3714344179072632,
+                0.3820445859989868
+              ],
+              "union_bound_ci": [
+                0.3714344179072632,
+                0.3820445859989868
+              ],
+              "squared_range_over_shots": 1.52587890625e-05,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.37873219353173726,
+              "error_to_prepared_state": -0.00199269157861226,
+              "binomial_ci": [
+                0.3730274862527532,
+                0.38046243435366567
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.9415435791015625,
+              "standard_error": 0.000937523066415141,
+              "exact_sampling_standard_error": 0.0009474047380333041,
+              "ci": [
+                -1.9521537471932862,
+                -1.9309334110098388
+              ],
+              "union_bound_ci": [
+                -1.9664338995819703,
+                -1.9166532586211547
+              ],
+              "squared_range_over_shots": 6.103515625e-05,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.9402850063405674,
+              "error_to_prepared_state": -0.001258572760995058
+            },
+            "energy": {
+              "estimate": -1.5648040771484375,
+              "standard_error": 0.0021123144557392962,
+              "exact_sampling_standard_error": 0.002118461486282195,
+              "ci": [
+                -1.576666605701334,
+                -1.552941548595541
+              ],
+              "union_bound_ci": [
+                -1.5965936011859128,
+                -1.5330145531109622
+              ],
+              "squared_range_over_shots": 7.62939453125e-05,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.5615528128088303,
+              "error_to_prepared_state": -0.003251264339607207
+            }
+          },
+          "interaction": 1,
+          "exact_ground_state": {
+            "energy": -1.561552812808831,
+            "double_occupancy": 0.37873218748183346,
+            "kinetic_energy": -1.9402850002906644
+          },
+          "vqe_residual": 2.7347880197038924e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            425,
+            214,
+            214,
+            214,
+            213
+          ],
+          "total_shots": 1280,
+          "seed": 402630,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                59,
+                0,
+                0,
+                162,
+                0,
+                0,
+                150,
+                0,
+                0,
+                54,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                3,
+                44,
+                0,
+                0,
+                66,
+                3,
+                48,
+                3,
+                0,
+                0,
+                3,
+                44,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                3,
+                50,
+                0,
+                0,
+                49,
+                2,
+                60,
+                3,
+                0,
+                0,
+                4,
+                43,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                44,
+                0,
+                6,
+                1,
+                0,
+                51,
+                0,
+                0,
+                2,
+                0,
+                53,
+                53,
+                0,
+                4,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                48,
+                0,
+                5,
+                3,
+                0,
+                55,
+                0,
+                0,
+                1,
+                0,
+                45,
+                53,
+                0,
+                3,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.26588235294117646,
+              "standard_error": 0.021455797438364586,
+              "exact_sampling_standard_error": 0.021693045813492066,
+              "ci": [
+                0.200004752944588,
+                0.33175995293776495
+              ],
+              "union_bound_ci": [
+                0.200004752944588,
+                0.33175995293776495
+              ],
+              "squared_range_over_shots": 0.002352941176470588,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.2763932035540129,
+              "error_to_prepared_state": -0.010510850612836464,
+              "binomial_ci": [
+                0.2244592983718962,
+                0.3105994536590795
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.7707647755693037,
+              "standard_error": 0.03186923011464691,
+              "exact_sampling_standard_error": 0.030588827250546517,
+              "ci": [
+                -1.9565495250222567,
+                -1.5849800261163507
+              ],
+              "union_bound_ci": [
+                -2.206595719414335,
+                -1.3349338317242725
+              ],
+              "squared_range_over_shots": 0.01871352726953622,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.788854384607815,
+              "error_to_prepared_state": 0.018089609038511423
+            },
+            "energy": {
+              "estimate": -1.2390000696869508,
+              "standard_error": 0.05345140599614613,
+              "exact_sampling_standard_error": 0.05308511372530759,
+              "ci": [
+                -1.4667618001302773,
+                -1.0112383392436242
+              ],
+              "union_bound_ci": [
+                -1.8422118716243898,
+                -0.6357882677495116
+              ],
+              "squared_range_over_shots": 0.028125291975418576,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.2360679774997894,
+              "error_to_prepared_state": -0.0029320921871613947
+            }
+          },
+          "interaction": 2,
+          "exact_ground_state": {
+            "energy": -1.2360679774997898,
+            "double_occupancy": 0.27639320225002095,
+            "kinetic_energy": -1.7888543819998317
+          },
+          "vqe_residual": 2.362402299911928e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            6825,
+            3414,
+            3414,
+            3414,
+            3413
+          ],
+          "total_shots": 20480,
+          "seed": 402631,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                943,
+                0,
+                0,
+                2481,
+                0,
+                0,
+                2476,
+                0,
+                0,
+                925,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                51,
+                829,
+                0,
+                0,
+                793,
+                46,
+                782,
+                49,
+                0,
+                0,
+                35,
+                829,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                56,
+                788,
+                0,
+                0,
+                835,
+                54,
+                811,
+                48,
+                0,
+                0,
+                42,
+                780,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                771,
+                0,
+                57,
+                50,
+                0,
+                823,
+                0,
+                0,
+                41,
+                0,
+                819,
+                805,
+                0,
+                48,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                802,
+                0,
+                47,
+                44,
+                0,
+                854,
+                0,
+                0,
+                52,
+                0,
+                784,
+                790,
+                0,
+                40,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.2736996336996337,
+              "standard_error": 0.005397289713939918,
+              "exact_sampling_standard_error": 0.005413319627499786,
+              "ci": [
+                0.2572604251099246,
+                0.2901388422893428
+              ],
+              "union_bound_ci": [
+                0.2572604251099246,
+                0.2901388422893428
+              ],
+              "squared_range_over_shots": 0.00014652014652014652,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.2763932035540129,
+              "error_to_prepared_state": -0.002693569854379241,
+              "binomial_ci": [
+                0.26314712941856133,
+                0.2844457910904402
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.7773715235742724,
+              "standard_error": 0.007848360136328785,
+              "exact_sampling_standard_error": 0.007654188302823605,
+              "ci": [
+                -1.8238601138186206,
+                -1.7308829333299243
+              ],
+              "union_bound_ci": [
+                -1.8864287880335533,
+                -1.6683142591149915
+              ],
+              "squared_range_over_shots": 0.0011717319851678452,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.788854384607815,
+              "error_to_prepared_state": 0.01148286103354268
+            },
+            "energy": {
+              "estimate": -1.2299722561750053,
+              "standard_error": 0.013346149326840358,
+              "exact_sampling_standard_error": 0.013259061661104807,
+              "ci": [
+                -1.2869123943828702,
+                -1.1730321179671404
+              ],
+              "union_bound_ci": [
+                -1.3808045335447294,
+                -1.0791399788052811
+              ],
+              "squared_range_over_shots": 0.0017578125712484315,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.2360679774997894,
+              "error_to_prepared_state": 0.006095721324784087
+            }
+          },
+          "interaction": 2,
+          "exact_ground_state": {
+            "energy": -1.2360679774997898,
+            "double_occupancy": 0.27639320225002095,
+            "kinetic_energy": -1.7888543819998317
+          },
+          "vqe_residual": 2.362402299911928e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            109225,
+            54614,
+            54614,
+            54614,
+            54613
+          ],
+          "total_shots": 327680,
+          "seed": 402632,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                15018,
+                0,
+                0,
+                39540,
+                0,
+                0,
+                39529,
+                0,
+                0,
+                15138,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                724,
+                13072,
+                0,
+                0,
+                12970,
+                685,
+                12840,
+                695,
+                0,
+                0,
+                732,
+                12896,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                766,
+                12972,
+                0,
+                0,
+                12895,
+                714,
+                12973,
+                730,
+                0,
+                0,
+                711,
+                12853,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                12960,
+                0,
+                746,
+                736,
+                0,
+                12895,
+                0,
+                0,
+                693,
+                0,
+                12886,
+                12997,
+                0,
+                701,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                12998,
+                0,
+                719,
+                721,
+                0,
+                12979,
+                0,
+                0,
+                720,
+                0,
+                12947,
+                12752,
+                0,
+                777,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.2760906385900664,
+              "standard_error": 0.001352723075249619,
+              "exact_sampling_standard_error": 0.0013531750193314493,
+              "ci": [
+                0.27198130680626265,
+                0.2801999703738701
+              ],
+              "union_bound_ci": [
+                0.27198130680626265,
+                0.2801999703738701
+              ],
+              "squared_range_over_shots": 9.155413138017853e-06,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.2763932035540129,
+              "error_to_prepared_state": -0.00030256496394653887,
+              "binomial_ci": [
+                0.27344075684398994,
+                0.27875241390256184
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.7881485740212324,
+              "standard_error": 0.0019166813697360319,
+              "exact_sampling_standard_error": 0.0019136565504432445,
+              "ci": [
+                -1.7997713864896885,
+                -1.7765257615527763
+              ],
+              "union_bound_ci": [
+                -1.8154144499923155,
+                -1.7608826980501493
+              ],
+              "squared_range_over_shots": 7.324162871532271e-05,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.788854384607815,
+              "error_to_prepared_state": 0.0007058105865827002
+            },
+            "energy": {
+              "estimate": -1.2359672968410997,
+              "standard_error": 0.003315585370088416,
+              "exact_sampling_standard_error": 0.0033145756779450687,
+              "ci": [
+                -1.2502023311057024,
+                -1.221732262576497
+              ],
+              "union_bound_ci": [
+                -1.2736758325432211,
+                -1.1982587611389783
+              ],
+              "squared_range_over_shots": 0.00010986328126739412,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.2360679774997894,
+              "error_to_prepared_state": 0.0001006806586896225
+            }
+          },
+          "interaction": 2,
+          "exact_ground_state": {
+            "energy": -1.2360679774997898,
+            "double_occupancy": 0.27639320225002095,
+            "kinetic_energy": -1.7888543819998317
+          },
+          "vqe_residual": 2.362402299911928e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            637,
+            161,
+            161,
+            161,
+            160
+          ],
+          "total_shots": 1280,
+          "seed": 402640,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                40,
+                0,
+                0,
+                268,
+                0,
+                0,
+                283,
+                0,
+                0,
+                46,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                7,
+                31,
+                0,
+                0,
+                43,
+                4,
+                35,
+                8,
+                0,
+                0,
+                5,
+                28,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                3,
+                37,
+                0,
+                0,
+                35,
+                6,
+                30,
+                8,
+                0,
+                0,
+                6,
+                36,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                32,
+                0,
+                6,
+                5,
+                0,
+                30,
+                0,
+                0,
+                10,
+                0,
+                38,
+                34,
+                0,
+                6,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                41,
+                0,
+                5,
+                1,
+                0,
+                37,
+                0,
+                0,
+                2,
+                0,
+                32,
+                34,
+                0,
+                8,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.13500784929356358,
+              "standard_error": 0.01355055348974511,
+              "exact_sampling_standard_error": 0.014008295498199184,
+              "ci": [
+                0.08119790805962768,
+                0.18881779052749947
+              ],
+              "union_bound_ci": [
+                0.08119790805962768,
+                0.18881779052749947
+              ],
+              "squared_range_over_shots": 0.0015698587127158557,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.1464466127177122,
+              "error_to_prepared_state": -0.011438763424148624,
+              "binomial_ci": [
+                0.10942681000354883,
+                0.16402571230991167
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.4403726708074536,
+              "standard_error": 0.05474029159210542,
+              "exact_sampling_standard_error": 0.05577134110209289,
+              "ci": [
+                -1.6546066326649984,
+                -1.2261387089499087
+              ],
+              "union_bound_ci": [
+                -1.9429421930993782,
+                -0.937803148515529
+              ],
+              "squared_range_over_shots": 0.024883540372670807,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.4142135756170384,
+              "error_to_prepared_state": -0.02615909519041515
+            },
+            "energy": {
+              "estimate": -0.9003412736331992,
+              "standard_error": 0.07703492403867107,
+              "exact_sampling_standard_error": 0.07905795325306542,
+              "ci": [
+                -1.2040258909959727,
+                -0.5966566562704256
+              ],
+              "union_bound_ci": [
+                -1.6717955409952563,
+                -0.12888700627114202
+              ],
+              "squared_range_over_shots": 0.050001279776124494,
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8284271247461896,
+              "error_to_prepared_state": -0.07191414888700953
+            }
+          },
+          "interaction": 4,
+          "exact_ground_state": {
+            "energy": -0.82842712474619,
+            "double_occupancy": 0.14644660940672619,
+            "kinetic_energy": -1.4142135623730947
+          },
+          "vqe_residual": 3.5548562423042726e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            10237,
+            2561,
+            2561,
+            2561,
+            2560
+          ],
+          "total_shots": 20480,
+          "seed": 402641,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                744,
+                0,
+                0,
+                4384,
+                0,
+                0,
+                4381,
+                0,
+                0,
+                728,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                106,
+                536,
+                0,
+                0,
+                539,
+                95,
+                543,
+                91,
+                0,
+                0,
+                96,
+                555,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                83,
+                559,
+                0,
+                0,
+                531,
+                87,
+                557,
+                88,
+                0,
+                0,
+                92,
+                564,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                568,
+                0,
+                101,
+                91,
+                0,
+                500,
+                0,
+                0,
+                92,
+                0,
+                547,
+                546,
+                0,
+                116,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                532,
+                0,
+                87,
+                103,
+                0,
+                547,
+                0,
+                0,
+                98,
+                0,
+                526,
+                568,
+                0,
+                99,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.14379212659958973,
+              "standard_error": 0.003468103288379743,
+              "exact_sampling_standard_error": 0.0034943681553942325,
+              "ci": [
+                0.13036924120174295,
+                0.1572150119974365
+              ],
+              "union_bound_ci": [
+                0.13036924120174295,
+                0.1572150119974365
+              ],
+              "squared_range_over_shots": 9.768486861385171e-05,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.1464466127177122,
+              "error_to_prepared_state": -0.0026544861181224677,
+              "binomial_ci": [
+                0.13704828504320693,
+                0.1507392742104832
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.4044704522159313,
+              "standard_error": 0.01406876358137385,
+              "exact_sampling_standard_error": 0.01397337819666182,
+              "ci": [
+                -1.4581462669345477,
+                -1.3507946374973148
+              ],
+              "union_bound_ci": [
+                -1.530388176993446,
+                -1.2785527274384165
+              ],
+              "squared_range_over_shots": 0.0015620424150722375,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.4142135756170384,
+              "error_to_prepared_state": 0.009743123401107168
+            },
+            "energy": {
+              "estimate": -0.8293019458175723,
+              "standard_error": 0.01975788337374521,
+              "exact_sampling_standard_error": 0.019764236365563854,
+              "ci": [
+                -0.9052221323569039,
+                -0.7533817592782408
+              ],
+              "union_bound_ci": [
+                -1.0223049482215751,
+                -0.6362989434135694
+              ],
+              "squared_range_over_shots": 0.0031250003128938646,
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8284271247461896,
+              "error_to_prepared_state": -0.0008748210713827032
+            }
+          },
+          "interaction": 4,
+          "exact_ground_state": {
+            "energy": -0.82842712474619,
+            "double_occupancy": 0.14644660940672619,
+            "kinetic_energy": -1.4142135623730947
+          },
+          "vqe_residual": 3.5548562423042726e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            163837,
+            40961,
+            40961,
+            40961,
+            40960
+          ],
+          "total_shots": 327680,
+          "seed": 402642,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                12048,
+                0,
+                0,
+                69709,
+                0,
+                0,
+                70128,
+                0,
+                0,
+                11952,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                1587,
+                8922,
+                0,
+                0,
+                8561,
+                1490,
+                8790,
+                1444,
+                0,
+                0,
+                1540,
+                8627,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                1426,
+                8993,
+                0,
+                0,
+                8588,
+                1492,
+                8719,
+                1468,
+                0,
+                0,
+                1500,
+                8775,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                8648,
+                0,
+                1492,
+                1548,
+                0,
+                8846,
+                0,
+                0,
+                1471,
+                0,
+                8735,
+                8709,
+                0,
+                1512,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                8717,
+                0,
+                1471,
+                1522,
+                0,
+                8709,
+                0,
+                0,
+                1505,
+                0,
+                8750,
+                8733,
+                0,
+                1553,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.1464870572581285,
+              "standard_error": 0.0008735746337049514,
+              "exact_sampling_standard_error": 0.000873472058802889,
+              "ci": [
+                0.14313179678695193,
+                0.14984231772930506
+              ],
+              "union_bound_ci": [
+                0.14313179678695193,
+                0.14984231772930506
+              ],
+              "squared_range_over_shots": 6.103627385755354e-06,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.1464466127177122,
+              "error_to_prepared_state": 4.044454041629564e-05,
+              "binomial_ci": [
+                0.14477810155434925,
+                0.1482085325248596
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.4135605153806745,
+              "standard_error": 0.0034954384678041205,
+              "exact_sampling_standard_error": 0.00349382419554967,
+              "ci": [
+                -1.426981311521764,
+                -1.400139719239585
+              ],
+              "union_bound_ci": [
+                -1.445044268904791,
+                -1.382076761856558
+              ],
+              "squared_range_over_shots": 9.765446190431143e-05,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.4142135756170384,
+              "error_to_prepared_state": 0.0006530602363639115
+            },
+            "energy": {
+              "estimate": -0.8276122863481606,
+              "standard_error": 0.004942490498994273,
+              "exact_sampling_standard_error": 0.004941058844980297,
+              "ci": [
+                -0.8465923320365072,
+                -0.8086322406598141
+              ],
+              "union_bound_ci": [
+                -0.8758652439105108,
+                -0.7793593287858105
+              ],
+              "squared_range_over_shots": 0.0001953125000763971,
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8284271247461896,
+              "error_to_prepared_state": 0.0008148383980289831
+            }
+          },
+          "interaction": 4,
+          "exact_ground_state": {
+            "energy": -0.82842712474619,
+            "double_occupancy": 0.14644660940672619,
+            "kinetic_energy": -1.4142135623730947
+          },
+          "vqe_residual": 3.5548562423042726e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            764,
+            129,
+            129,
+            129,
+            129
+          ],
+          "total_shots": 1280,
+          "seed": 402650,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                30,
+                0,
+                0,
+                364,
+                0,
+                0,
+                350,
+                0,
+                0,
+                20,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                2,
+                23,
+                0,
+                0,
+                28,
+                9,
+                31,
+                5,
+                0,
+                0,
+                5,
+                26,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                7,
+                27,
+                0,
+                0,
+                22,
+                7,
+                30,
+                6,
+                0,
+                0,
+                6,
+                24,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                19,
+                0,
+                8,
+                11,
+                0,
+                24,
+                0,
+                0,
+                10,
+                0,
+                30,
+                22,
+                0,
+                5,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                31,
+                0,
+                12,
+                4,
+                0,
+                28,
+                0,
+                0,
+                3,
+                0,
+                20,
+                24,
+                0,
+                7,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.06544502617801047,
+              "standard_error": 0.00895320400901037,
+              "exact_sampling_standard_error": 0.010034174252133946,
+              "ci": [
+                0.016310637768057558,
+                0.11457941458796339
+              ],
+              "union_bound_ci": [
+                0.016310637768057565,
+                0.11457941458796338
+              ],
+              "squared_range_over_shots": 0.0013089005235602095,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.0839748503185793,
+              "error_to_prepared_state": -0.018529824140568835,
+              "binomial_ci": [
+                0.04896116132564055,
+                0.08537406496769734
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.1705426356589146,
+              "standard_error": 0.071383890452376,
+              "exact_sampling_standard_error": 0.07325794401825204,
+              "ci": [
+                -1.409690977742121,
+                -0.9313942935757082
+              ],
+              "union_bound_ci": [
+                -1.731559089437099,
+                -0.6095261818807302
+              ],
+              "squared_range_over_shots": 0.031007751937984496,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.1094003773754648,
+              "error_to_prepared_state": -0.06114225828344977
+            },
+            "energy": {
+              "estimate": -0.7778724785908518,
+              "standard_error": 0.08933876453750274,
+              "exact_sampling_standard_error": 0.09482285519314482,
+              "ci": [
+                -1.1574810954586336,
+                -0.39826386172307
+              ],
+              "union_bound_ci": [
+                -1.7044016967687514,
+                0.14865673958704784
+              ],
+              "squared_range_over_shots": 0.07812817078615203,
+              "confidence": 0.95,
+              "exact_prepared_state": -0.605551275463989,
+              "error_to_prepared_state": -0.17232120312686283
+            }
+          },
+          "interaction": 6,
+          "exact_ground_state": {
+            "energy": -0.60555127546399,
+            "double_occupancy": 0.08397485283107811,
+            "kinetic_energy": -1.1094003924504587
+          },
+          "vqe_residual": 3.488907272469943e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            12284,
+            2049,
+            2049,
+            2049,
+            2049
+          ],
+          "total_shots": 20480,
+          "seed": 402651,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                512,
+                0,
+                0,
+                5737,
+                0,
+                0,
+                5557,
+                0,
+                0,
+                478,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                96,
+                390,
+                0,
+                0,
+                423,
+                116,
+                387,
+                108,
+                0,
+                0,
+                122,
+                407,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                99,
+                409,
+                0,
+                0,
+                421,
+                113,
+                383,
+                110,
+                0,
+                0,
+                99,
+                415,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                394,
+                0,
+                93,
+                106,
+                0,
+                427,
+                0,
+                0,
+                107,
+                0,
+                417,
+                394,
+                0,
+                111,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                428,
+                0,
+                122,
+                94,
+                0,
+                359,
+                0,
+                0,
+                124,
+                0,
+                377,
+                423,
+                0,
+                122,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.08059264083360469,
+              "standard_error": 0.002456119286021847,
+              "exact_sampling_standard_error": 0.0025024096956019703,
+              "ci": [
+                0.06833907946871302,
+                0.09284620219849636
+              ],
+              "union_bound_ci": [
+                0.06833907946871302,
+                0.09284620219849636
+              ],
+              "squared_range_over_shots": 8.140670791273201e-05,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.0839748503185793,
+              "error_to_prepared_state": -0.003382209484974613,
+              "binomial_ci": [
+                0.07583801945840717,
+                0.0855470844445889
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.1498291849682771,
+              "standard_error": 0.018075961195753797,
+              "exact_sampling_standard_error": 0.018381400681266594,
+              "ci": [
+                -1.2098347114269066,
+                -1.0898236585096477
+              ],
+              "union_bound_ci": [
+                -1.2905957375091295,
+                -1.0090626324274248
+              ],
+              "squared_range_over_shots": 0.0019521717911176184,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.1094003773754648,
+              "error_to_prepared_state": -0.04042880759281231
+            },
+            "energy": {
+              "estimate": -0.6662733399666491,
+              "standard_error": 0.023321903079475778,
+              "exact_sampling_standard_error": 0.023734149347562614,
+              "ci": [
+                -0.7611735759305879,
+                -0.5713731040027102
+              ],
+              "union_bound_ci": [
+                -0.8982132489148738,
+                -0.4343334310184244
+              ],
+              "squared_range_over_shots": 0.004882813275975971,
+              "confidence": 0.95,
+              "exact_prepared_state": -0.605551275463989,
+              "error_to_prepared_state": -0.060722064502660045
+            }
+          },
+          "interaction": 6,
+          "exact_ground_state": {
+            "energy": -0.60555127546399,
+            "double_occupancy": 0.08397485283107811,
+            "kinetic_energy": -1.1094003924504587
+          },
+          "vqe_residual": 3.488907272469943e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            196604,
+            32769,
+            32769,
+            32769,
+            32769
+          ],
+          "total_shots": 327680,
+          "seed": 402652,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                8471,
+                0,
+                0,
+                89921,
+                0,
+                0,
+                89989,
+                0,
+                0,
+                8223,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                1804,
+                6383,
+                0,
+                0,
+                6365,
+                1761,
+                6528,
+                1839,
+                0,
+                0,
+                1826,
+                6263,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                1850,
+                6381,
+                0,
+                0,
+                6423,
+                1838,
+                6275,
+                1844,
+                0,
+                0,
+                1765,
+                6393,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                6320,
+                0,
+                1918,
+                1804,
+                0,
+                6297,
+                0,
+                0,
+                1817,
+                0,
+                6360,
+                6401,
+                0,
+                1852,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                6257,
+                0,
+                1804,
+                1842,
+                0,
+                6394,
+                0,
+                0,
+                1885,
+                0,
+                6415,
+                6250,
+                0,
+                1922,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.08491180240483408,
+              "standard_error": 0.0006286666708769052,
+              "exact_sampling_standard_error": 0.000625506955319716,
+              "ci": [
+                0.08184887954506115,
+                0.087974725264607
+              ],
+              "union_bound_ci": [
+                0.08184887954506115,
+                0.087974725264607
+              ],
+              "squared_range_over_shots": 5.086366503224756e-06,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.0839748503185793,
+              "error_to_prepared_state": 0.000936952086254772,
+              "binomial_ci": [
+                0.08368322432279596,
+                0.08615263528191984
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -1.1036955659312155,
+              "standard_error": 0.004606847654667375,
+              "exact_sampling_standard_error": 0.004596401810070059,
+              "ci": [
+                -1.1187003805920341,
+                -1.088690751270397
+              ],
+              "union_bound_ci": [
+                -1.1388952576258482,
+                -1.0684958742365829
+              ],
+              "squared_range_over_shots": 0.0001220665873233849,
+              "confidence": 0.95,
+              "exact_prepared_state": -1.1094003773754648,
+              "error_to_prepared_state": 0.00570481144424928
+            },
+            "energy": {
+              "estimate": -0.594224751502211,
+              "standard_error": 0.005954076712966211,
+              "exact_sampling_standard_error": 0.005933989538340592,
+              "ci": [
+                -0.6179498086153693,
+                -0.5704996943890527
+              ],
+              "union_bound_ci": [
+                -0.65221459590929,
+                -0.536234907095132
+              ],
+              "squared_range_over_shots": 0.00030517578143947615,
+              "confidence": 0.95,
+              "exact_prepared_state": -0.605551275463989,
+              "error_to_prepared_state": 0.011326523961778023
+            }
+          },
+          "interaction": 6,
+          "exact_ground_state": {
+            "energy": -0.60555127546399,
+            "double_occupancy": 0.08397485283107811,
+            "kinetic_energy": -1.1094003924504587
+          },
+          "vqe_residual": 3.488907272469943e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            848,
+            108,
+            108,
+            108,
+            108
+          ],
+          "total_shots": 1280,
+          "seed": 402660,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                26,
+                0,
+                0,
+                398,
+                0,
+                0,
+                396,
+                0,
+                0,
+                28,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                13,
+                12,
+                0,
+                0,
+                28,
+                8,
+                15,
+                6,
+                0,
+                0,
+                6,
+                20,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                6,
+                18,
+                0,
+                0,
+                20,
+                5,
+                27,
+                6,
+                0,
+                0,
+                6,
+                20,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                19,
+                0,
+                7,
+                5,
+                0,
+                19,
+                0,
+                0,
+                10,
+                0,
+                21,
+                19,
+                0,
+                8,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                19,
+                0,
+                6,
+                5,
+                0,
+                21,
+                0,
+                0,
+                10,
+                0,
+                18,
+                22,
+                0,
+                7,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.06367924528301887,
+              "standard_error": 0.008390147072038818,
+              "exact_sampling_standard_error": 0.007678689076435808,
+              "ci": [
+                0.01704184775759366,
+                0.11031664280844408
+              ],
+              "union_bound_ci": [
+                0.017041847757593653,
+                0.11031664280844408
+              ],
+              "squared_range_over_shots": 0.0011792452830188679,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.05278640618919383,
+              "error_to_prepared_state": 0.01089283909382504,
+              "binomial_ci": [
+                0.048196254801675525,
+                0.08227393265311159
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -0.9444444444444444,
+              "standard_error": 0.0849663087210535,
+              "exact_sampling_standard_error": 0.08606629625730963,
+              "ci": [
+                -1.2058112030110062,
+                -0.6830776858778826
+              ],
+              "union_bound_ci": [
+                -1.5575829289065042,
+                -0.33130595998238455
+              ],
+              "squared_range_over_shots": 0.037037037037037035,
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8944272045131296,
+              "error_to_prepared_state": -0.050017239931314794
+            },
+            "energy": {
+              "estimate": -0.4350104821802935,
+              "standard_error": 0.10827985021540079,
+              "exact_sampling_standard_error": 0.10574021170366439,
+              "ci": [
+                -0.8905492629136595,
+                0.020528298553072588
+              ],
+              "union_bound_ci": [
+                -1.508625709360338,
+                0.6386047449997511
+              ],
+              "squared_range_over_shots": 0.11250873515024458,
+              "confidence": 0.95,
+              "exact_prepared_state": -0.472135954999579,
+              "error_to_prepared_state": 0.03712547281928552
+            }
+          },
+          "interaction": 8,
+          "exact_ground_state": {
+            "energy": -0.47213595499958,
+            "double_occupancy": 0.052786404500042065,
+            "kinetic_energy": -0.8944271909999165
+          },
+          "vqe_residual": 4.0002178580703475e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            13648,
+            1708,
+            1708,
+            1708,
+            1708
+          ],
+          "total_shots": 20480,
+          "seed": 402661,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                383,
+                0,
+                0,
+                6521,
+                0,
+                0,
+                6404,
+                0,
+                0,
+                340,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                123,
+                285,
+                0,
+                0,
+                294,
+                131,
+                302,
+                131,
+                0,
+                0,
+                129,
+                313,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                127,
+                313,
+                0,
+                0,
+                318,
+                104,
+                279,
+                110,
+                0,
+                0,
+                133,
+                324,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                306,
+                0,
+                115,
+                117,
+                0,
+                320,
+                0,
+                0,
+                103,
+                0,
+                310,
+                307,
+                0,
+                130,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                330,
+                0,
+                107,
+                100,
+                0,
+                298,
+                0,
+                0,
+                100,
+                0,
+                312,
+                333,
+                0,
+                128,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.052974794841735055,
+              "standard_error": 0.0019173297673817208,
+              "exact_sampling_standard_error": 0.0019140377624764253,
+              "ci": [
+                0.04134966728171636,
+                0.06459992240175376
+              ],
+              "union_bound_ci": [
+                0.04134966728171636,
+                0.06459992240175375
+              ],
+              "squared_range_over_shots": 7.327080890973036e-05,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.05278640618919383,
+              "error_to_prepared_state": 0.00018838865254122705,
+              "binomial_ci": [
+                0.04927603883813694,
+                0.056865570028883955
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -0.8946135831381733,
+              "standard_error": 0.02163261054318965,
+              "exact_sampling_standard_error": 0.02164218268574647,
+              "ci": [
+                -0.9603367219609213,
+                -0.8288904443154252
+              ],
+              "union_bound_ci": [
+                -1.0487930432687425,
+                -0.7404341230076041
+              ],
+              "squared_range_over_shots": 0.00234192037470726,
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8944272045131296,
+              "error_to_prepared_state": -0.00018637862504367053
+            },
+            "energy": {
+              "estimate": -0.47081522440429285,
+              "standard_error": 0.026518741653294087,
+              "exact_sampling_standard_error": 0.02651133091715904,
+              "ci": [
+                -0.5846955158820697,
+                -0.356934932926516
+              ],
+              "union_bound_ci": [
+                -0.7398052240811972,
+                -0.20182522472738856
+              ],
+              "squared_range_over_shots": 0.007031252144930002,
+              "confidence": 0.95,
+              "exact_prepared_state": -0.472135954999579,
+              "error_to_prepared_state": 0.001320730595286146
+            }
+          },
+          "interaction": 8,
+          "exact_ground_state": {
+            "energy": -0.47213595499958,
+            "double_occupancy": 0.052786404500042065,
+            "kinetic_energy": -0.8944271909999165
+          },
+          "vqe_residual": 4.0002178580703475e-08,
+          "allocation_strategy": "energy_range_weighted"
+        },
+        {
+          "shots_per_setting": null,
+          "shot_allocation": [
+            218448,
+            27308,
+            27308,
+            27308,
+            27308
+          ],
+          "total_shots": 327680,
+          "seed": 402662,
+          "grouping": "grouped",
+          "settings": [
+            {
+              "basis": "ZZZZ",
+              "counts": [
+                0,
+                0,
+                0,
+                5822,
+                0,
+                0,
+                103757,
+                0,
+                0,
+                103139,
+                0,
+                0,
+                5730,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "XZXI",
+              "counts": [
+                0,
+                0,
+                1939,
+                4932,
+                0,
+                0,
+                4851,
+                1902,
+                4844,
+                1897,
+                0,
+                0,
+                1869,
+                5074,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "YZYI",
+              "counts": [
+                0,
+                0,
+                1876,
+                4798,
+                0,
+                0,
+                4879,
+                1947,
+                5079,
+                1943,
+                0,
+                0,
+                1908,
+                4878,
+                0,
+                0
+              ]
+            },
+            {
+              "basis": "IXZX",
+              "counts": [
+                0,
+                5001,
+                0,
+                1804,
+                1904,
+                0,
+                4863,
+                0,
+                0,
+                1901,
+                0,
+                4957,
+                4993,
+                0,
+                1885,
+                0
+              ]
+            },
+            {
+              "basis": "IYZY",
+              "counts": [
+                0,
+                5003,
+                0,
+                1844,
+                1887,
+                0,
+                4925,
+                0,
+                0,
+                1915,
+                0,
+                4918,
+                4952,
+                0,
+                1864,
+                0
+              ]
+            }
+          ],
+          "observables": {
+            "double_occupancy": {
+              "estimate": 0.05288215044312605,
+              "standard_error": 0.000478832392206418,
+              "exact_sampling_standard_error": 0.0004784218127610238,
+              "ci": [
+                0.04997640077095323,
+                0.055787900115298876
+              ],
+              "union_bound_ci": [
+                0.04997640077095323,
+                0.055787900115298876
+              ],
+              "squared_range_over_shots": 4.577748480187504e-06,
+              "confidence": 0.95,
+              "exact_prepared_state": 0.05278640618919383,
+              "error_to_prepared_state": 9.574425393222424e-05,
+              "binomial_ci": [
+                0.051947306730879675,
+                0.053828880468736046
+              ]
+            },
+            "kinetic_energy": {
+              "estimate": -0.8909843269371613,
+              "standard_error": 0.005417724154176431,
+              "exact_sampling_standard_error": 0.00541252661305882,
+              "ci": [
+                -0.9074211273808691,
+                -0.8745475264934536
+              ],
+              "union_bound_ci": [
+                -0.9295433042483245,
+                -0.8524253496259981
+              ],
+              "squared_range_over_shots": 0.00014647722279185587,
+              "confidence": 0.95,
+              "exact_prepared_state": -0.8944272045131296,
+              "error_to_prepared_state": 0.003442877575968284
+            },
+            "energy": {
+              "estimate": -0.46792712339215287,
+              "standard_error": 0.006635185335739949,
+              "exact_sampling_standard_error": 0.00662904517380179,
+              "ci": [
+                -0.49639719193607373,
+                -0.439457054848232
+              ],
+              "union_bound_ci": [
+                -0.5351839397814754,
+                -0.40067030700283035
+              ],
+              "squared_range_over_shots": 0.0004394531255238561,
+              "confidence": 0.95,
+              "exact_prepared_state": -0.472135954999579,
+              "error_to_prepared_state": 0.004208831607426133
+            }
+          },
+          "interaction": 8,
+          "exact_ground_state": {
+            "energy": -0.47213595499958,
+            "double_occupancy": 0.052786404500042065,
+            "kinetic_energy": -0.8944271909999165
+          },
+          "vqe_residual": 4.0002178580703475e-08,
+          "allocation_strategy": "energy_range_weighted"
         }
       ],
       "contrasts": [
