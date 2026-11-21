@@ -6,8 +6,10 @@ from scipy.optimize import minimize
 
 try:
     from .common import finalize, metric
+    from .hubbard_measurement import finite_shot_study
 except ImportError:
     from common import finalize, metric
+    from hubbard_measurement import finite_shot_study
 
 
 def constrained_portfolio(depth=2):
@@ -110,7 +112,7 @@ def hubbard(interaction, hopping=1.0):
     return h, basis
 
 
-def vqe(interaction):
+def vqe_state(interaction):
     h, basis = hubbard(interaction)
 
     def state(angles):
@@ -141,12 +143,17 @@ def vqe(interaction):
         and result.fun >= exact - 1e-10
         and abs(result.fun - exact) < 1e-6
     )
-    return (
+    return wave, (
         float(result.fun),
         float(exact),
         float(wave**2 @ double),
         float(np.linalg.norm(h @ wave - result.fun * wave)),
     )
+
+
+def vqe(interaction):
+    """Legacy four-metric API; optimization still uses exact expectations."""
+    return vqe_state(interaction)[1]
 
 
 def experiment():
@@ -287,10 +294,143 @@ def experiment():
         "limitations": [
             "This is an effective correlated-electron benchmark, not an ab initio molecule or a battery-material prediction. It is a foundation for extending the battery-design theme.",
             "The ansatz can span this tiny real sector; success does not demonstrate a scalable chemistry algorithm.",
-            "No finite-shot Pauli measurement, molecular geometry, basis-set error, device noise or battery voltage is represented.",
+            "Finite-shot evaluation is shown in the Hubbard measurements case. Molecular geometry, basis-set error, device noise and battery voltage are not represented.",
         ],
         "reproduce": "python src/studio.py --out docs/study.json",
     }
+    measured = finite_shot_study()
+    selected = [r for r in measured["runs"] if r["shots_per_setting"] == 4096]
+    shot_case = {
+        "id": "hubbard-shots", "label": "Hubbard measurements",
+        "kicker": "FINITE SHOTS / GROUPED PAULI MEASUREMENTS",
+        "title": "Can sampled observables resolve electron localization?",
+        "description": "Measure energy, total double occupancy and kinetic energy of the optimized dimer state. Choose a preparation budget and compare equal-shot grouping, independent Pauli terms and energy-focused grouped allocation. The final charts show the energy gain and the precision traded away for other observables. Confidence intervals cover prepared-state expectations; the table exports all three strategies.",
+        "metrics": [metric("Measurement settings", 5),
+                    metric("Shots at displayed budget", 20480),
+                    metric("Ungrouped Pauli terms", 10),
+                    metric("CI confidence (per observable)", 95, "%")],
+        "charts": [{"title": name.replace("_", " ").title() + " with conservative 95% CI",
+                    "x": interactions, "xlabel": "U / t; 4,096 shots per setting",
+                    "series": [
+                        {"name": "Sampled", "values": [r["observables"][name]["estimate"] for r in selected]},
+                        {"name": "Exact ground state", "values": [r["exact_ground_state"][name] for r in selected]},
+                        {"name": "95% lower bound", "values": [r["observables"][name]["ci"][0] for r in selected]},
+                        {"name": "95% upper bound", "values": [r["observables"][name]["ci"][1] for r in selected]}]}
+                   for name in ("energy", "double_occupancy", "kinetic_energy")],
+        "table": {"columns": ["Strategy", "U/t", "Shots/setting", "Total shots", "Observable", "Estimate", "95% Hoeffding low", "95% Hoeffding high", "Sample SE", "Exact sampling SD", "Exact prepared", "Exact ground", "D binomial 95% low", "D binomial 95% high", "Shots in setting order"],
+                  "rows": [[r.get("allocation_strategy", r["grouping"]), r["interaction"], r["shots_per_setting"] or "mixed", r["total_shots"], name,
+                            o["estimate"], *o["ci"], o["standard_error"], o["exact_sampling_standard_error"], o["exact_prepared_state"], r["exact_ground_state"][name], *o.get("binomial_ci", ["", ""]), ";".join(map(str, r["shot_allocation"]))]
+                           for r in measured["runs"] + measured["ungrouped_runs"] + measured["allocated_runs"] for name, o in r["observables"].items()]},
+        "method": [measured["method"], measured["interval_method"], measured["contrast_method"], measured["binomial_interval_method"], measured["scan_interval_method"],
+                   "Orbital order: 0-up, 0-down, 1-up, 1-down (orbital 0 is least significant bit). Hopping = −(XZXI+YZYI+IXZX+IYZY)/2. D = (2I−ZIII−IZII−IIZI−IIIZ+ZZII+IIZZ)/4. Energy = kinetic + U D, with t=1.",
+                   "One ZZZZ shot evaluates all density terms together, retaining covariance. Four additional local settings measure hopping parities. Raw 16-outcome counts and seeds are included in results/latest.json.",
+                   measured["cost"]["assumptions"], measured["allocation_method"],
+                   "Ungrouped density uses six independent Pauli means plus the exact identity offset 1/2. Confidence bounds use each coefficient times its measurement range. Exact sampling SD is computed from Born probabilities as a diagnostic; sample SE is estimated from counts. Neither is the confidence-bound half-width."],
+        "limitations": ["Ideal CPU simulation of independent Born shots; no device noise or finite-shot optimization. The exact trained state is held fixed during measurement.",
+                        "Intervals cover prepared-state expectations, not ansatz bias. Observable plots use marginal bounds; the adjacent-decrease chart separately gives simultaneous scan bounds per strategy and budget. Neither is joint across strategies, budgets or procedures. Sample SE is descriptive, not the CI formula; bounds can extend outside physical ranges.",
+                        "A small fully expressive Hubbard dimer with t=1; no materials prediction or quantum advantage. Matched preparations exclude circuit and basis-switching costs. Energy-focused allocation uses known coefficient ranges, not exact variances; it can degrade density and kinetic precision."],
+        "reproduce": "python lab.py --output results/latest.json",
+    }
+    # Keep the original default charts while exposing every recorded shot budget.
+    shot_case["views"] = []
+    for budget in measured["budgets_per_setting"]:
+        grouped = [r for r in measured["runs"] if r["shots_per_setting"] == budget]
+        ungrouped = [r for r in measured["ungrouped_runs"] if r["total_shots"] == 5 * budget]
+        allocated = [r for r in measured["allocated_runs"] if r["total_shots"] == 5 * budget]
+        charts = []
+        for name in ("energy", "double_occupancy", "kinetic_energy"):
+            chart = {"title": name.replace("_", " ").title() + " with marginal 95% Hoeffding CI",
+                     "x": interactions, "xlabel": f"U / t; {5 * budget:,} total shots per strategy",
+                     "series": [{"name": "Exact ground state", "values": [r["exact_ground_state"][name] for r in grouped]}]}
+            for label, rows in (("Grouped", grouped), ("Ungrouped", ungrouped)):
+                chart["series"].extend([
+                    {"name": label, "values": [r["observables"][name]["estimate"] for r in rows]},
+                    {"name": label + " 95% low", "values": [r["observables"][name]["ci"][0] for r in rows]},
+                    {"name": label + " 95% high", "values": [r["observables"][name]["ci"][1] for r in rows]}])
+            charts.append(chart)
+        charts.append({"title": "Energy sampling uncertainty at matched preparations",
+                       "x": interactions, "xlabel": "U / t; exact sampling SD is a diagnostic, not a CI",
+                       "series": [{"name": label, "values": [r["observables"]["energy"]["exact_sampling_standard_error"] for r in rows]}
+                                  for label, rows in (("Grouped", grouped), ("Ungrouped", ungrouped))]})
+        density_chart = {"title": "Double occupancy with exact binomial 95% bounds",
+                         "x": interactions, "xlabel": f"U / t; {5 * budget:,} total shots per strategy",
+                         "series": [{"name": "Exact ground state", "values": [r["exact_ground_state"]["double_occupancy"] for r in grouped]}]}
+        for label, rows in (("Grouped", grouped), ("Ungrouped", ungrouped)):
+            density_chart["series"].append({"name": label, "values": [r["observables"]["double_occupancy"]["estimate"] for r in rows]})
+            for side, index in (("low", 0), ("high", 1)):
+                density_chart["series"].append({"name": label + " binomial 95% " + side,
+                    "values": [r["observables"]["double_occupancy"]["binomial_ci"][index] for r in rows]})
+        charts.append(density_chart)
+        allocation_chart = {
+            "title": "Energy-focused allocation at matched preparations: marginal 95% CI",
+            "x": interactions, "xlabel": f"U / t; {5 * budget:,} total shots per strategy",
+            "series": [{"name": "Exact ground state", "values": [r["exact_ground_state"]["energy"] for r in grouped]}]}
+        for label, rows in (("Equal grouped", grouped), ("Energy-focused grouped", allocated)):
+            allocation_chart["series"].append({"name": label, "values": [r["observables"]["energy"]["estimate"] for r in rows]})
+            for side, index in (("low", 0), ("high", 1)):
+                allocation_chart["series"].append({"name": label + " 95% " + side,
+                    "values": [r["observables"]["energy"]["ci"][index] for r in rows]})
+        charts.append(allocation_chart)
+        charts.append({"title": "Precision tradeoff: energy-focused / equal grouped CI half-width",
+                       "x": interactions, "xlabel": "U / t; below 1 is narrower, above 1 is wider",
+                       "series": [{"name": name.replace("_", " ").title(), "values": [
+                           float(np.sqrt(a["observables"][name]["squared_range_over_shots"] /
+                                         g["observables"][name]["squared_range_over_shots"]))
+                           for a, g in zip(allocated, grouped)]}
+                                  for name in ("energy", "double_occupancy", "kinetic_energy")]})
+        shot_case["views"].append({"value": str(budget),
+                                   "label": f"{5 * budget:,} total shots ({budget:,}/grouped setting; {budget // 2:,}/ungrouped term)",
+                                   "charts": charts,
+                                   "metrics": [metric("Grouped settings", 5), metric("Ungrouped settings", 10),
+                                               metric("Shots per strategy", 5 * budget),
+                                               metric("CI confidence (per observable)", 95, "%")]})
+        for contrast in measured["contrasts"]:
+            if contrast["grouped_shot_budget"] == budget:
+                low, high = contrast["ci"]
+                verdict = "Decrease resolved" if contrast["resolved_decrease"] else "Decrease unresolved"
+                shot_case["views"][-1]["metrics"].append(metric(
+                    "D(6) - D(8), Hoeffding: " + contrast["grouping"], contrast["estimate"],
+                    note=f"95% CI [{low:.5f}, {high:.5f}]. {verdict}. "
+                         f"{contrast['total_shots']:,} total preparations across both interactions; "
+                         f"exact ground-state difference {contrast['exact_ground_state']:.5f}."))
+        for contrast in measured["contrasts"]:
+            if contrast["grouped_shot_budget"] == budget:
+                low, high = contrast["binomial_ci"]
+                verdict = "Decrease resolved" if contrast["binomial_resolved_decrease"] else "Decrease unresolved"
+                shot_case["views"][-1]["metrics"].append(metric(
+                    "D(6) - D(8), binomial: " + contrast["grouping"], contrast["estimate"],
+                    note=f"95% CI [{low:.5f}, {high:.5f}]. {verdict}. "
+                         f"{contrast['total_shots']:,} total preparations across both interactions. "
+                         "Clopper-Pearson component intervals with Bonferroni coverage; same counts as Hoeffding."))
+        equal_energy = grouped[-1]["observables"]["energy"]
+        focused_energy = allocated[-1]["observables"]["energy"]
+        reduction = 100 * (1 - np.sqrt(focused_energy["squared_range_over_shots"] /
+                                      equal_energy["squared_range_over_shots"]))
+        shot_case["views"][-1]["metrics"].append(metric(
+            "U/t=8 energy CI narrowing", float(reduction), "%",
+            note="Energy-focused versus equal grouped at the same preparation budget. "
+                 "Fixed allocation from coefficient ranges only; inspect the tradeoff chart for D and kinetic energy. "
+                 "Shot order ZZZZ, XZXI, YZYI, IXZX, IYZY: "
+                 + ", ".join(map(str, allocated[-1]["shot_allocation"])) + "."))
+        families = [f for f in measured["scan_families"] if f["grouped_shot_budget"] == budget]
+        scan_chart = {
+            "title": "Adjacent density decreases: simultaneous 95% binomial scan bounds",
+            "x": [f"{a:g} to {b:g}" for a, b in zip(interactions, interactions[1:])],
+            "xlabel": "U / t pair; positive lower bound resolves a decrease; family per strategy/budget",
+            "series": [{"name": "Exact ground-state decrease", "values": [
+                c["exact_ground_state"] for c in families[0]["comparisons"]]},
+                       {"name": "Zero decrease", "values": [0.] * (len(interactions)-1)}]}
+        for family, label in zip(families, ("Grouped", "Ungrouped", "Energy-focused")):
+            for side, index in (("low", 0), ("high", 1)):
+                scan_chart["series"].append({"name": label + " simultaneous " + side,
+                    "values": [c["binomial_ci"][index] for c in family["comparisons"]]})
+            shot_case["views"][-1]["metrics"].append(metric(
+                "Scan decreases resolved: " + label, family["binomial_resolved_count"], "/ 6",
+                note=f"Simultaneous 95% binomial family; {family['resolved_count']}/6 with separate Hoeffding family. "
+                     f"{family['total_shots']:,} preparations for seven interactions, reusing existing counts. "
+                     "All six must resolve to certify the full sampled scan; no guarantee between grid points."))
+        charts.append(scan_chart)
+    shot_case["default_view"] = "4096"
     return {
         "schema_version": 1,
         "slug": "quantum-optimization-lab",
@@ -298,9 +438,13 @@ def experiment():
         "subtitle": "Constrained allocation and variational correlated-electron research.",
         "accent": "#c5b2ff",
         "seed": 2026,
-        "cases": [portfolio, materials],
+        "cases": [portfolio, materials, shot_case],
         "provenance": "Explicit synthetic financial parameters and a defined effective Hamiltonian. CPU statevector calculations; no quantum hardware calls.",
         "references": [
+            {"title": "Clopper and Pearson: exact binomial confidence limits", "url": "https://doi.org/10.1093/biomet/26.4.404"},
+            {"title": "The Hubbard Dimer: exact model context", "url": "https://arxiv.org/abs/1502.02194"},
+            {"title": "Measurement grouping with a minimum clique cover", "url": "https://arxiv.org/abs/1907.03358"},
+            {"title": "Hoeffding: Probability inequalities for sums of bounded random variables", "url": "https://doi.org/10.1080/01621459.1963.10500830"},
             {
                 "title": "Quantum alternating operator ansatz",
                 "url": "https://arxiv.org/abs/1709.03489",

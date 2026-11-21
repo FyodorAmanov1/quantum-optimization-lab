@@ -36,16 +36,22 @@ The second experiment studies a two-site Hubbard model with four spin orbitals i
 
 Across seven interaction strengths from U/t = 0 to 8, the optimized energy is compared with exact diagonalization and the analytic ground-state expression. The recorded maximum discrepancy is approximately **5.6 × 10⁻¹⁶ t**, while double occupancy falls from **0.5000** to **0.0528** as repulsion increases.
 
+The **Hubbard measurements** studio case samples energy, total double occupancy and kinetic energy using five local Pauli settings. Its budget selector compares 256, 4,096 and 65,536 shots per grouped setting with ten independent Pauli terms at matched total preparations, using exact references and marginal 95% confidence bounds. At 4,096 shots, measured double occupancy falls from **0.49976 +/- 0.02122** to **0.05249 +/- 0.02122** across U/t=0 to 8. A direct D(6)-D(8) comparison remains unresolved at that budget, with CI **[-0.00120, 0.05882]**; both strategies resolve it at the largest budget under Hoeffding. Additional count-only Clopper-Pearson intervals resolve the grouped contrast already at 40,960 combined preparations, CI **[0.01115, 0.04641]**. The independent-term binomial interval remains unresolved at all tested budgets; the studio shows both methods separately. Weighted-shot Hoeffding bounds reduce the grouped U/t=8 energy half-width from 0.30518 t to **0.17499 t**, which remains broad. One low-budget ungrouped kinetic-energy interval misses its reference. The [finite-shot study](reports/QO02.md) reports counts, costs, baseline comparisons and limitations.
+
 This is a transparent demonstration of electron correlation on a tiny solvable system. It is not a battery chemistry calculation or a prediction of voltage, capacity or materials performance.
 
+An additional energy-focused allocation uses the same preparation budgets and only the known Hamiltonian coefficients. At U/t=8 and 20,480 preparations it narrows the energy CI half-width by **34.9%** to **0.11388 t**, while kinetic-energy uncertainty grows by **54.9%**. Its energy error across this seeded scan is worse than equal grouping, and at U=0 its two density shots give an uninformative density interval. The studio shows both the energy comparison and the precision tradeoff; the [report](reports/QO02.md) explains why narrower bounds do not guarantee lower sampling variance.
+
 ## What to examine
+
+The measurement case also asks whether **all six adjacent density decreases** can be resolved with simultaneous 95% scan bounds. Equal grouping resolves all six with binomial bounds at 143,360 preparations across seven interactions; the independent-term baseline resolves none at the same cost. The separate Hoeffding procedure resolves five and two, respectively. Energy-focused allocation cannot resolve the full scan even at the largest tested budget because it keeps only two density shots at U=0. These guarantees apply separately to each strategy, budget and procedure, on the sampled grid. The studio exposes the bounds, exact references, verdicts and full scan cost; [QO02](reports/QO02.md) explains the multiplicity correction and retained negative results.
 
 - Compare the full allocation distribution with the exact cost ranking.
 - Inspect how turnover affects the allocation objective.
 - Follow energy and double occupancy as interaction strength increases.
 - Read the preparation and optimization assumptions before interpreting resource counts.
 
-The calculations use classical simulation. Uniform feasible-state preparation is assumed rather than compiled, the probability-mixture sensitivity is not calibrated device noise, and finite-shot Pauli estimation is outside the present VQE experiment. No hardware advantage is claimed.
+The calculations use classical simulation. Uniform feasible-state preparation is assumed rather than compiled, and the probability-mixture sensitivity is not calibrated device noise. Hubbard evaluation uses ideal finite-shot Pauli measurements after exact-expectation VQE training. No hardware advantage is claimed.
 
 ## Run locally
 
@@ -71,6 +77,8 @@ To regenerate the study or compare it with the saved artifact:
 ```bash
 python src/studio.py --out docs/study.json
 python src/studio.py --check docs/study.json
+python lab.py --output results/latest.json
+python -m unittest discover -s tests -v
 ```
 
 The browser displays recorded experiments; it does not run the Python simulation.

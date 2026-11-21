@@ -69,9 +69,23 @@ Each result obeys the variational bound and agrees with E₀=(U−√(U²+16t²)
 
 - This is an effective correlated-electron benchmark, not an ab initio molecule or a battery-material prediction. It is a foundation for extending the battery-design theme.
 - The ansatz can span this tiny real sector; success does not demonstrate a scalable chemistry algorithm.
-- No finite-shot Pauli measurement, molecular geometry, basis-set error, device noise or battery voltage is represented.
+- Finite-shot evaluation is now available in the separate Hubbard measurements case, described below. Molecular geometry, basis-set error, device noise and battery voltage are not represented.
+
+## Finite-shot Hubbard observables
+
+The [QO02 study](QO02.md) evaluates energy, total double occupancy and kinetic energy using actual ideal Born counts after exact-expectation VQE training. Five shared Pauli settings are compared with ten independent terms at matched preparations across seven interactions and three budgets. Exact prepared-state expectations isolate sampling error; independent diagonalization supplies ground-state references.
+
+At 4,096 shots per grouped setting (20,480 preparations per interaction), double occupancy decreases from 0.499756 to 0.052490 between U/t=0 and 8, with marginal 95% half-width 0.021220. The direct D(6)-D(8) interval is [-0.00120149,0.0588187]: this smaller change remains unresolved. At the largest tested budget, both strategies resolve it, costing 655,360 preparations each across the two interactions. The studio displays Hoeffding and exact binomial contrast intervals, verdicts and combined cost for every budget. On the same counts, the grouped Clopper-Pearson contrast resolves the decrease at 40,960 combined preparations with CI [0.0111513,0.0464101]. The independent-term binomial contrast remains unresolved even at 655,360 preparations because summing twelve adjusted parity intervals is conservative. These procedures are reported separately; no narrower-interval selection is used.
+
+Confidence bounds now apply Hoeffding directly to independent weighted shots, combining correlated density terms within each bitstring first. The previous group union-bound intervals remain in the raw artifact. At U/t=8 and the intermediate budget, grouped energy is -0.464844 t versus exact -0.472136 t with CI [-0.639831,-0.289856] t. The half-width improves from 0.305179 to 0.174987 t but remains broad. Exact sampling SD is 0.0312500 t grouped versus 0.0947859 t ungrouped; energy scan RMSEs are 0.00668117 and 0.0273847 t, descriptive of one seeded scan. Grouping and fixed shot allocation both affect precision; neither strategy is optimized.
+
+All 63 grouped primary intervals cover their exact ground references, while 62 of 63 ungrouped intervals do. The low-budget U/t=8 kinetic-energy interval misses its reference, a retained negative finding consistent with marginal rather than simultaneous coverage. Confidence intervals cover prepared-state expectations, excluding ansatz and model error. Raw counts, old and new intervals, deterministic seeds and direct contrasts are in [results/latest.json](../results/latest.json). No hardware or materials accuracy claim follows.
+
+An additional 21 grouped runs redistribute the same total shots using known energy coefficient ranges, reserving two shots per setting and rounding the remainder proportional to (abs(U),1,1,1,1). At U/t=8 and 20,480 preparations, counts [13648,1708,1708,1708,1708] give E=-0.4708152 t and marginal 95% CI [-0.5846955,-0.3569349] t. The half-width narrows by 34.9209% versus equal grouping, but kinetic half-width grows by 54.8589%. At U=0 only two density shots remain, giving an uninformative D interval. At U=0.5 the energy bound narrows while exact sampling SD grows: range-based allocation is not variance-optimal. The intermediate-budget energy scan RMSE is 0.0231264 t, worse than equal grouping's 0.00668117 t; this negative seeded result is retained. The studio exposes the allocation comparison, precision tradeoffs and per-setting shot counts. See [QO02](QO02.md) for the derivation, all budgets and limitations.
 
 ## Interpretation
+
+The measurement case now evaluates all six adjacent density differences with simultaneous 95% bounds, separately for each strategy, budget and procedure. Bonferroni correction either allocates failure probability across six Hoeffding differences or seven binomial interaction intervals before subtracting endpoints. Shared interactions induce correlated differences; the union bound requires no independence between differences. At 143,360 preparations across the full scan, equal grouping resolves 6/6 with binomial bounds and 5/6 with Hoeffding; independent terms resolve 0/6 and 2/6, respectively. Energy-focused allocation resolves 5/6 with either procedure and still cannot resolve the first pair at the largest budget because U=0 receives only two density shots. The studio shows all strategies' simultaneous binomial bounds, exact differences, both procedures' resolved counts and unique preparation costs. These grid-specific claims exclude ansatz bias and do not imply continuous monotonicity. Full derivation, all budgets and limitations are in [QO02](QO02.md).
 
 The depth-2 ansatz improves optimal-sample probability over uniform feasible sampling, but its expected objective remains above the exact minimum and local search is a strong baseline. The Hubbard energy agreement follows from a tiny fully expressive real-sector ansatz; double occupancy provides an independent physical observable.
 
@@ -81,6 +95,6 @@ Explain the objective and units, where each baseline obtains its information, wh
 
 ## Next work
 
-- Add finite-shot observable measurement to the Hubbard VQE, with measurement grouping and uncertainty.
+- Study energy variance-adaptive intervals and shot allocations with precision constraints for multiple observables; current range-based allocation can sacrifice density or kinetic precision.
 - Compare constrained ansatz depths and classical solvers at matched objective-evaluation budgets.
 - Extend the effective electron model and assess when the restricted ansatz fails; do not relabel toy energies as battery properties.
