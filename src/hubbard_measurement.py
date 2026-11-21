@@ -202,6 +202,51 @@ def measure_hubbard(wave, basis, interaction, shots=4096, seed=2026, confidence=
             "observables": observables}
 
 
+def density_scan_intervals(runs, confidence=0.95):
+    """Simultaneous adjacent D differences for a fixed interaction scan.
+
+    Bonferroni over all interaction-level binomial intervals covers every
+    difference, even though neighbouring differences share measurements.
+    A separate Hoeffding family allocates error across the differences.
+    Families apply to one strategy/budget, not jointly across all studies.
+    No shots are spent or intervals selected using the observed results.
+    """
+    if len(runs) < 2 or not 0 < confidence < 1:
+        raise ValueError("at least two runs and confidence in (0,1) required")
+    rows = sorted(runs, key=lambda r: r["interaction"])
+    interactions = [r["interaction"] for r in rows]
+    if (not np.all(np.isfinite(interactions)) or len(set(interactions)) != len(rows)
+            or len({r["grouping"] for r in rows}) != 1):
+        raise ValueError("distinct finite interactions and one grouping required")
+    alpha = 1 - confidence
+    component_confidence = 1 - alpha / len(rows)
+    bounds = [density_binomial_interval(r["settings"], r["grouping"],
+                                        component_confidence) for r in rows]
+    comparisons = []
+    for i, (a, b) in enumerate(zip(rows, rows[1:])):
+        left, right = [r["observables"]["double_occupancy"] for r in (a, b)]
+        estimate = left["estimate"] - right["estimate"]
+        proxy = left["squared_range_over_shots"] + right["squared_range_over_shots"]
+        radius = float(np.sqrt(np.log(2 * (len(rows)-1) / alpha) * proxy / 2))
+        ci = [estimate - radius, estimate + radius]
+        binomial_ci = [bounds[i][0] - bounds[i+1][1], bounds[i][1] - bounds[i+1][0]]
+        comparisons.append({
+            "interaction_pair": [a["interaction"], b["interaction"]],
+            "estimate": estimate, "ci": ci, "binomial_ci": binomial_ci,
+            "resolved_decrease": bool(ci[0] > 0),
+            "binomial_resolved_decrease": bool(binomial_ci[0] > 0),
+            "exact_prepared_state": left["exact_prepared_state"] - right["exact_prepared_state"],
+            "exact_ground_state": a["exact_ground_state"]["double_occupancy"]
+                                  - b["exact_ground_state"]["double_occupancy"]})
+    return {"confidence": confidence, "interactions": interactions,
+            "grouping": rows[0].get("allocation_strategy", rows[0]["grouping"]),
+            "total_shots": sum(r["total_shots"] for r in rows),
+            "component_confidence": component_confidence,
+            "density_component_ci": bounds, "comparisons": comparisons,
+            "resolved_count": sum(c["resolved_decrease"] for c in comparisons),
+            "binomial_resolved_count": sum(c["binomial_resolved_decrease"] for c in comparisons)}
+
+
 def finite_shot_study():
     try:
         from .studio import hubbard, vqe_state
@@ -263,13 +308,21 @@ def finite_shot_study():
                               "exact_prepared_state": left["exact_prepared_state"] - right["exact_prepared_state"],
                               "exact_ground_state": pair[0]["exact_ground_state"]["double_occupancy"]
                               - pair[1]["exact_ground_state"]["double_occupancy"]})
+    scan_families = []
+    for rows in (runs, ungrouped_runs, allocated_runs):
+        for shots in budgets:
+            family = density_scan_intervals([r for r in rows if r["total_shots"] == 5 * shots])
+            family["grouped_shot_budget"] = shots
+            scan_families.append(family)
     return {"interactions": interactions, "budgets_per_setting": budgets,
             "method": "Independent Born multinomial draws after local Pauli basis rotations; exact-expectation VQE training",
             "interval_method": "Two-sided Hoeffding across independent weighted shots, retaining within-group covariance; marginal 95% CIs for prepared-state expectations. Older group union-bound intervals are retained as a diagnostic baseline.",
             "contrast_method": "Preselected D(U/t=6) minus D(U/t=8), using independent preparations at both interactions and a direct two-sided 95% Hoeffding bound. Positive lower bound resolves a decrease; no simultaneous scan coverage is claimed.",
             "binomial_interval_method": "Additional count-only equal-tailed Clopper-Pearson intervals for D: one Bernoulli density count when grouped, six Bonferroni-adjusted parity intervals when ungrouped. Contrast subtracts two 97.5% D intervals for at least 95% coverage. No interval selection or intersection; Hoeffding results remain separate. Guarantees assume ideal independent shots and exact sector membership.",
+            "scan_interval_method": "All six adjacent density decreases are a fixed family. Separate simultaneous 95% procedures: Hoeffding assigns alpha/6 per difference; binomial assigns alpha/7 per interaction then subtracts adjacent component bounds (ungrouped components divide again across six parities). Shared endpoints are counted once in the seven-interaction preparation cost, and no independence between adjacent differences is assumed. Coverage is per strategy/budget/procedure, not joint across them; no method selection or interval intersection. These new families supplement the unchanged marginal intervals.",
             "cost": {"grouped_settings": 5, "ungrouped_nonidentity_terms": 10,
                      "assumptions": "Equal shots within each strategy; five grouped settings at n shots versus ten independent Pauli terms at n/2 shots, matching total preparations. All observables share those counts. Identity costs no shots. Shot totals exclude exact training evaluations, state-preparation circuit costs, basis-switching overhead and gate compilation. Neither allocation is optimized."},
             "allocation_method": "Energy-focused grouped allocation at the same 5n preparations: reserve two shots per setting, then apportion the remainder proportional to (abs(U),1,1,1,1) with largest-remainder rounding. Fixed before sampling; no pilot or exact-state information. Approximately minimizes the relaxed Hoeffding range proxy, not the actual variance. All three observables use these counts; improving energy can worsen density or kinetic precision. Independent seeds 402600+10*i+b. Training and circuit overhead remain excluded.",
             "runs": runs, "ungrouped_runs": ungrouped_runs,
-            "allocated_runs": allocated_runs, "contrasts": contrasts}
+            "allocated_runs": allocated_runs, "contrasts": contrasts,
+            "scan_families": scan_families}

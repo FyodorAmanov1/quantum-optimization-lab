@@ -321,13 +321,13 @@ def experiment():
                   "rows": [[r.get("allocation_strategy", r["grouping"]), r["interaction"], r["shots_per_setting"] or "mixed", r["total_shots"], name,
                             o["estimate"], *o["ci"], o["standard_error"], o["exact_sampling_standard_error"], o["exact_prepared_state"], r["exact_ground_state"][name], *o.get("binomial_ci", ["", ""]), ";".join(map(str, r["shot_allocation"]))]
                            for r in measured["runs"] + measured["ungrouped_runs"] + measured["allocated_runs"] for name, o in r["observables"].items()]},
-        "method": [measured["method"], measured["interval_method"], measured["contrast_method"], measured["binomial_interval_method"],
+        "method": [measured["method"], measured["interval_method"], measured["contrast_method"], measured["binomial_interval_method"], measured["scan_interval_method"],
                    "Orbital order: 0-up, 0-down, 1-up, 1-down (orbital 0 is least significant bit). Hopping = −(XZXI+YZYI+IXZX+IYZY)/2. D = (2I−ZIII−IZII−IIZI−IIIZ+ZZII+IIZZ)/4. Energy = kinetic + U D, with t=1.",
                    "One ZZZZ shot evaluates all density terms together, retaining covariance. Four additional local settings measure hopping parities. Raw 16-outcome counts and seeds are included in results/latest.json.",
                    measured["cost"]["assumptions"], measured["allocation_method"],
                    "Ungrouped density uses six independent Pauli means plus the exact identity offset 1/2. Confidence bounds use each coefficient times its measurement range. Exact sampling SD is computed from Born probabilities as a diagnostic; sample SE is estimated from counts. Neither is the confidence-bound half-width."],
         "limitations": ["Ideal CPU simulation of independent Born shots; no device noise or finite-shot optimization. The exact trained state is held fixed during measurement.",
-                        "Intervals cover prepared-state expectations, not ansatz bias. They are conservative, marginal per observable, and not simultaneous across the scan. Sample SE is descriptive, not the CI formula; bounds can extend outside physical ranges.",
+                        "Intervals cover prepared-state expectations, not ansatz bias. Observable plots use marginal bounds; the adjacent-decrease chart separately gives simultaneous scan bounds per strategy and budget. Neither is joint across strategies, budgets or procedures. Sample SE is descriptive, not the CI formula; bounds can extend outside physical ranges.",
                         "A small fully expressive Hubbard dimer with t=1; no materials prediction or quantum advantage. Matched preparations exclude circuit and basis-switching costs. Energy-focused allocation uses known coefficient ranges, not exact variances; it can degrade density and kinetic precision."],
         "reproduce": "python lab.py --output results/latest.json",
     }
@@ -412,6 +412,24 @@ def experiment():
                  "Fixed allocation from coefficient ranges only; inspect the tradeoff chart for D and kinetic energy. "
                  "Shot order ZZZZ, XZXI, YZYI, IXZX, IYZY: "
                  + ", ".join(map(str, allocated[-1]["shot_allocation"])) + "."))
+        families = [f for f in measured["scan_families"] if f["grouped_shot_budget"] == budget]
+        scan_chart = {
+            "title": "Adjacent density decreases: simultaneous 95% binomial scan bounds",
+            "x": [f"{a:g} to {b:g}" for a, b in zip(interactions, interactions[1:])],
+            "xlabel": "U / t pair; positive lower bound resolves a decrease; family per strategy/budget",
+            "series": [{"name": "Exact ground-state decrease", "values": [
+                c["exact_ground_state"] for c in families[0]["comparisons"]]},
+                       {"name": "Zero decrease", "values": [0.] * (len(interactions)-1)}]}
+        for family, label in zip(families, ("Grouped", "Ungrouped", "Energy-focused")):
+            for side, index in (("low", 0), ("high", 1)):
+                scan_chart["series"].append({"name": label + " simultaneous " + side,
+                    "values": [c["binomial_ci"][index] for c in family["comparisons"]]})
+            shot_case["views"][-1]["metrics"].append(metric(
+                "Scan decreases resolved: " + label, family["binomial_resolved_count"], "/ 6",
+                note=f"Simultaneous 95% binomial family; {family['resolved_count']}/6 with separate Hoeffding family. "
+                     f"{family['total_shots']:,} preparations for seven interactions, reusing existing counts. "
+                     "All six must resolve to certify the full sampled scan; no guarantee between grid points."))
+        charts.append(scan_chart)
     shot_case["default_view"] = "4096"
     return {
         "schema_version": 1,

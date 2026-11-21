@@ -1,3 +1,6 @@
+test_exact_joint_coverage_with_shared_middle_interaction (test_density_scan.DensityScanTests.test_exact_joint_coverage_with_shared_middle_interaction) ... ok
+test_family_reconstructs_adjusted_intervals_references_and_unique_cost (test_density_scan.DensityScanTests.test_family_reconstructs_adjusted_intervals_references_and_unique_cost) ... ok
+test_invalid_families (test_density_scan.DensityScanTests.test_invalid_families) ... ok
 test_allocation_validation_and_uniform_api_compatibility (test_hubbard_measurement.HubbardMeasurementTests.test_allocation_validation_and_uniform_api_compatibility) ... ok
 test_binomial_contrast_uses_count_only_adjusted_components (test_hubbard_measurement.HubbardMeasurementTests.test_binomial_contrast_uses_count_only_adjusted_components) ... ok
 test_binomial_intervals_match_scipy_and_have_exact_coverage (test_hubbard_measurement.HubbardMeasurementTests.test_binomial_intervals_match_scipy_and_have_exact_coverage) ... ok
@@ -32,6 +35,6 @@ test_zero_angle_qaoa_has_uniform_baseline_metrics (test_sampling.SamplingBaselin
 test_zero_feasible_mass_is_explicit_and_json_safe (test_sampling.SamplingBaselineTests.test_zero_feasible_mass_is_explicit_and_json_safe) ... ok
 
 ----------------------------------------------------------------------
-Ran 32 tests in 3.782s
+Ran 35 tests in 8.755s
 
 OK

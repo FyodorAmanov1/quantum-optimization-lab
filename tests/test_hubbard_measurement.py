@@ -269,8 +269,8 @@ class HubbardMeasurementTests(unittest.TestCase):
         for view, budget in zip(case["views"], (256, 4096, 65536)):
             self.assertEqual(view["value"], str(budget))
             self.assertEqual(view["metrics"][2]["value"], 5*budget)
-            self.assertEqual(len(view["charts"]), 7)
-            for chart in view["charts"]:
+            self.assertEqual(len(view["charts"]), 8)
+            for chart in view["charts"][:7]:
                 self.assertEqual(chart["x"], [0, 0.5, 1, 2, 4, 6, 8])
                 for series in chart["series"]:
                     self.assertEqual(len(series["values"]), 7)
@@ -278,7 +278,12 @@ class HubbardMeasurementTests(unittest.TestCase):
             energy = view["charts"][0]
             self.assertEqual(energy["series"][0]["name"], "Exact ground state")
             self.assertAlmostEqual(energy["series"][0]["values"][-1], (8-np.sqrt(80))/2)
-            self.assertEqual(len(view["metrics"]), 9)
+            self.assertEqual(len(view["metrics"]), 12)
+            scan = view["charts"][-1]
+            self.assertIn("simultaneous", scan["title"])
+            self.assertEqual(len(scan["x"]), 6)
+            self.assertTrue(all(len(s["values"]) == 6 for s in scan["series"]))
+            self.assertTrue(all("seven interactions" in m["note"] for m in view["metrics"][-3:]))
             self.assertIn("95% CI", view["metrics"][4]["note"])
             self.assertIn("exact ground-state difference", view["metrics"][5]["note"])
             self.assertIn("binomial", view["metrics"][6]["label"])

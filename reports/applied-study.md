@@ -85,6 +85,8 @@ An additional 21 grouped runs redistribute the same total shots using known ener
 
 ## Interpretation
 
+The measurement case now evaluates all six adjacent density differences with simultaneous 95% bounds, separately for each strategy, budget and procedure. Bonferroni correction either allocates failure probability across six Hoeffding differences or seven binomial interaction intervals before subtracting endpoints. Shared interactions induce correlated differences; the union bound requires no independence between differences. At 143,360 preparations across the full scan, equal grouping resolves 6/6 with binomial bounds and 5/6 with Hoeffding; independent terms resolve 0/6 and 2/6, respectively. Energy-focused allocation resolves 5/6 with either procedure and still cannot resolve the first pair at the largest budget because U=0 receives only two density shots. The studio shows all strategies' simultaneous binomial bounds, exact differences, both procedures' resolved counts and unique preparation costs. These grid-specific claims exclude ansatz bias and do not imply continuous monotonicity. Full derivation, all budgets and limitations are in [QO02](QO02.md).
+
 The depth-2 ansatz improves optimal-sample probability over uniform feasible sampling, but its expected objective remains above the exact minimum and local search is a strong baseline. The Hubbard energy agreement follows from a tiny fully expressive real-sector ansatz; double occupancy provides an independent physical observable.
 
 ## Concepts to explain in an interview

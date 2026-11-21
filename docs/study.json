@@ -3992,6 +3992,7 @@
         "Two-sided Hoeffding across independent weighted shots, retaining within-group covariance; marginal 95% CIs for prepared-state expectations. Older group union-bound intervals are retained as a diagnostic baseline.",
         "Preselected D(U/t=6) minus D(U/t=8), using independent preparations at both interactions and a direct two-sided 95% Hoeffding bound. Positive lower bound resolves a decrease; no simultaneous scan coverage is claimed.",
         "Additional count-only equal-tailed Clopper-Pearson intervals for D: one Bernoulli density count when grouped, six Bonferroni-adjusted parity intervals when ungrouped. Contrast subtracts two 97.5% D intervals for at least 95% coverage. No interval selection or intersection; Hoeffding results remain separate. Guarantees assume ideal independent shots and exact sector membership.",
+        "All six adjacent density decreases are a fixed family. Separate simultaneous 95% procedures: Hoeffding assigns alpha/6 per difference; binomial assigns alpha/7 per interaction then subtracts adjacent component bounds (ungrouped components divide again across six parities). Shared endpoints are counted once in the seven-interaction preparation cost, and no independence between adjacent differences is assumed. Coverage is per strategy/budget/procedure, not joint across them; no method selection or interval intersection. These new families supplement the unchanged marginal intervals.",
         "Orbital order: 0-up, 0-down, 1-up, 1-down (orbital 0 is least significant bit). Hopping = \u2212(XZXI+YZYI+IXZX+IYZY)/2. D = (2I\u2212ZIII\u2212IZII\u2212IIZI\u2212IIIZ+ZZII+IIZZ)/4. Energy = kinetic + U D, with t=1.",
         "One ZZZZ shot evaluates all density terms together, retaining covariance. Four additional local settings measure hopping parities. Raw 16-outcome counts and seeds are included in results/latest.json.",
         "Equal shots within each strategy; five grouped settings at n shots versus ten independent Pauli terms at n/2 shots, matching total preparations. All observables share those counts. Identity costs no shots. Shot totals exclude exact training evaluations, state-preparation circuit costs, basis-switching overhead and gate compilation. Neither allocation is optimized.",
@@ -4000,7 +4001,7 @@
       ],
       "limitations": [
         "Ideal CPU simulation of independent Born shots; no device noise or finite-shot optimization. The exact trained state is held fixed during measurement.",
-        "Intervals cover prepared-state expectations, not ansatz bias. They are conservative, marginal per observable, and not simultaneous across the scan. Sample SE is descriptive, not the CI formula; bounds can extend outside physical ranges.",
+        "Intervals cover prepared-state expectations, not ansatz bias. Observable plots use marginal bounds; the adjacent-decrease chart separately gives simultaneous scan bounds per strategy and budget. Neither is joint across strategies, budgets or procedures. Sample SE is descriptive, not the CI formula; bounds can extend outside physical ranges.",
         "A small fully expressive Hubbard dimer with t=1; no materials prediction or quantum advantage. Matched preparations exclude circuit and basis-switching costs. Energy-focused allocation uses known coefficient ranges, not exact variances; it can degrade density and kinetic precision."
       ],
       "reproduce": "python lab.py --output results/latest.json",
@@ -4593,6 +4594,108 @@
                   ]
                 }
               ]
+            },
+            {
+              "title": "Adjacent density decreases: simultaneous 95% binomial scan bounds",
+              "x": [
+                "0 to 0.5",
+                "0.5 to 1",
+                "1 to 2",
+                "2 to 4",
+                "4 to 6",
+                "6 to 8"
+              ],
+              "xlabel": "U / t pair; positive lower bound resolves a decrease; family per strategy/budget",
+              "series": [
+                {
+                  "name": "Exact ground-state decrease",
+                  "values": [
+                    0.06201736729460405,
+                    0.05925044522356249,
+                    0.10233898523181251,
+                    0.12994659284329477,
+                    0.062471756575648074,
+                    0.031188448331036046
+                  ]
+                },
+                {
+                  "name": "Zero decrease",
+                  "values": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "Grouped simultaneous low",
+                  "values": [
+                    -0.1168073614017584,
+                    -0.056208210689284055,
+                    -0.049097030258956564,
+                    -0.04071588307778859,
+                    -0.04143002522408662,
+                    -0.07680003540031352
+                  ]
+                },
+                {
+                  "name": "Grouped simultaneous high",
+                  "values": [
+                    0.22393078645652476,
+                    0.278100089998674,
+                    0.2633062298809508,
+                    0.23189763750175602,
+                    0.17893533311848195,
+                    0.10730986447915851
+                  ]
+                },
+                {
+                  "name": "Ungrouped simultaneous low",
+                  "values": [
+                    -0.8785994561637597,
+                    -0.8838629056530833,
+                    -0.6323769467126866,
+                    -0.7774246398562873,
+                    -0.6057963678779157,
+                    -0.7907285326884148
+                  ]
+                },
+                {
+                  "name": "Ungrouped simultaneous high",
+                  "values": [
+                    0.8417979509291589,
+                    0.8175995553272487,
+                    1.0519021308047116,
+                    0.8729011738178533,
+                    0.9511999751590787,
+                    0.6799147449140825
+                  ]
+                },
+                {
+                  "name": "Energy-focused simultaneous low",
+                  "values": [
+                    -0.6023375989149221,
+                    -0.07258402847742762,
+                    -0.043416429184085115,
+                    0.035022996039599796,
+                    0.0076566932436307605,
+                    -0.04587202685543599
+                  ]
+                },
+                {
+                  "name": "Energy-focused simultaneous high",
+                  "values": [
+                    0.6225418442481478,
+                    0.32018227445056335,
+                    0.23804267300702767,
+                    0.22647324282949657,
+                    0.13146829921655268,
+                    0.04998691870085718
+                  ]
+                }
+              ]
             }
           ],
           "metrics": [
@@ -4649,6 +4752,24 @@
               "value": 34.91833614325653,
               "unit": "%",
               "note": "Energy-focused versus equal grouped at the same preparation budget. Fixed allocation from coefficient ranges only; inspect the tradeoff chart for D and kinetic energy. Shot order ZZZZ, XZXI, YZYI, IXZX, IYZY: 848, 108, 108, 108, 108."
+            },
+            {
+              "label": "Scan decreases resolved: Grouped",
+              "value": 0.0,
+              "unit": "/ 6",
+              "note": "Simultaneous 95% binomial family; 0/6 with separate Hoeffding family. 8,960 preparations for seven interactions, reusing existing counts. All six must resolve to certify the full sampled scan; no guarantee between grid points."
+            },
+            {
+              "label": "Scan decreases resolved: Ungrouped",
+              "value": 0.0,
+              "unit": "/ 6",
+              "note": "Simultaneous 95% binomial family; 0/6 with separate Hoeffding family. 8,960 preparations for seven interactions, reusing existing counts. All six must resolve to certify the full sampled scan; no guarantee between grid points."
+            },
+            {
+              "label": "Scan decreases resolved: Energy-focused",
+              "value": 2.0,
+              "unit": "/ 6",
+              "note": "Simultaneous 95% binomial family; 1/6 with separate Hoeffding family. 8,960 preparations for seven interactions, reusing existing counts. All six must resolve to certify the full sampled scan; no guarantee between grid points."
             }
           ]
         },
@@ -5240,6 +5361,108 @@
                   ]
                 }
               ]
+            },
+            {
+              "title": "Adjacent density decreases: simultaneous 95% binomial scan bounds",
+              "x": [
+                "0 to 0.5",
+                "0.5 to 1",
+                "1 to 2",
+                "2 to 4",
+                "4 to 6",
+                "6 to 8"
+              ],
+              "xlabel": "U / t pair; positive lower bound resolves a decrease; family per strategy/budget",
+              "series": [
+                {
+                  "name": "Exact ground-state decrease",
+                  "values": [
+                    0.06201736729460405,
+                    0.05925044522356249,
+                    0.10233898523181251,
+                    0.12994659284329477,
+                    0.062471756575648074,
+                    0.031188448331036046
+                  ]
+                },
+                {
+                  "name": "Zero decrease",
+                  "values": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "Grouped simultaneous low",
+                  "values": [
+                    0.01420441103154313,
+                    0.0253400080823854,
+                    0.0655632260906247,
+                    0.09333994645824667,
+                    0.0364083431108112,
+                    0.0076592036695634635
+                  ]
+                },
+                {
+                  "name": "Grouped simultaneous high",
+                  "values": [
+                    0.09844545475856742,
+                    0.10827925013798212,
+                    0.14413085377199986,
+                    0.16072941386236025,
+                    0.08940450768783148,
+                    0.049880808796918315
+                  ]
+                },
+                {
+                  "name": "Ungrouped simultaneous low",
+                  "values": [
+                    -0.1721761453061384,
+                    -0.1582815405578959,
+                    -0.11895396273798181,
+                    -0.053364676716000925,
+                    -0.13676652394327551,
+                    -0.1414757392850111
+                  ]
+                },
+                {
+                  "name": "Ungrouped simultaneous high",
+                  "values": [
+                    0.25926286079654665,
+                    0.2711535546446132,
+                    0.3028560858011292,
+                    0.3501336001994034,
+                    0.24427626376494022,
+                    0.2202758706997257
+                  ]
+                },
+                {
+                  "name": "Energy-focused simultaneous low",
+                  "values": [
+                    -0.39820864162029,
+                    0.010818440379585348,
+                    0.06165656127067254,
+                    0.10593428055500079,
+                    0.0471777730889978,
+                    0.015781971575798623
+                  ]
+                },
+                {
+                  "name": "Energy-focused simultaneous high",
+                  "values": [
+                    0.5982458573637881,
+                    0.10785409208098512,
+                    0.1316515324863497,
+                    0.1538635840101851,
+                    0.07922752742398519,
+                    0.03946772358338291
+                  ]
+                }
+              ]
             }
           ],
           "metrics": [
@@ -5296,6 +5519,24 @@
               "value": 34.920852727990095,
               "unit": "%",
               "note": "Energy-focused versus equal grouped at the same preparation budget. Fixed allocation from coefficient ranges only; inspect the tradeoff chart for D and kinetic energy. Shot order ZZZZ, XZXI, YZYI, IXZX, IYZY: 13648, 1708, 1708, 1708, 1708."
+            },
+            {
+              "label": "Scan decreases resolved: Grouped",
+              "value": 6.0,
+              "unit": "/ 6",
+              "note": "Simultaneous 95% binomial family; 5/6 with separate Hoeffding family. 143,360 preparations for seven interactions, reusing existing counts. All six must resolve to certify the full sampled scan; no guarantee between grid points."
+            },
+            {
+              "label": "Scan decreases resolved: Ungrouped",
+              "value": 0.0,
+              "unit": "/ 6",
+              "note": "Simultaneous 95% binomial family; 2/6 with separate Hoeffding family. 143,360 preparations for seven interactions, reusing existing counts. All six must resolve to certify the full sampled scan; no guarantee between grid points."
+            },
+            {
+              "label": "Scan decreases resolved: Energy-focused",
+              "value": 5.0,
+              "unit": "/ 6",
+              "note": "Simultaneous 95% binomial family; 5/6 with separate Hoeffding family. 143,360 preparations for seven interactions, reusing existing counts. All six must resolve to certify the full sampled scan; no guarantee between grid points."
             }
           ]
         },
@@ -5887,6 +6128,108 @@
                   ]
                 }
               ]
+            },
+            {
+              "title": "Adjacent density decreases: simultaneous 95% binomial scan bounds",
+              "x": [
+                "0 to 0.5",
+                "0.5 to 1",
+                "1 to 2",
+                "2 to 4",
+                "4 to 6",
+                "6 to 8"
+              ],
+              "xlabel": "U / t pair; positive lower bound resolves a decrease; family per strategy/budget",
+              "series": [
+                {
+                  "name": "Exact ground-state decrease",
+                  "values": [
+                    0.06201736729460405,
+                    0.05925044522356249,
+                    0.10233898523181251,
+                    0.12994659284329477,
+                    0.062471756575648074,
+                    0.031188448331036046
+                  ]
+                },
+                {
+                  "name": "Zero decrease",
+                  "values": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "name": "Grouped simultaneous low",
+                  "values": [
+                    0.05437899967715776,
+                    0.04776153091418989,
+                    0.09410100419545375,
+                    0.12007976617739541,
+                    0.05424313097573161,
+                    0.02789645875424323
+                  ]
+                },
+                {
+                  "name": "Grouped simultaneous high",
+                  "values": [
+                    0.07534099439984354,
+                    0.06840972613173946,
+                    0.11370730660215222,
+                    0.136918970457361,
+                    0.0675733764414977,
+                    0.038473965870595095
+                  ]
+                },
+                {
+                  "name": "Ungrouped simultaneous low",
+                  "values": [
+                    0.015996741970287665,
+                    0.006227355664706502,
+                    0.052588672232268596,
+                    0.07370509307977843,
+                    0.021847305918381882,
+                    -0.014235583577252242
+                  ]
+                },
+                {
+                  "name": "Ungrouped simultaneous high",
+                  "values": [
+                    0.12346780150900277,
+                    0.11319163585929481,
+                    0.15781329326106272,
+                    0.1741334287726227,
+                    0.11612200979458864,
+                    0.0755314236029512
+                  ]
+                },
+                {
+                  "name": "Energy-focused simultaneous low",
+                  "values": [
+                    -0.43886673987917346,
+                    0.04480534360137112,
+                    0.09190507975127715,
+                    0.12360650880564664,
+                    0.0575287275216055,
+                    0.029045848946808443
+                  ]
+                },
+                {
+                  "name": "Energy-focused simultaneous high",
+                  "values": [
+                    0.5715586835246883,
+                    0.06900426724613118,
+                    0.10939090501575388,
+                    0.13559953922089868,
+                    0.06562225561750047,
+                    0.035014113634338005
+                  ]
+                }
+              ]
             }
           ],
           "metrics": [
@@ -5943,6 +6286,24 @@
               "value": 34.92086261561391,
               "unit": "%",
               "note": "Energy-focused versus equal grouped at the same preparation budget. Fixed allocation from coefficient ranges only; inspect the tradeoff chart for D and kinetic energy. Shot order ZZZZ, XZXI, YZYI, IXZX, IYZY: 218448, 27308, 27308, 27308, 27308."
+            },
+            {
+              "label": "Scan decreases resolved: Grouped",
+              "value": 6.0,
+              "unit": "/ 6",
+              "note": "Simultaneous 95% binomial family; 6/6 with separate Hoeffding family. 2,293,760 preparations for seven interactions, reusing existing counts. All six must resolve to certify the full sampled scan; no guarantee between grid points."
+            },
+            {
+              "label": "Scan decreases resolved: Ungrouped",
+              "value": 5.0,
+              "unit": "/ 6",
+              "note": "Simultaneous 95% binomial family; 6/6 with separate Hoeffding family. 2,293,760 preparations for seven interactions, reusing existing counts. All six must resolve to certify the full sampled scan; no guarantee between grid points."
+            },
+            {
+              "label": "Scan decreases resolved: Energy-focused",
+              "value": 5.0,
+              "unit": "/ 6",
+              "note": "Simultaneous 95% binomial family; 5/6 with separate Hoeffding family. 2,293,760 preparations for seven interactions, reusing existing counts. All six must resolve to certify the full sampled scan; no guarantee between grid points."
             }
           ]
         }

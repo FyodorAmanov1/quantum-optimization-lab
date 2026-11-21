@@ -1,5 +1,7 @@
 # Primary references and implementation boundaries
 
+The simultaneous density-scan extension reuses the Clopper-Pearson and Hoeffding primary sources below, verified against their indexed publisher records and original-paper scans. Its multiplicity correction is an explicit union-bound derivation: allocate alpha/7 across interaction-level density intervals and subtract adjacent endpoints, or alpha/6 across direct Hoeffding differences. The guarantee is per fixed strategy, budget and procedure. Shared endpoints need not be independent for the union bound; independent shots remain an assumption of each component estimator. Reported scan costs count each interaction once. No novel statistical method is claimed.
+
 - [Quantum alternating operator ansatz](https://arxiv.org/abs/1709.03489)
 - [Variational quantum eigensolver](https://arxiv.org/abs/1304.3061)
 - [Verteletskyi, Yen and Izmaylov: Measurement Optimization in the Variational Quantum Eigensolver Using a Minimum Clique Cover (2020)](https://arxiv.org/abs/1907.03358): qubit-wise commuting measurement groups. This implementation uses an explicit five-setting partition, not a general clique-cover optimizer.

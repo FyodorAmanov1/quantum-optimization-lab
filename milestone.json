@@ -1,7 +1,7 @@
 {
   "task_id": "QO02",
   "status": "completed",
-  "summary": "Finite-shot Hubbard energy, total double occupancy and kinetic energy use actual grouped Born counts, confidence intervals and exact prepared-state/ground-state references. Added fixed unequal-shot measurement and coefficient-range energy allocation with matched preparation budgets against equal grouped and independent-Pauli baselines. At U/t=8 and 20,480 preparations the energy CI half-width narrows 34.9% to 0.11388 t, while kinetic uncertainty grows 54.9%; worse seeded scan RMSE and the uninformative two-shot U=0 density result are retained. Studio charts and CSV expose all three strategies, uncertainty and actual setting counts. Legacy scalar-shot and VQE APIs remain compatible.",
+  "summary": "Actual finite-shot Hubbard energy, double occupancy and kinetic energy include grouped Born counts, confidence intervals and exact prepared-state/ground-state references, with matched independent-Pauli and energy-allocation baselines. Added simultaneous bounds for all six adjacent density decreases using the same shots and explicit unique scan costs. At 143,360 preparations, equal grouping resolves 6/6 with binomial bounds versus 0/6 for independent terms; separate Hoeffding families resolve 5/6 versus 2/6. Energy-focused allocation cannot resolve the full scan even at the largest budget because U=0 receives only two density shots. Studio charts/cards expose all strategies and preserved negative findings; legacy APIs remain compatible.",
   "evidence_paths": [
     "lab.py",
     "src/hubbard_measurement.py",
@@ -15,6 +15,7 @@
     "reports/applied-study.md",
     "README.md",
     "REFERENCES.md",
-    "results/QO02-tests.txt"
+    "results/QO02-tests.txt",
+    "tests/test_density_scan.py"
   ]
 }

@@ -44,6 +44,8 @@ An additional energy-focused allocation uses the same preparation budgets and on
 
 ## What to examine
 
+The measurement case also asks whether **all six adjacent density decreases** can be resolved with simultaneous 95% scan bounds. Equal grouping resolves all six with binomial bounds at 143,360 preparations across seven interactions; the independent-term baseline resolves none at the same cost. The separate Hoeffding procedure resolves five and two, respectively. Energy-focused allocation cannot resolve the full scan even at the largest tested budget because it keeps only two density shots at U=0. These guarantees apply separately to each strategy, budget and procedure, on the sampled grid. The studio exposes the bounds, exact references, verdicts and full scan cost; [QO02](reports/QO02.md) explains the multiplicity correction and retained negative results.
+
 - Compare the full allocation distribution with the exact cost ranking.
 - Inspect how turnover affects the allocation objective.
 - Follow energy and double occupancy as interaction strength increases.
